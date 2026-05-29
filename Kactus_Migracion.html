@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kactus HCM · Migración Colombia</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1a3a6b;--navy2:#0d2348;--gold:#f5a623;--gold2:#ffc84a;
+  --blue:#2059a8;--blue2:#3a7bd5;--white:#fff;--off:#f7f9fc;
+  --gray:#8898aa;--light:#e8edf5;--text:#1a2b45;--r:14px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Open Sans',sans-serif;background:var(--white);color:var(--text);overflow-x:hidden;}
+
+/* TOP BAR */
+.topbar{position:fixed;top:0;left:0;right:0;z-index:900;height:56px;background:var(--white);
+  border-bottom:2px solid var(--light);display:flex;align-items:center;justify-content:space-between;
+  padding:0 2rem;box-shadow:0 2px 12px rgba(26,58,107,.08);}
+.logo-kactus{font-family:'Nunito',sans-serif;font-size:1.35rem;font-weight:900;color:var(--navy);}
+.logo-kactus span{color:var(--gold)}
+.logo-sep{width:1px;height:28px;background:var(--light);margin:0 12px}
+.logo-dw{font-family:'Nunito',sans-serif;font-size:.85rem;font-weight:700;color:var(--navy);opacity:.6}
+.topbar-logo{display:flex;align-items:center}
+.topbar-nav{display:flex;gap:4px}
+.tnav-btn{font-family:'Open Sans',sans-serif;font-size:.78rem;font-weight:600;color:var(--navy);
+  opacity:.55;border:none;background:none;padding:6px 14px;border-radius:20px;cursor:pointer;transition:all .18s;white-space:nowrap;}
+.tnav-btn:hover{opacity:1;background:var(--light)}
+.tnav-btn.active{background:var(--navy);color:var(--white);opacity:1;}
+.topbar-badge{font-size:.7rem;color:var(--navy);opacity:.45;font-weight:600}
+
+/* PROGRESS */
+.progress-bar{position:fixed;top:56px;left:0;right:0;height:3px;background:var(--light);z-index:800;}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--blue),var(--gold));transition:width .4s ease;}
+
+/* SCREENS */
+.screen{display:none;min-height:100vh;padding-top:56px;}
+.screen.active{display:block}
+
+/* ── INTRO ── */
+#scr-intro{background:var(--white)}
+.intro-layout{display:grid;grid-template-columns:1fr 540px;min-height:calc(100vh - 56px)}
+.intro-left{padding:2.5rem 2.5rem 2rem 3rem;display:flex;flex-direction:column;justify-content:center;background:var(--white);}
+.eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:.6rem}
+.eyebrow-dot{width:28px;height:8px;background:var(--gold);border-radius:4px}
+.eyebrow-text{font-family:'Nunito',sans-serif;font-size:.72rem;font-weight:700;color:var(--gold);letter-spacing:.1em;text-transform:uppercase}
+.intro-title{font-family:'Nunito',sans-serif;font-size:2.3rem;font-weight:900;color:var(--navy);line-height:1.1;margin-bottom:.25rem;letter-spacing:-.02em}
+.intro-subtitle{font-family:'Nunito',sans-serif;font-size:1.3rem;font-weight:700;color:var(--gold);margin-bottom:1rem}
+.intro-desc{font-size:.87rem;color:var(--gray);line-height:1.7;max-width:400px;margin-bottom:1.5rem}
+.chips-title{font-size:.68rem;font-weight:700;color:var(--navy);opacity:.5;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.6rem}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:1.5rem}
+.chip{display:flex;align-items:center;gap:6px;padding:6px 12px;border-radius:8px;border:1.5px solid var(--light);background:var(--white);font-size:.78rem;font-weight:600;color:var(--navy);cursor:pointer;transition:all .18s;white-space:nowrap}
+.chip:hover{border-color:var(--navy);background:var(--navy);color:var(--white);transform:translateY(-1px);box-shadow:0 4px 12px rgba(26,58,107,.15)}
+.intro-stats{display:flex;gap:2rem;padding-top:1.2rem;border-top:1px solid var(--light)}
+.istat{display:flex;flex-direction:column;gap:2px}
+.istat-val{font-family:'Nunito',sans-serif;font-size:1.8rem;font-weight:900;color:var(--navy);line-height:1}
+.istat-lbl{font-size:.68rem;color:var(--gray);font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+
+/* ── DIAGRAM ── */
+.intro-right{background:var(--off);display:flex;align-items:center;justify-content:center;padding:1.5rem;border-left:1px solid var(--light);position:relative}
+.diagram-outer{position:relative;width:480px;height:480px;flex-shrink:0}
+.center-logo{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:155px;height:155px;border-radius:50%;background:white;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(26,58,107,.18);border:3px solid white;z-index:10;pointer-events:none}
+.center-logo img{width:115px;object-fit:contain}
+.node{position:absolute;width:40px;height:40px;background:var(--navy);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;border:3px solid white;box-shadow:0 3px 12px rgba(26,58,107,.25);transform:translate(-50%,-50%);z-index:5}
+.node:hover{background:var(--gold);transform:translate(-50%,-50%) scale(1.15);box-shadow:0 6px 18px rgba(245,166,35,.4)}
+.node svg{width:16px;height:16px;fill:white}
+.node-lbl{position:absolute;transform:translate(-50%,-50%);font-size:.62rem;font-weight:700;color:var(--navy);white-space:nowrap;text-align:center;pointer-events:none;line-height:1.25;z-index:4}
+
+/* ── LICENCIA ── */
+#scr-licencia{background:var(--off)}
+.page-inner{max-width:1060px;margin:0 auto;padding:2.5rem 2rem}
+.page-header{margin-bottom:2rem;display:flex;align-items:flex-start;gap:14px}
+.page-header-line{width:6px;height:58px;background:var(--gold);border-radius:3px;flex-shrink:0;margin-top:4px}
+.page-header-text h1{font-family:'Nunito',sans-serif;font-size:2rem;font-weight:900;color:var(--navy);letter-spacing:-.02em}
+.page-header-text p{font-size:.88rem;color:var(--gray);margin-top:3px}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:1.8rem}
+.kpi{background:white;border-radius:var(--r);padding:1.3rem;text-align:center;border:1px solid var(--light);box-shadow:0 2px 8px rgba(26,58,107,.06);transition:transform .2s,box-shadow .2s}
+.kpi:hover{transform:translateY(-3px);box-shadow:0 8px 22px rgba(26,58,107,.12)}
+.kpi-val{font-family:'Nunito',sans-serif;font-size:2.3rem;font-weight:900;color:var(--navy);line-height:1;margin-bottom:5px}
+.kpi-val.gold{color:var(--gold)}
+.kpi-lbl{font-size:.76rem;color:var(--gray);font-weight:600;line-height:1.4}
+.tl-box{background:white;border-radius:var(--r);padding:1.6rem;border:1px solid var(--light)}
+.tl-head{font-family:'Nunito',sans-serif;font-size:.68rem;font-weight:800;color:var(--navy);opacity:.45;letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.3rem}
+.tl-row{display:grid;grid-template-columns:repeat(6,1fr);position:relative}
+.tl-row::before{content:'';position:absolute;top:18px;left:8%;right:8%;height:2px;background:linear-gradient(90deg,var(--blue),var(--gold));z-index:0}
+.tl-node{display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;z-index:1;padding:0 5px}
+.tl-circle{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Nunito',sans-serif;font-size:.65rem;font-weight:800;color:white;margin-bottom:10px;border:3px solid white;box-shadow:0 2px 8px rgba(26,58,107,.2)}
+.tl-year{font-family:'Nunito',sans-serif;font-size:.85rem;font-weight:800;color:var(--navy);margin-bottom:3px}
+.tl-info{font-size:.7rem;color:var(--gray);line-height:1.4;margin-bottom:5px}
+.tl-pill{font-size:.68rem;font-weight:700;padding:3px 8px;border-radius:10px}
+.lic-note{margin-top:1.3rem;background:rgba(26,58,107,.04);border-left:3px solid var(--navy);padding:9px 14px;border-radius:0 8px 8px 0;font-size:.78rem;color:var(--gray);font-style:italic}
+
+/* ── MÓDULOS GRID ── */
+#scr-modulos{background:var(--off)}
+.mod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:1060px;margin:0 auto;padding:0 2rem 2rem}
+.mod-tile{background:white;border-radius:var(--r);border:1.5px solid var(--light);cursor:pointer;transition:all .2s;overflow:hidden;box-shadow:0 2px 8px rgba(26,58,107,.05)}
+.mod-tile:hover{border-color:var(--navy);transform:translateY(-4px);box-shadow:0 12px 30px rgba(26,58,107,.14)}
+.mct-bar{height:5px}
+.mct-body{padding:1.2rem 1.2rem 1.4rem}
+.mct-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:.8rem;font-size:1.3rem}
+.mct-num{font-family:'Nunito',sans-serif;font-size:.63rem;font-weight:800;color:var(--gray);letter-spacing:.1em;text-transform:uppercase;margin-bottom:2px}
+.mct-name{font-family:'Nunito',sans-serif;font-size:1rem;font-weight:800;color:var(--navy);line-height:1.2;margin-bottom:5px}
+.mct-desc{font-size:.78rem;color:var(--gray);line-height:1.5;margin-bottom:9px}
+.mct-arrow{display:inline-flex;align-items:center;gap:5px;font-size:.73rem;font-weight:700;color:var(--navy)}
+.mct-arrow::after{content:'→';transition:transform .18s}
+.mod-tile:hover .mct-arrow::after{transform:translateX(4px)}
+
+/* ── DETAIL ── */
+#scr-detail{background:white}
+.detail-layout{display:grid;grid-template-columns:290px 1fr;min-height:calc(100vh - 56px)}
+.detail-sidebar{background:var(--navy2);padding:2rem 1.6rem;display:flex;flex-direction:column;gap:1rem;position:sticky;top:56px;height:calc(100vh - 56px);overflow-y:auto}
+.ds-back{display:inline-flex;align-items:center;gap:6px;font-size:.76rem;font-weight:700;color:rgba(255,255,255,.5);background:none;border:none;cursor:pointer;padding:5px 0;transition:color .15s;margin-bottom:.4rem}
+.ds-back:hover{color:white}
+.ds-back::before{content:'←';font-size:.9rem}
+.ds-icon{width:50px;height:50px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin-bottom:.2rem}
+.ds-num{font-size:.63rem;font-weight:800;color:rgba(255,255,255,.35);letter-spacing:.12em;text-transform:uppercase}
+.ds-name{font-family:'Nunito',sans-serif;font-size:1.2rem;font-weight:900;color:white;line-height:1.15}
+.ds-tag{font-size:.78rem;color:rgba(255,255,255,.5);line-height:1.5}
+.ds-impact{border-radius:10px;padding:.9rem 1rem;margin-top:.2rem}
+.ds-impact-lbl{font-size:.63rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;margin-bottom:5px;color:rgba(255,255,255,.6)}
+.ds-impact-txt{font-size:.82rem;color:white;line-height:1.6;font-weight:500}
+.ds-feats{margin-top:.2rem}
+.ds-feats-lbl{font-size:.63rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.4);margin-bottom:8px}
+.ds-feat{display:flex;align-items:flex-start;gap:7px;padding:4px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:.78rem;color:rgba(255,255,255,.7);line-height:1.3}
+.ds-feat:last-child{border-bottom:none}
+.ds-fdot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:5px}
+.detail-main{padding:2.2rem 2.2rem 2.5rem;background:var(--off);overflow-y:auto}
+
+/* Detail cards */
+.d-sec{margin-bottom:1.1rem}
+.d-lbl{display:flex;align-items:center;gap:7px;font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;margin-bottom:7px}
+.d-dot{width:10px;height:10px;border-radius:2px}
+.d-card{background:white;border:1px solid var(--light);border-radius:var(--r);padding:1.2rem 1.4rem;font-size:.91rem;color:var(--text);line-height:1.7;box-shadow:0 1px 4px rgba(26,58,107,.05)}
+.d-card strong{color:var(--navy);font-weight:700}
+.d-card ul{margin:.6rem 0 0 1.2rem}
+.d-card ul li{margin-bottom:.35rem;font-size:.88rem}
+.d-card p+p{margin-top:.6rem}
+
+/* Process flow */
+.flow-wrap{background:white;border:1px solid var(--light);border-radius:var(--r);padding:1.4rem;overflow-x:auto;box-shadow:0 1px 4px rgba(26,58,107,.05)}
+.flow{display:flex;align-items:flex-start;gap:0;flex-wrap:nowrap;min-width:max-content}
+.flow-step{display:flex;flex-direction:column;align-items:center;gap:6px;min-width:100px;max-width:110px;text-align:center}
+.flow-box{border-radius:10px;padding:10px 8px;font-size:.72rem;font-weight:700;line-height:1.3;color:white;width:95px;min-height:52px;display:flex;align-items:center;justify-content:center;text-align:center}
+.flow-num{font-size:.6rem;font-weight:800;color:var(--gray);text-transform:uppercase;letter-spacing:.06em}
+.flow-arrow{display:flex;align-items:center;padding-top:16px;padding-bottom:30px;color:var(--light);font-size:1.2rem;font-weight:300;flex-shrink:0;margin:0 2px}
+
+.d-example{border-radius:var(--r);padding:1.4rem;position:relative;overflow:hidden}
+.d-example::before{content:'❝';position:absolute;top:-8px;left:12px;font-size:6rem;line-height:1;opacity:.07;color:white;pointer-events:none}
+.d-example-lbl{font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;margin-bottom:7px;color:rgba(255,255,255,.6)}
+.d-example-txt{font-size:.9rem;color:white;line-height:1.7;position:relative;z-index:1}
+.d-example-txt strong{color:#ffd166}
+.detail-nav{display:flex;justify-content:space-between;align-items:center;margin-top:1.3rem;padding-top:1.1rem;border-top:1px solid var(--light)}
+.dnav-btn{display:flex;align-items:center;gap:6px;font-size:.8rem;font-weight:700;color:var(--navy);border:1.5px solid var(--light);background:white;padding:7px 14px;border-radius:8px;cursor:pointer;transition:all .18s}
+.dnav-btn:hover{background:var(--navy);color:white;border-color:var(--navy)}
+.dnav-btn:disabled{opacity:.3;cursor:not-allowed}
+
+/* Feature grid inside cards */
+.feat-2col{display:grid;grid-template-columns:1fr 1fr;gap:.4rem .8rem;margin:.5rem 0}
+.feat-item{display:flex;align-items:flex-start;gap:6px;font-size:.82rem;color:var(--text);line-height:1.35}
+.feat-item::before{content:'•';color:var(--gold);font-weight:900;flex-shrink:0;margin-top:1px}
+
+/* ── VALOR ── */
+#scr-valor{background:var(--off)}
+.vpillars{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:1.8rem}
+.vpillar{background:white;border-radius:var(--r);border:1px solid var(--light);padding:1.5rem 1.2rem;box-shadow:0 2px 8px rgba(26,58,107,.05);transition:transform .2s,box-shadow .2s}
+.vpillar:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(26,58,107,.12)}
+.vp-top{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:.9rem}
+.vp-title{font-family:'Nunito',sans-serif;font-size:.97rem;font-weight:800;color:var(--navy);margin-bottom:.7rem}
+.vp-items{list-style:none}
+.vp-items li{font-size:.78rem;color:var(--gray);padding:4px 0;border-bottom:1px solid var(--light);display:flex;align-items:flex-start;gap:5px;line-height:1.4}
+.vp-items li:last-child{border-bottom:none}
+.vp-items li::before{content:'›';font-weight:700;color:var(--gold);flex-shrink:0}
+
+/* ── OPORTUNIDADES ── */
+#scr-oportunidad{background:var(--off)}
+.op-summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:2rem}
+.op-summary-card{border-radius:var(--r);padding:1.6rem 2rem;cursor:pointer;transition:all .22s;position:relative;overflow:hidden}
+.op-summary-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.15)}
+.op-summary-card .osc-num{font-family:'Nunito',sans-serif;font-size:3.5rem;font-weight:900;line-height:1;margin-bottom:.3rem}
+.op-summary-card .osc-title{font-size:1rem;font-weight:700;margin-bottom:.3rem}
+.op-summary-card .osc-sub{font-size:.8rem;opacity:.75;line-height:1.5}
+.op-summary-card .osc-arrow{position:absolute;right:1.5rem;bottom:1.4rem;font-size:1.5rem;opacity:.5;transition:all .2s}
+.op-summary-card:hover .osc-arrow{opacity:1;transform:translateX(4px)}
+.osc-licensed{background:linear-gradient(135deg,#1db87a,#15a367);color:white}
+.osc-unlicensed{background:linear-gradient(135deg,var(--navy),var(--blue));color:white}
+.osc-unlicensed .osc-num{color:var(--gold)}
+
+/* Op detail view */
+.op-detail-view{display:none}
+.op-detail-view.active{display:block}
+.op-back{display:inline-flex;align-items:center;gap:7px;font-size:.8rem;font-weight:700;color:var(--navy);background:white;border:1.5px solid var(--light);padding:7px 14px;border-radius:8px;cursor:pointer;transition:all .18s;margin-bottom:1.5rem}
+.op-back:hover{background:var(--navy);color:white;border-color:var(--navy)}
+.op-back::before{content:'←'}
+
+.op-cat{margin-bottom:2rem}
+.op-cat-header{display:flex;align-items:center;gap:10px;margin-bottom:1rem;padding-bottom:.6rem;border-bottom:2px solid var(--light)}
+.op-cat-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.op-cat-title{font-family:'Nunito',sans-serif;font-size:1.05rem;font-weight:800;color:var(--navy)}
+.op-cat-count{font-size:.72rem;font-weight:700;padding:2px 8px;border-radius:10px;background:rgba(26,58,107,.1);color:var(--navy);margin-left:auto}
+.op-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.op-card{background:white;border:1.5px solid var(--light);border-radius:var(--r);padding:1rem 1.1rem;transition:all .18s;position:relative;overflow:hidden}
+.op-card:hover{border-color:var(--navy);transform:translateY(-2px);box-shadow:0 8px 20px rgba(26,58,107,.1)}
+.op-card-seq{font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;margin-bottom:3px}
+.op-card-name{font-family:'Nunito',sans-serif;font-size:.88rem;font-weight:800;color:var(--navy);margin-bottom:.3rem;line-height:1.2}
+.op-card-full{font-size:.68rem;color:#aaa;margin-bottom:4px;font-style:italic}
+.op-card-desc{font-size:.76rem;color:var(--gray);line-height:1.45}
+.op-card-phase{display:inline-flex;align-items:center;gap:4px;font-size:.65rem;font-weight:700;padding:2px 8px;border-radius:8px;margin-top:.5rem;text-transform:uppercase;letter-spacing:.05em}
+
+/* Licensed list view */
+.lic-list{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.lic-list-item{background:white;border:1.5px solid var(--light);border-radius:var(--r);padding:1rem 1.2rem;display:flex;align-items:flex-start;gap:12px;transition:all .18s}
+.lic-list-item:hover{border-color:#1db87a;box-shadow:0 4px 14px rgba(29,184,122,.12)}
+.lli-check{width:28px;height:28px;border-radius:8px;background:rgba(29,184,122,.12);display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0;margin-top:2px}
+.lli-name{font-family:'Nunito',sans-serif;font-size:.9rem;font-weight:800;color:var(--navy);margin-bottom:3px;line-height:1.2}
+.lli-cat{font-size:.7rem;color:var(--gray);font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+.lli-desc{font-size:.76rem;color:var(--gray);line-height:1.4;margin-top:3px}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.fade-up{animation:fadeUp .4s ease forwards}
+
+@media(max-width:900px){
+  .intro-layout{grid-template-columns:1fr}.intro-right{display:none}
+  .kpis,.tl-row{grid-template-columns:1fr 1fr}.tl-row::before{display:none}
+  .mod-grid{grid-template-columns:1fr 1fr}
+  .detail-layout{grid-template-columns:1fr}.detail-sidebar{position:relative;height:auto}
+  .vpillars{grid-template-columns:repeat(2,1fr)}
+  .op-summary-grid,.op-cards,.lic-list{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  .mod-grid,.vpillars,.op-cards,.lic-list{grid-template-columns:1fr}
+  .kpis{grid-template-columns:1fr 1fr}
+}
+
+/* ── PASSWORD SCREEN ── */
+#pwd-overlay{
+  position:fixed;inset:0;z-index:9999;
+  background:linear-gradient(135deg,#0d2348 0%,#1a3a6b 55%,#2059a8 100%);
+  display:flex;align-items:center;justify-content:center;
+}
+#pwd-overlay.hidden{display:none}
+.pwd-box{
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:20px;
+  padding:2.8rem 2.5rem 2.2rem;
+  width:360px;
+  text-align:center;
+  position:relative;
+  backdrop-filter:blur(12px);
+}
+.pwd-box::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,#f5a623,#00b4c8);
+  border-radius:20px 20px 0 0;
+}
+.pwd-logo{
+  font-family:'Nunito',sans-serif;
+  font-size:1.6rem;font-weight:900;color:white;
+  margin-bottom:.2rem;letter-spacing:-.02em;
+}
+.pwd-logo span{color:#f5a623}
+.pwd-sub{font-size:.78rem;color:rgba(255,255,255,.45);margin-bottom:2rem}
+.pwd-label{
+  font-size:.68rem;font-weight:700;color:rgba(255,255,255,.5);
+  text-transform:uppercase;letter-spacing:.1em;
+  text-align:left;margin-bottom:.5rem;display:block;
+}
+.pwd-input{
+  width:100%;padding:.75rem 1rem;
+  background:rgba(255,255,255,.08);
+  border:1.5px solid rgba(255,255,255,.15);
+  border-radius:10px;
+  color:white;font-size:.95rem;
+  font-family:'Open Sans',sans-serif;
+  outline:none;transition:border-color .2s;
+  margin-bottom:.8rem;
+}
+.pwd-input::placeholder{color:rgba(255,255,255,.25)}
+.pwd-input:focus{border-color:rgba(245,166,35,.6)}
+.pwd-input.error{border-color:#e84545;animation:shake .3s ease}
+@keyframes shake{
+  0%,100%{transform:translateX(0)}
+  25%{transform:translateX(-6px)}
+  75%{transform:translateX(6px)}
+}
+.pwd-btn{
+  width:100%;padding:.8rem;
+  background:#f5a623;color:#0d2348;
+  font-family:'Nunito',sans-serif;
+  font-size:.95rem;font-weight:800;
+  border:none;border-radius:10px;cursor:pointer;
+  transition:all .18s;margin-bottom:.8rem;
+}
+.pwd-btn:hover{background:#ffc84a;transform:translateY(-1px);box-shadow:0 6px 18px rgba(245,166,35,.35)}
+.pwd-error{
+  font-size:.78rem;color:#e84545;
+  min-height:1.1rem;margin-top:-.2rem;
+}
+.pwd-footer{
+  font-size:.68rem;color:rgba(255,255,255,.2);
+  margin-top:1.5rem;
+}
+/* Decorative orbs */
+.pwd-orb1{position:absolute;width:320px;height:320px;border-radius:50%;
+  background:radial-gradient(circle,rgba(245,166,35,.1) 0%,transparent 70%);
+  top:-100px;right:-100px;pointer-events:none}
+.pwd-orb2{position:absolute;width:260px;height:260px;border-radius:50%;
+  background:radial-gradient(circle,rgba(0,180,200,.08) 0%,transparent 70%);
+  bottom:-80px;left:-80px;pointer-events:none}
+
+</style>
+</head>
+<body>
+
+<!-- ═══════ PASSWORD OVERLAY ═══════ -->
+<div id="pwd-overlay">
+  <div class="pwd-orb1"></div>
+  <div class="pwd-orb2"></div>
+  <div class="pwd-box">
+    <div class="pwd-logo">Kactus<span>-HCM</span></div>
+    <div class="pwd-sub">Migración Colombia · Presentación Comercial</div>
+    <label class="pwd-label" for="pwdInput">Contraseña de acceso</label>
+    <input
+      class="pwd-input"
+      id="pwdInput"
+      type="password"
+      placeholder="Ingrese la contraseña"
+      onkeydown="if(event.key==='Enter')checkPwd()"
+      autocomplete="off"
+    />
+    <div class="pwd-error" id="pwdError"></div>
+    <button class="pwd-btn" onclick="checkPwd()">Ingresar →</button>
+    <div class="pwd-footer">Digital Ware S.A.S · Acceso restringido</div>
+  </div>
+</div>
+
+
+<nav class="topbar">
+  <div class="topbar-logo">
+    <div class="logo-kactus">Kactus<span>-HCM</span></div>
+    <div class="logo-sep"></div>
+    <div class="logo-dw">DigitalWare</div>
+  </div>
+  <div class="topbar-nav">
+    <button class="tnav-btn active" onclick="show('intro')"       id="tnav-intro">Inicio</button>
+    <button class="tnav-btn"        onclick="show('licencia')"    id="tnav-licencia">📋 Licencia</button>
+    <button class="tnav-btn"        onclick="show('modulos')"     id="tnav-modulos">⚙️ Módulos</button>
+    <button class="tnav-btn"        onclick="show('valor')"       id="tnav-valor">🚀 Valor</button>
+    <button class="tnav-btn"        onclick="show('oportunidad')" id="tnav-oportunidad">💎 Oportunidades</button>
+    <button class="tnav-btn"        onclick="show('cierre')"       id="tnav-cierre">🌟 Cierre</button>
+  </div>
+  <div class="topbar-badge">Migración Colombia · DWK-032-2026 · V.26</div>
+</nav>
+<div class="progress-bar"><div class="progress-fill" id="pFill" style="width:20%"></div></div>
+
+<!-- ═══════ INTRO ═══════ -->
+<div class="screen active" id="scr-intro">
+  <div class="intro-layout">
+    <div class="intro-left fade-up">
+      <div class="eyebrow"><div class="eyebrow-dot"></div><div class="eyebrow-text">Presentación Comercial · Digital Ware S.A.S.</div></div>
+      <h1 class="intro-title">Kactus HCM</h1>
+      <div class="intro-subtitle">Ciclo de Vida Macroproceso</div>
+      <p class="intro-desc">Migración Colombia cuenta con <strong>módulos activos</strong> del sistema Kactus HCM by Ophelia V.26, cubriendo cada etapa del ciclo de vida del funcionario — desde la atracción hasta la retención.</p>
+      <div class="chips-title">Acceda directamente a cada módulo</div>
+      <div class="chips" id="introChips"></div>
+      <div class="intro-stats">
+        <div class="istat"><div class="istat-val">1.670</div><div class="istat-lbl">Empleados habilitados</div></div>
+        <div class="istat"><div class="istat-val">11</div><div class="istat-lbl">Módulos licenciados</div></div>
+        <div class="istat"><div class="istat-val">V.26</div><div class="istat-lbl">Versión Kactus HCM</div></div>
+        <div class="istat"><div class="istat-val">2013</div><div class="istat-lbl">Primer licenciamiento</div></div>
+      </div>
+    </div>
+    <div class="intro-right">
+      <div class="diagram-outer" id="diagramOuter">
+        <svg width="480" height="480" viewBox="0 0 480 480" xmlns="http://www.w3.org/2000/svg" style="position:absolute;top:0;left:0">
+          <circle cx="240" cy="240" r="228" fill="none" stroke="#e8edf5" stroke-width="1.5"/>
+          <path d="M148,114 A150,150 0 0,1 332,114" fill="#f5a623"/>
+          <path d="M332,114 A150,150 0 0,1 388,366" fill="#1a3a6b"/>
+          <path d="M388,366 A150,150 0 0,1 92,366" fill="#0d2348"/>
+          <path d="M92,366 A150,150 0 0,1 148,114" fill="#2059a8"/>
+          <circle cx="240" cy="240" r="104" fill="white"/>
+          <circle cx="240" cy="240" r="150" fill="none" stroke="white" stroke-width="4"/>
+          <path id="lss" d="M122,200 A122,122 0 0,1 358,200" fill="none"/>
+          <text font-family="Nunito,sans-serif" font-size="8" font-weight="700" fill="#8898aa" letter-spacing="2.5"><textPath href="#lss" startOffset="20%">SELF SERVICE</textPath></text>
+          <path id="lbi" d="M122,280 A122,122 0 0,0 358,280" fill="none"/>
+          <text font-family="Nunito,sans-serif" font-size="8" font-weight="700" fill="#8898aa" letter-spacing="2"><textPath href="#lbi" startOffset="18%">BI &amp; ANALYTICS</textPath></text>
+          <path id="lwd" d="M165,382 A122,122 0 0,1 118,162" fill="none"/>
+          <text font-family="Nunito,sans-serif" font-size="7" font-weight="700" fill="#8898aa" letter-spacing="1.2"><textPath href="#lwd" startOffset="5%">WEB DESIGN REPORT</textPath></text>
+          <path id="at" d="M155,122 A138,138 0 0,1 325,122" fill="none"/>
+          <text font-family="Nunito,sans-serif" font-size="14" font-weight="900" fill="white" letter-spacing="2"><textPath href="#at" startOffset="21%">ATRAER</textPath></text>
+          <path id="re" d="M325,120 A138,138 0 0,1 382,360" fill="none"/>
+          <text font-family="Nunito,sans-serif" font-size="13" font-weight="900" fill="white" letter-spacing="1"><textPath href="#re" startOffset="7%">REMUNERAR</textPath></text>
+          <path id="al" d="M378,362 A138,138 0 0,1 102,362" fill="none"/>
+          <text font-family="Nunito,sans-serif" font-size="10.5" font-weight="900" fill="white" letter-spacing="1.2"><textPath href="#al" startOffset="13%">ALINEAR Y DESARROLLAR</textPath></text>
+          <path id="rt" d="M98,356 A138,138 0 0,1 152,118" fill="none"/>
+          <text font-family="Nunito,sans-serif" font-size="13" font-weight="900" fill="white" letter-spacing="1.5"><textPath href="#rt" startOffset="8%">RETENER</textPath></text>
+          <path fill="transparent" style="cursor:pointer" d="M240,240 L148,114 A150,150 0 0,1 332,114 Z" onclick="openModule(3)"/>
+          <path fill="transparent" style="cursor:pointer" d="M240,240 L332,114 A150,150 0 0,1 388,366 Z" onclick="openModule(0)"/>
+          <path fill="transparent" style="cursor:pointer" d="M240,240 L388,366 A150,150 0 0,1 92,366 Z" onclick="openModule(4)"/>
+          <path fill="transparent" style="cursor:pointer" d="M240,240 L92,366 A150,150 0 0,1 148,114 Z" onclick="openModule(7)"/>
+        </svg>
+        <div class="center-logo"><img src="data:image/png;base64,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+x98m0iiCM3Vm8OPPINZc5axvjqKN9CLtOHG4fZQUlpMaX6QpppNFId8nHjUBNoaNpKNt1DoURjWr5jk5ipql3xFMNHKyHw3Y0vziS6eT99UnF5GknwzjtuIoZHAMGJoesf85fnz8bjySJkawYpKNsZS1Ciw54nHMLeplkMvPg/3mNEQ9EFJn/99ya0TOgrGmibxeNzKBfnNN9+wYcMGAR1qh3fffRdN0ygtLc0pTmgviCoXoMwQHo1GycvL47333uOdd94RACtXrhQySXHn8vOAtdk+/vhj0uk0BQUFvPDCC2zevFlZsGABr776Ksccc4zSr18/5auvvuLLL79kxowZDBgwAI/Hw3HHHcesWbOYN28ezz77rPV8mel+zZo1LF68mPnz5/POO+9w7rnnKoCVkmno0KFMmzaNpUuXKq+++io+n49YLMbMmTMBclJPVVVVATBjxgzx+uuvW4RUCKGsW7dOWbNmjVXZ4eGHH+arr77qktDJ5/Xr14/6+nrltddeY8WKFZx++um43W7mzp3L7bffbt0fDocJh8OMGDGC2bNns3HjRtavX8/s2bM55JBDtliApmlaBWz//ve/s2DBAuXLL79kv/32IxqN8sEHHwCwceNGIdW8l112GZ988glz585lzZo1LFiwgD337Ajs7GmxzOXLl4v58+dTVlbGwQcfjGEYfPHFF1vcd/rppzNnzhzi8TjXXnstc+fOZfny5cqHH37IO++8w6GHHqpAR0LgeDxuEVuAX//61zQ3NyOE4MMPP6SqqkpZv369ctFFF+F2u6mqquLss8+27k8kEhQWFlqla+644w7rb5LA20sCpdNpHA4HBxxwAAsWLCCZTCqmaSpLlixh//33VzZs2CBeeOEFXC4XhxxyCJFIRGloaFDee+89HnrooS7HZe3atZZK+IwzzmDJkiV88803pNNpZeHChZaK/1//+hcej4dwOMx1111HXV2deOONNzBNkwsvvJC99tpLGThwoPLyyy8za9YsFi1aRDAYJBqNMmnSJFatWsUnn3xirZ1AIICqqowbN47PPvuMtWvXsmnTJt59910mTZqkQEepq7a2Nvx+P0uXLlXq6uqUW2+91crp+t5771nPCoVCOflo33//ffHII4+QSCQ46qijmDNnDp999pmyePFiJk6ciMvl4oEHHuDf//63gI4UerJyxB133MGi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" alt="Migración Colombia"/></div>
+        <div class="node" style="left:50%;top:9%" onclick="openModule(3)"><svg viewBox="0 0 24 24"><path d="M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-9-2V7H4v3H1v2h3v3h2v-3h3v-2H6zm9 4c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></div>
+        <div class="node-lbl" style="left:50%;top:3.8%">Reclutamiento</div>
+        <div class="node" style="left:78%;top:15%" onclick="openModule(1)"><svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg></div>
+        <div class="node-lbl" style="left:78%;top:9%">Biodata</div>
+        <div class="node" style="left:92%;top:42%" onclick="openModule(0)"><svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg></div>
+        <div class="node-lbl" style="left:96%;top:38.5%">Nómina</div>
+        <div class="node" style="left:78%;top:72%" onclick="openModule(6)"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg></div>
+        <div class="node-lbl" style="left:82%;top:77%">Salud Ocup.</div>
+        <div class="node" style="left:50%;top:88%" onclick="openModule(4)"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg></div>
+        <div class="node-lbl" style="left:50%;top:93.5%">Desempeño</div>
+        <div class="node" style="left:22%;top:72%" onclick="openModule(5)"><svg viewBox="0 0 24 24"><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/></svg></div>
+        <div class="node-lbl" style="left:18%;top:77%">Educación</div>
+        <div class="node" style="left:8%;top:42%" onclick="openModule(7)"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+        <div class="node-lbl" style="left:4%;top:38.5%">Bienestar</div>
+        <div class="node" style="left:22%;top:15%" onclick="openModule(2)"><svg viewBox="0 0 24 24"><path d="M20 7h-4V4c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v3H4c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2zM10 4h4v3h-4V4z"/></svg></div>
+        <div class="node-lbl" style="left:18%;top:9%">Análisis Cargos</div>
+        <div class="node" style="left:92%;top:62%" onclick="openModule(8)"><svg viewBox="0 0 24 24"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/></svg></div>
+        <div class="node-lbl" style="left:96%;top:58.5%">Self&nbsp;Service</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ LICENCIA ═══════ -->
+<div class="screen" id="scr-licencia">
+  <div class="page-inner fade-up">
+    <div class="page-header">
+      <div class="page-header-line"></div>
+      <div class="page-header-text">
+        <h1>Licencia de Uso — DWK-032-2026</h1>
+        <p>Migración Colombia · NIT. 900.477.235-6 · Vigencia: A perpetuidad · On Premise · SQL SERVER · V.26</p>
+      </div>
+    </div>
+    <div class="kpis">
+      <div class="kpi"><div class="kpi-val">1.670</div><div class="kpi-lbl">Empleados habilitados</div></div>
+      <div class="kpi"><div class="kpi-val">1 NIT</div><div class="kpi-lbl">Empresa licenciada</div></div>
+      <div class="kpi"><div class="kpi-val gold">11</div><div class="kpi-lbl">Módulos licenciados</div></div>
+      <div class="kpi"><div class="kpi-val">V.26</div><div class="kpi-lbl">Kactus HCM by Ophelia</div></div>
+    </div>
+    <div class="tl-box">
+      <div class="tl-head">▸ Historial de licenciamiento</div>
+      <div class="tl-row">
+        <div class="tl-node"><div class="tl-circle" style="background:#3a7bd5">2013</div><div class="tl-year">May 2013</div><div class="tl-info">Contrato No. 070 — Supresión DAS</div><div class="tl-pill" style="background:rgba(58,123,213,.12);color:#3a7bd5">1.360 emp.</div></div>
+        <div class="tl-node"><div class="tl-circle" style="background:#1a3a6b">2019</div><div class="tl-year">Ene 2019</div><div class="tl-info">Adición No. 1 — Contrato 138-18</div><div class="tl-pill" style="background:rgba(26,58,107,.1);color:#1a3a6b">+ 80 emp.</div></div>
+        <div class="tl-node"><div class="tl-circle" style="background:#f5a623">Mar</div><div class="tl-year">Mar 2023</div><div class="tl-info">Contrato 098 de compraventa</div><div class="tl-pill" style="background:rgba(245,166,35,.15);color:#c47e00">+ 24 emp.</div></div>
+        <div class="tl-node"><div class="tl-circle" style="background:#1db87a">Oct</div><div class="tl-year">Oct 2023</div><div class="tl-info">Adición No.1 + Otrosí Mod. No.1</div><div class="tl-pill" style="background:rgba(29,184,122,.12);color:#1db87a">+ 70 emp.</div></div>
+        <div class="tl-node"><div class="tl-circle" style="background:#6c3fc5">Feb</div><div class="tl-year">Feb 2026</div><div class="tl-info">Contrato CO1.PCCNTR.9282837</div><div class="tl-pill" style="background:rgba(108,63,197,.12);color:#6c3fc5">+ 126 emp.</div></div>
+        <div class="tl-node"><div class="tl-circle" style="background:#c0392b">Abr</div><div class="tl-year">Abr 2026</div><div class="tl-info">Bolsa Licencias — Reporte Abr 2026</div><div class="tl-pill" style="background:rgba(192,57,43,.12);color:#c0392b">+ 10 emp.</div></div>
+      </div>
+      <div class="lic-note">Tipo: <strong>On Premise</strong> · Motor: <strong>SQL SERVER</strong> · Uso exclusivo interno · Licencia a <strong>perpetuidad</strong> · Prohibida sublicencia, comodato, distribución o ingeniería de reversa.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ MÓDULOS GRID ═══════ -->
+<div class="screen" id="scr-modulos">
+  <div class="page-inner fade-up" style="padding-bottom:.5rem">
+    <div class="page-header">
+      <div class="page-header-line"></div>
+      <div class="page-header-text"><h1>Módulos licenciados</h1><p>Seleccione un módulo para ver sus funcionalidades detalladas y flujo de proceso</p></div>
+    </div>
+  </div>
+  <div class="mod-grid fade-up" id="modGrid"></div>
+</div>
+
+<!-- ═══════ DETAIL ═══════ -->
+<div class="screen" id="scr-detail">
+  <div class="detail-layout">
+    <div class="detail-sidebar" id="detSidebar"></div>
+    <div class="detail-main" id="detMain"></div>
+  </div>
+</div>
+
+<!-- ═══════ VALOR ═══════ -->
+<div class="screen" id="scr-valor">
+  <div class="page-inner fade-up">
+    <div class="page-header">
+      <div class="page-header-line"></div>
+      <div class="page-header-text"><h1>El valor de Kactus HCM</h1><p>Para Migración Colombia — automatización, trazabilidad y eficiencia operativa en sector público</p></div>
+    </div>
+    <div class="vpillars">
+      <div class="vpillar"><div class="vp-top" style="background:rgba(26,58,107,.08)">⚙️</div><div class="vp-title">Automatización</div><ul class="vp-items"><li>Nómina pública sin reprocesos manuales</li><li>Flujos digitales integrados entre módulos</li><li>Reportes y magnéticos generados automáticamente</li><li>Encargos y novedades de sector público integradas</li></ul></div>
+      <div class="vpillar"><div class="vp-top" style="background:rgba(245,166,35,.1)">🛡️</div><div class="vp-title">Trazabilidad</div><ul class="vp-items"><li>Historial completo por funcionario</li><li>Auditoría de cada cambio realizado</li><li>Documentos digitales adjuntos y localizables</li><li>Trazabilidad normativa sector público</li></ul></div>
+      <div class="vpillar"><div class="vp-top" style="background:rgba(32,89,168,.08)">📈</div><div class="vp-title">Eficiencia Operativa</div><ul class="vp-items"><li>Self Service reduce carga de RRHH hasta 60%</li><li>Cierres de nómina más rápidos y seguros</li><li>Manuales de funciones digitalizados</li><li>Menos errores, menos reprocesos</li></ul></div>
+      <div class="vpillar"><div class="vp-top" style="background:rgba(29,184,122,.08)">💡</div><div class="vp-title">Decisión con Datos</div><ul class="vp-items"><li>Reportes y analítica de planta en tiempo real</li><li>Indicadores de desempeño objetivos</li><li>Impacto de formación medible y accionable</li><li>Gestión del talento basada en datos</li></ul></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ OPORTUNIDADES ═══════ -->
+<div class="screen" id="scr-oportunidad">
+  <div class="page-inner fade-up">
+    <div class="page-header">
+      <div class="page-header-line" style="background:var(--gold)"></div>
+      <div class="page-header-text">
+        <h1>Módulos Kactus HCM — Visión completa</h1>
+        <p>Del catálogo total de 61 módulos: 14 licenciados activos y 47 disponibles para activar sobre la misma plataforma</p>
+      </div>
+    </div>
+
+    <!-- Summary cards -->
+    <div class="op-summary-grid" id="opSummary">
+      <div class="op-summary-card osc-licensed" onclick="showOpView('licensed')">
+        <div class="osc-num">14</div>
+        <div class="osc-title">Módulos Licenciados</div>
+        <div class="osc-sub">Módulos activos incluidos en la licencia DWK-032-2026. Haga clic para ver el detalle completo de cada módulo.</div>
+        <div class="osc-arrow">→</div>
+      </div>
+      <div class="op-summary-card osc-unlicensed" onclick="showOpView('unlicensed')">
+        <div class="osc-num">47</div>
+        <div class="osc-title">Módulos No Licenciados</div>
+        <div class="osc-sub">Módulos disponibles en el catálogo Kactus que Migración Colombia aún no ha activado. Se activan sobre la misma infraestructura.</div>
+        <div class="osc-arrow">→</div>
+      </div>
+    </div>
+
+    <!-- Detail views (hidden until selected) -->
+    <div class="op-detail-view" id="opViewLicensed">
+      <button class="op-back" onclick="showOpView('none')">Volver al resumen</button>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:1.5rem;padding:1rem 1.4rem;background:linear-gradient(135deg,#1db87a,#15a367);border-radius:var(--r)">
+        <span style="font-size:1.8rem">✅</span>
+        <div><div style="font-family:Nunito,sans-serif;font-size:1.1rem;font-weight:900;color:white">14 Módulos Licenciados — DWK-032-2026</div>
+        <div style="font-size:.8rem;color:rgba(255,255,255,.8)">Todos activos, On Premise, SQL Server · 1.670 empleados habilitados · Versión V.26</div></div>
+      </div>
+      <div class="lic-list" id="licListContainer"></div>
+    </div>
+
+    <div class="op-detail-view" id="opViewUnlicensed">
+      <button class="op-back" onclick="showOpView('none')">Volver al resumen</button>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:1.5rem;padding:1rem 1.4rem;background:linear-gradient(135deg,var(--navy),var(--blue));border-radius:var(--r)">
+        <span style="font-size:1.8rem">🔓</span>
+        <div><div style="font-family:Nunito,sans-serif;font-size:1.1rem;font-weight:900;color:white">47 Módulos No Licenciados — Oportunidades de expansión</div>
+        <div style="font-size:.8rem;color:rgba(255,255,255,.7)">Disponibles para activar sobre la misma plataforma e infraestructura existente · Sin migración · Sin cambio de sistema</div></div>
+      </div>
+      <div id="opCats"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ─────────────────────────────────────────────
+// LOGO (injected at build time)
+// ─────────────────────────────────────────────
+
+// ─────────────────────────────────────────────
+// MODULE DATA — 14 licensed modules
+// ─────────────────────────────────────────────
+const MODS = [
+  {
+    id:'nomina', icon:'📊', num:'01',
+    name:'Nómina & Administración de Salarios',
+    short:'Motor de liquidación pública para el sector estatal colombiano',
+    color:'#1a3a6b', bg:'rgba(26,58,107,.1)', acc:'#3a7bd5',
+    phase:'Remunerar',
+    impact:'Nómina 100% trazable, auditable y sin reprocesos manuales para los 1.670 funcionarios de Migración Colombia.',
+    feats:[
+      'Parametrización universal de conceptos salariales y descuentos sector público',
+      'Contratos y vinculación: carrera administrativa, libre nombramiento, provisionales',
+      'Novedades: horas extra, incapacidades, permisos, licencias, comisiones de servicio',
+      'Encargos de funciones con cálculo automático de prima técnica o diferencial salarial',
+      'Prestaciones sociales: cesantías, primas, vacaciones, indemnizaciones, liquidaciones',
+      'Seguridad social: SENA, ICBF, Caja Compensación, EPS, ARL, Pensión (PILA)',
+      'Administración de sindicatos: afiliaciones y descuentos por convención colectiva',
+      'Embargos judiciales y libranzas con control de topes legales',
+      'Magnéticos bancarios y dispersión electrónica de pagos',
+      'Procesos disciplinarios (sanciones) con efecto automático en nómina',
+      'Interface contable automática SIIF Nación y sistemas ERP (LINK-SOA)',
+      'Reportes DANE, certificados de ingresos y retenciones',
+      'Integración SIIF: traslado automático de la nómina al presupuesto nacional',
+    ],
+    flow:{
+      title:'Flujo: Novedad → Liquidación → Legalización contable',
+      steps:[
+        {label:'Registro de Novedades', detail:'Horas extra, incapacidades, permisos, encargos, embargos', color:'#2059a8'},
+        {label:'Validación y Aprobación', detail:'Revisión RRHH y autorización por perfil de usuario', color:'#1a3a6b'},
+        {label:'Preliquidación', detail:'Simulación de nómina para revisión antes del cierre', color:'#007b8a'},
+        {label:'Liquidación Oficial', detail:'Cálculo definitivo de todos los conceptos parametrizados', color:'#1db87a'},
+        {label:'Seguridad Social', detail:'Generación PILA: EPS, pensión, ARL, SENA, ICBF, Caja', color:'#6c3fc5'},
+        {label:'Dispersión Bancaria', detail:'Magnéticos para pago electrónico a los funcionarios', color:'#f5a623'},
+        {label:'Interfaz SIIF', detail:'Traslado automático al Sistema Integrado de Inf. Financiera', color:'#c47e00'},
+      ]
+    },
+    example:'El área de nómina de Migración registra novedades del período (horas extras, incapacidades, encargos), ejecuta la preliquidación para validar cifras, aprueba el cierre y Kactus genera simultáneamente la dispersión bancaria para los <strong>1.670 funcionarios</strong>, el archivo PILA y el traslado automático a <strong>SIIF Nación</strong> — sin digitación manual adicional.',
+  },
+  {
+    id:'biodata', icon:'👤', num:'02',
+    name:'Biodata — Hoja de Vida del Funcionario',
+    short:'Expediente digital único centralizado por empleado',
+    color:'#007b8a', bg:'rgba(0,123,138,.1)', acc:'#00b4c8',
+    phase:'Atraer',
+    impact:'Expediente digital único con trazabilidad total. Consulta en segundos desde cualquier módulo del sistema.',
+    feats:[
+      'Maestro de empleados: datos personales, contacto, identificación, tipo de vinculación',
+      'Historial laboral completo: cargos, dependencias, áreas, salarios históricos',
+      'Información académica: títulos, estudios formales, especializaciones, idiomas',
+      'Información familiar: beneficiarios, cónyuge, hijos con documentos',
+      'Experiencia laboral previa documentada con entidades y cargos',
+      'Documentos digitales adjuntos por categoría (contratos, resoluciones, soportes)',
+      'Trazabilidad de cambios: quién modificó, qué campo y cuándo',
+      'Alertas de vencimiento de documentos (tarjetas profesionales, exámenes médicos)',
+      'Consulta en tiempo real desde nómina, desempeño, SST y bienestar',
+      'Exportación de hoja de vida en formato institucional',
+    ],
+    flow:{
+      title:'Flujo: Vinculación → Expediente completo → Consulta integrada',
+      steps:[
+        {label:'Creación del Funcionario', detail:'Datos básicos al maestro de empleados', color:'#007b8a'},
+        {label:'Carga de Documentos', detail:'Resolución de nombramiento, cédula, títulos', color:'#2059a8'},
+        {label:'Completar Biodata', detail:'Formación académica, experiencia, familia', color:'#1a3a6b'},
+        {label:'Validación RRHH', detail:'Revisión y aprobación del expediente', color:'#f5a623'},
+        {label:'Integración Activa', detail:'Disponible para nómina, desempeño, SST', color:'#1db87a'},
+        {label:'Actualización Continua', detail:'Cambios trazados: quién, qué y cuándo', color:'#6c3fc5'},
+      ]
+    },
+    example:'Cuando la Contraloría solicita información de un funcionario, RRHH accede en segundos al expediente completo: resolución de nombramiento, historial salarial, formación académica y certificados — todo <strong>centralizado, trazado y disponible sin búsqueda en archivos físicos</strong>.',
+  },
+  {
+    id:'cargos', icon:'🔍', num:'03',
+    name:'Análisis de Cargos & Estructura Organizacional',
+    short:'Manual de funciones digital, estructura de planta y perfiles de cargo',
+    color:'#6c3fc5', bg:'rgba(108,63,197,.1)', acc:'#9b72f0',
+    phase:'Atraer',
+    impact:'Planta de personal estructurada con manuales de funciones digitales, perfiles estandarizados y trazabilidad organizacional.',
+    feats:[
+      'Estructura organizacional: dependencias, grupos, seccionales y niveles',
+      'Administración de planta de personal: cargos creados, vacantes, provistos y en encargo',
+      'Manual de funciones digitalizado por cargo: propósito, funciones, competencias, requisitos',
+      'Perfiles de competencias: nivel educativo mínimo, experiencia requerida, habilidades',
+      'Diccionario de competencias institucional parametrizable',
+      'Valoración de cargos y categorización según escala salarial pública',
+      'Análisis de brechas: perfil del funcionario vs. requisitos del cargo',
+      'Control de vacantes vs. planta global para reporte a Función Pública',
+      'Gestión de comisiones de servicio y encargos de funciones desde la estructura',
+      'Integración con reclutamiento: la convocatoria toma el perfil del cargo automáticamente',
+      'Reportes de planta para DANE, DAFP y organismos de control',
+    ],
+    flow:{
+      title:'Flujo: Diseño de cargo → Manual de funciones → Planta activa',
+      steps:[
+        {label:'Definir Cargo', detail:'Nombre, grado, nivel, dependencia en estructura', color:'#6c3fc5'},
+        {label:'Diseñar Manual', detail:'Propósito, funciones específicas, responsabilidades', color:'#2059a8'},
+        {label:'Definir Perfil', detail:'Formación requerida, experiencia, competencias', color:'#1a3a6b'},
+        {label:'Valorar Cargo', detail:'Puntuación por impacto, complejidad y supervisión', color:'#f5a623'},
+        {label:'Publicar en Planta', detail:'Cargo disponible para ocupar, reclutar o evaluar', color:'#1db87a'},
+        {label:'Analizar Brechas', detail:'Perfil del titular vs. requisitos del cargo', color:'#007b8a'},
+      ]
+    },
+    example:'Migración Colombia actualiza el manual de funciones del cargo "Profesional Especializado" directamente en Kactus: define funciones, nivel educativo requerido y competencias institucionales. El manual queda disponible para reclutamiento, evaluación de desempeño y planta — <strong>sin papel, sin versiones desactualizadas, trazable y consultable 24/7</strong>.',
+  },
+  {
+    id:'reclutamiento', icon:'🎯', num:'04',
+    name:'Reclutamiento y Selección',
+    short:'Proceso de selección trazable desde la vacante hasta la vinculación',
+    color:'#2059a8', bg:'rgba(32,89,168,.1)', acc:'#5591e8',
+    phase:'Atraer',
+    impact:'Proceso de selección 100% documentado, trazable y vinculado automáticamente al expediente del funcionario.',
+    feats:[
+      'Gestión de vacantes: apertura, justificación y aprobación',
+      'Publicación de convocatorias internas y externas',
+      'Recepción y filtro de hojas de vida por perfil del cargo',
+      'Configuración de etapas del proceso por convocatoria',
+      'Registro de pruebas, entrevistas y valoraciones por etapa',
+      'Matriz comparativa de candidatos por puntaje',
+      'Actas de proceso de selección con soporte documental',
+      'Vinculación automática del seleccionado a Biodata y nómina',
+      'Banco de hojas de vida para futuras convocatorias',
+      'Integración con el perfil del cargo (Manual de Funciones)',
+      'Reportes de proceso para CNSC y entes de control',
+    ],
+    flow:{
+      title:'Flujo: Vacante → Convocatoria → Selección → Vinculación',
+      steps:[
+        {label:'Apertura de Vacante', detail:'Solicitud formal con justificación y cargo', color:'#2059a8'},
+        {label:'Publicación', detail:'Convocatoria con perfil del cargo parametrizado', color:'#1a3a6b'},
+        {label:'Recepción HV', detail:'Registro y filtro de candidatos elegibles', color:'#007b8a'},
+        {label:'Pruebas y Entrevistas', detail:'Resultados registrados por etapa y candidato', color:'#f5a623'},
+        {label:'Selección Final', detail:'Acta con soporte documental adjunto', color:'#1db87a'},
+        {label:'Vinculación Automática', detail:'Datos a Biodata y nómina sin re-digitación', color:'#6c3fc5'},
+      ]
+    },
+    example:'Al abrirse una vacante, el módulo genera la convocatoria con el perfil ya parametrizado, recibe hojas de vida, registra resultados de pruebas y, al declarar el ganador, <strong>sus datos fluyen automáticamente a Biodata y nómina</strong> — sin re-digitación, sin papel.',
+  },
+  {
+    id:'desempeno', icon:'⭐', num:'05',
+    name:'Evaluación de Desempeño STEDL — Sector Público',
+    short:'Modelo oficial de evaluación del desempeño laboral del Estado colombiano',
+    color:'#c47e00', bg:'rgba(196,126,0,.1)', acc:'#f5a623',
+    phase:'Alinear y Desarrollar',
+    impact:'Evaluación normativa sector público con ciclo cerrado: compromisos → seguimientos → calificación → plan de mejora.',
+    feats:[
+      'Modelo STEDL (Sistema de Evaluación del Desempeño Laboral) para sector público',
+      'Evaluación por competencias comportamentales y funcionales según CNSC',
+      'Definición de compromisos laborales y de gestión por cargo y período',
+      'Primer y segundo seguimiento con registro de avances',
+      'Evaluación anual con calificación definitiva (sobresaliente, satisfactoria, no satisfactoria)',
+      'Actas de evaluación digitales con firma de evaluador y evaluado',
+      'Plan de mejoramiento para funcionarios con calificación no satisfactoria',
+      'Integración con módulo de Educación para ruta de formación',
+      'Reportes para la CNSC — Comisión Nacional del Servicio Civil',
+      'Trazabilidad histórica de evaluaciones por funcionario',
+      'Alertas de vencimiento de períodos de evaluación',
+    ],
+    flow:{
+      title:'Flujo: Compromisos → Seguimientos → Evaluación → Plan de mejora',
+      steps:[
+        {label:'Definir Compromisos', detail:'Evaluador y evaluado acuerdan compromisos del período', color:'#c47e00'},
+        {label:'1er Seguimiento', detail:'Revisión del avance a mitad del período', color:'#f5a623'},
+        {label:'2do Seguimiento', detail:'Segunda verificación antes del cierre', color:'#1a3a6b'},
+        {label:'Evaluación Final', detail:'Calificación definitiva con acta digital firmada', color:'#2059a8'},
+        {label:'Análisis Resultados', detail:'Consolidación por área, dependencia y entidad', color:'#1db87a'},
+        {label:'Plan de Mejora', detail:'Funcionarios no satisfactorios: plan de mejoramiento', color:'#6c3fc5'},
+      ]
+    },
+    example:'Al inicio del semestre, cada jefe define los compromisos con su equipo en Kactus. El sistema programa las alertas de seguimiento, consolida las calificaciones al cierre y genera automáticamente los reportes para la CNSC y los planes de mejoramiento — <strong>todo documentado, trazable y normativo</strong>.',
+  },
+  {
+    id:'educacion', icon:'🎓', num:'06',
+    name:'Educación y Capacitación',
+    short:'Plan Institucional de Capacitación (PIC) con trazabilidad y medición de impacto',
+    color:'#1db87a', bg:'rgba(29,184,122,.1)', acc:'#2ed494',
+    phase:'Alinear y Desarrollar',
+    impact:'Plan de formación alineado a brechas de desempeño. Historial de capacitación trazable por funcionario.',
+    feats:[
+      'Plan Institucional de Capacitación (PIC) anual parametrizable',
+      'Diagnóstico de necesidades de formación por cargo y área',
+      'Catálogo de programas: cursos, talleres, diplomados, seminarios',
+      'Programación de grupos, facilitadores, horarios y sedes',
+      'Registro de asistencia y participación por funcionario',
+      'Control de presupuesto de formación por programa y vigencia',
+      'Certificaciones y constancias de participación descargables',
+      'Historial de formación acumulado por funcionario integrado a Biodata',
+      'Integración con resultados de evaluación de desempeño (brechas)',
+      'Inducción y reinducción institucional digitalizada',
+      'Reportes para ESAP, DAFP y organismos de control',
+    ],
+    flow:{
+      title:'Flujo: Diagnóstico → PIC → Ejecución → Medición',
+      steps:[
+        {label:'Diagnóstico', detail:'Brechas identificadas desde evaluación de desempeño', color:'#1db87a'},
+        {label:'Elaborar PIC', detail:'Plan con actividades, presupuesto y metas', color:'#2059a8'},
+        {label:'Programar', detail:'Grupos, fechas, facilitadores, sedes', color:'#1a3a6b'},
+        {label:'Ejecutar', detail:'Registro de asistencia y participación', color:'#f5a623'},
+        {label:'Evaluar Impacto', detail:'Encuesta satisfacción y medición de aprendizaje', color:'#007b8a'},
+        {label:'Actualizar Historial', detail:'Formación registrada en Biodata del funcionario', color:'#6c3fc5'},
+      ]
+    },
+    example:'El equipo de gestión del talento elabora el PIC en Kactus, identifica brechas de formación, programa talleres para 340 funcionarios, registra asistencia y actualiza automáticamente el historial de formación de cada participante — <strong>listo para reportar al DAFP</strong>.',
+  },
+  {
+    id:'salud', icon:'🏥', num:'07',
+    name:'Seguridad y Salud en el Trabajo',
+    short:'Sistema de Gestión SST documentado, auditable y normativo',
+    color:'#c0392b', bg:'rgba(192,57,43,.1)', acc:'#e84545',
+    phase:'Retener',
+    impact:'Sistema SST con registros centralizados, auditables y listos para inspecciones del Ministerio de Trabajo.',
+    feats:[
+      'Identificación de peligros y valoración de riesgos por cargo (GTC-45)',
+      'Registro y reporte de accidentes de trabajo (FURAT) con soporte documental',
+      'Registro de enfermedades laborales y seguimiento de casos',
+      'Programación y registro de exámenes médicos ocupacionales',
+      'Alertas automáticas de vencimiento de exámenes periódicos por cargo',
+      'Cronograma anual de actividades SST (PESV, SVE, inspecciones)',
+      'Control de elementos de protección personal (EPP) por cargo y trabajador',
+      'Gestión de ausentismo: incapacidades, accidentes, ausencias no justificadas',
+      'Indicadores de gestión SST: frecuencia, severidad, ausentismo, cobertura',
+      'Plan de emergencias y administración de brigadas de seguridad',
+      'Formación SST: inducción, reinducción y capacitaciones por riesgo (incluida)',
+      'Reportes para ARL, Ministerio de Trabajo e inspecciones Resolución 0312',
+    ],
+    flow:{
+      title:'Flujo: Accidente laboral → FURAT → ARL → Seguimiento → Cierre',
+      steps:[
+        {label:'Reporte del Evento', detail:'Registro inmediato del accidente o incidente', color:'#c0392b'},
+        {label:'Investigación', detail:'Causa raíz, factores, testigos, evidencias', color:'#e84545'},
+        {label:'Generar FURAT', detail:'Formato Único de Reporte de Accidente de Trabajo', color:'#1a3a6b'},
+        {label:'Notificar ARL', detail:'Envío formal a la Administradora de Riesgos Laborales', color:'#2059a8'},
+        {label:'Seguimiento Médico', detail:'Control de incapacidad y reintegro progresivo', color:'#f5a623'},
+        {label:'Cierre y Lecciones', detail:'Plan correctivo y actualización matriz de riesgos', color:'#1db87a'},
+      ]
+    },
+    example:'Al presentarse un accidente en un puesto de control de Migración, el coordinador SST registra el evento en Kactus, el sistema genera el FURAT, notifica a la ARL, programa seguimiento médico y actualiza la matriz de riesgos — todo en un <strong>flujo digital trazable y listo para inspección del Ministerio de Trabajo</strong>.',
+  },
+  {
+    id:'bienestar', icon:'😊', num:'08',
+    name:'Bienestar de Personal',
+    short:'Plan institucional de bienestar social e incentivos no salariales',
+    color:'#8e44ad', bg:'rgba(142,68,173,.1)', acc:'#c39bd3',
+    phase:'Retener',
+    impact:'Programas de bienestar trazables con evidencia de cumplimiento para el Comité de Personal y rendición de cuentas.',
+    feats:[
+      'Plan de Bienestar Social e Incentivos (PBSI) anual parametrizable',
+      'Registro de actividades: deportivas, culturales, recreativas y de salud',
+      'Control de participación por funcionario, dependencia y sede',
+      'Beneficios organizacionales: auxilios, bonos y subsidios institucionales',
+      'Sistema de reconocimientos e incentivos no salariales (mérito, antigüedad)',
+      'Control de presupuesto de bienestar por rubro y programa',
+      'Cronograma de actividades institucionales con alertas de ejecución',
+      'Informes de cumplimiento PBSI para Comité de Personal y control interno',
+      'Integración con Biodata: historial de beneficios por funcionario',
+    ],
+    flow:{
+      title:'Flujo: Plan de bienestar → Ejecución → Seguimiento → Informe',
+      steps:[
+        {label:'Elaborar PBSI', detail:'Plan con actividades, presupuesto y metas', color:'#8e44ad'},
+        {label:'Programar Actividades', detail:'Fechas, tipo, responsable, recursos', color:'#6c3fc5'},
+        {label:'Ejecutar', detail:'Registro de participantes y recursos utilizados', color:'#2059a8'},
+        {label:'Registrar Beneficios', detail:'Auxilios, incentivos y reconocimientos por funcionario', color:'#1db87a'},
+        {label:'Medir Satisfacción', detail:'Percepción post-actividad de los participantes', color:'#f5a623'},
+        {label:'Generar Informe', detail:'Cumplimiento PBSI para Comité de Personal', color:'#c47e00'},
+      ]
+    },
+    example:'El equipo de bienestar planea el PBSI en Kactus: jornadas de salud, torneos, conmemoración del día del funcionario. Registra participación, entrega auxilios educativos y al final genera el informe de cumplimiento con porcentajes por dependencia — <strong>listo para el Comité de Personal y organismos de control</strong>.',
+  },
+  {
+    id:'selfservice', icon:'💻', num:'09',
+    name:'Self Service — Autogestión del Funcionario',
+    short:'Portal de autogestión digital 24/7 para consultas y trámites del empleado',
+    color:'#0d2348', bg:'rgba(13,35,72,.1)', acc:'#00b4c8',
+    phase:'Remunerar / Retener',
+    impact:'RRHH liberado de trámites repetitivos. Funcionarios con acceso autónomo a su información laboral las 24 horas.',
+    feats:[
+      'Desprendibles de nómina en línea: consulta y descarga por período',
+      'Certificaciones laborales: generación inmediata sin tramitar a RRHH',
+      'Consulta de vacaciones: días disponibles, disfrutados y pendientes',
+      'Solicitud de vacaciones en línea con flujo de aprobación por jefe',
+      'Constancias de vinculación y cargo para entidades externas',
+      'Actualización de datos personales: dirección, teléfono, contactos de emergencia',
+      'Consulta del historial de formación y certificados',
+      'Solicitudes a RRHH con seguimiento del estado de la solicitud',
+      'Consulta del manual de funciones y perfil del cargo propio',
+      'Acceso web responsive desde cualquier dispositivo (PC, tablet, celular)',
+      'Disponible 24/7 sin intervención del área de RRHH',
+    ],
+    flow:{
+      title:'Flujo: Solicitud del funcionario → Aprobación → Respuesta automática',
+      steps:[
+        {label:'Acceso al Portal', detail:'Funcionario ingresa desde PC, tablet o celular', color:'#0d2348'},
+        {label:'Solicitud / Consulta', detail:'Certificación, vacaciones, desprendible, datos', color:'#2059a8'},
+        {label:'Notificación', detail:'Alerta automática al responsable de RRHH si aplica', color:'#007b8a'},
+        {label:'Aprobación', detail:'RRHH o jefe inmediato aprueba o rechaza en línea', color:'#f5a623'},
+        {label:'Respuesta', detail:'Notificación inmediata al funcionario con resultado', color:'#1db87a'},
+        {label:'Descarga / Acción', detail:'Documento descargable o novedad aplicada en sistema', color:'#6c3fc5'},
+      ]
+    },
+    example:'Un funcionario de Migración necesita una certificación laboral urgente a las 8 pm. Ingresa al Self Service desde su celular, la genera firmada, la descarga en PDF y la envía — <strong>sin llamar a RRHH, sin esperar el día hábil siguiente, sin filas</strong>.',
+  },
+  {
+    id:'encargos', icon:'🔄', num:'10',
+    name:'Encargos — Sector Público',
+    short:'Gestión de encargos de funciones con afectación automática en nómina',
+    color:'#c47e00', bg:'rgba(196,126,0,.1)', acc:'#f5a623',
+    phase:'Remunerar',
+    impact:'Encargos trazables, con soporte documental y efecto automático en la nómina del período correspondiente.',
+    feats:[
+      'Creación y aprobación de encargos por resolución administrativa',
+      'Tipos de encargo: nivel superior, interinidad, suplencia y reemplazo',
+      'Cálculo automático de prima técnica o diferencial salarial según normativa',
+      'Vinculación del encargo al período de nómina correspondiente',
+      'Reporte de funcionarios en encargo por dependencia y período',
+      'Alertas de vencimiento y renovación de encargos próximos a vencer',
+      'Integración con Análisis de Cargos para validar perfil del encargado',
+      'Trazabilidad: resoluciones asociadas y soporte normativo adjunto',
+    ],
+    flow:{
+      title:'Flujo: Necesidad de encargo → Resolución → Nómina → Fin',
+      steps:[
+        {label:'Identificar Necesidad', detail:'Vacancia o ausencia en dependencia', color:'#c47e00'},
+        {label:'Gestionar Resolución', detail:'Acto administrativo con fechas y funcionario', color:'#1a3a6b'},
+        {label:'Registrar en Kactus', detail:'Tipo, cargo, período, diferencia salarial', color:'#2059a8'},
+        {label:'Afectar Nómina', detail:'Prima técnica calculada automáticamente', color:'#1db87a'},
+        {label:'Generar Reportes', detail:'Listado de encargos activos y por vencer', color:'#f5a623'},
+        {label:'Cierre del Encargo', detail:'Fin del período, regreso o renovación', color:'#6c3fc5'},
+      ]
+    },
+    example:'La Dirección de Gestión Humana registra el encargo de Coordinador de Operaciones en Kactus. El sistema calcula automáticamente la prima técnica, la incorpora en la nómina y genera el reporte para el archivo — <strong>sin cálculos manuales ni riesgo de error normativo</strong>.',
+  },
+  {
+    id:'disciplinario', icon:'⚖️', num:'11',
+    name:'Procesos Disciplinarios (Sanciones)',
+    short:'Registro y seguimiento de sanciones integrado a nómina',
+    color:'#2c3e50', bg:'rgba(44,62,80,.1)', acc:'#546e7a',
+    phase:'Retener',
+    impact:'Sanciones documentadas con efecto automático en nómina y trazabilidad completa para auditorías.',
+    feats:[
+      'Registro de sanciones: amonestación escrita, multa y suspensión',
+      'Cálculo automático del descuento en nómina por días de suspensión',
+      'Vinculación al expediente Biodata del funcionario sancionado',
+      'Soporte documental: acto administrativo y resolución sancionatoria adjunta',
+      'Historial de sanciones por funcionario y por dependencia',
+      'Alertas de vencimiento de términos del proceso disciplinario',
+      'Integración con nómina para efecto económico inmediato',
+      'Reportes para Comité de Personal y Oficina de Control Interno',
+    ],
+    flow:{
+      title:'Flujo: Falta → Investigación → Sanción → Nómina → Historial',
+      steps:[
+        {label:'Registrar Falta', detail:'Apertura con descripción de la conducta', color:'#2c3e50'},
+        {label:'Investigación', detail:'Descargos, pruebas, valoración de cargos', color:'#1a3a6b'},
+        {label:'Decisión', detail:'Tipo: amonestación, multa o suspensión', color:'#c0392b'},
+        {label:'Acto Administrativo', detail:'Resolución adjunta al expediente digital', color:'#f5a623'},
+        {label:'Efecto en Nómina', detail:'Descuento automático por suspensión', color:'#1db87a'},
+        {label:'Historial', detail:'Sanción registrada en Biodata del funcionario', color:'#6c3fc5'},
+      ]
+    },
+    example:'La Oficina de Control Disciplinario registra la sanción de suspensión de 5 días en Kactus, el sistema adjunta la resolución al expediente, calcula el descuento en nómina del período y actualiza el historial disciplinario del funcionario — <strong>sin digitación adicional en el sistema de nómina</strong>.',
+  },
+];
+
+
+// ─────────────────────────────────────────────
+// LICENSED MODULES list for op view
+// ─────────────────────────────────────────────
+const LIC_MODULES_LIST = MODS.map(m=>({
+  name: m.name, icon: m.icon, cat: m.phase, desc: m.short, color: m.color
+}));
+
+// ─────────────────────────────────────────────
+// UNLICENSED MODULES (47)
+// ─────────────────────────────────────────────
+const OP_CATS = [
+  {
+    icon:'🛠️', title:'Utilitarios Avanzados', color:'#2059a8', bg:'rgba(32,89,168,.1)',
+    mods:[
+      {name:'Nómina Confidencial',         full:'NÓMINA CONFIDENCIAL (PERFILADA PARA EMPLEADOS ESPECIALES)', desc:'Nómina perfilada con acceso restringido para empleados especiales o de alta dirección.', phase:'Remunerar'},
+      {name:'Indicadores de Gestión',      full:'INDICADORES DE GESTIÓN - Estandar',                          desc:'Dashboards estándar de KPIs de RRHH para toma de decisiones gerenciales.',            phase:'Analítica'},
+      {name:'IA Hojas de Vida',            full:'IA HOJAS DE VIDA',                                           desc:'Inteligencia artificial para análisis, clasificación y matching automático de hojas de vida.', phase:'Atraer'},
+      {name:'IA Bot — Manuales en Línea',  full:'IA BOT MANUALES EN LÍNEA',                                   desc:'Asistente virtual con IA para consultar manuales de funciones, políticas y procedimientos institucionales en línea.', phase:'Utilidades'},
+      {name:'Diseño de Formularios',       full:'MÓDULO PARA DISEÑO DE FORMULARIOS',                          desc:'Creador de formularios personalizados para cualquier proceso de RRHH.', phase:'Utilidades'},
+      {name:'Diseño de Reportes',          full:'MÓDULO PARA DISEÑO DE REPORTES',                             desc:'Generador de reportes a medida con Fast Report (requiere licencia adicional en SaaS).', phase:'Analítica'},
+      {name:'Tableros BI de Analítica',    full:'Tableros estándar de analítica de datos',                    desc:'Tableros de nómina, ausentismo, edades, rotación, requisiciones y colaboradores.', phase:'Analítica'},
+      {name:'Usuarios Visualizadores',     full:'USUARIOS VISUALIZADORES',                                    desc:'Licencias de solo lectura para directivos o auditores que consultan reportes sin operar.', phase:'Utilidades'},
+    ]
+  },
+  {
+    icon:'📱', title:'Canales Digitales y Movilidad', color:'#007b8a', bg:'rgba(0,123,138,.1)',
+    mods:[
+      {name:'App Móvil Empleados',         full:'APP EMPLEADOS — APLICACIÓN MÓVIL',                           desc:'Aplicación nativa para iOS y Android: desprendibles, certificaciones, solicitudes y notificaciones push desde el celular.', phase:'Retener'},
+      {name:'Manuales en Línea (Web)',     full:'WEB DESIGN REPORT — MANUALES EN LÍNEA',                       desc:'Portal web de consulta de manuales de funciones, procedimientos y políticas institucionales disponible en línea.', phase:'Utilidades'},
+    ]
+  },
+  {
+    icon:'⭐', title:'Desarrollo de Personal — Modelos adicionales', color:'#c47e00', bg:'rgba(196,126,0,.1)',
+    mods:[
+      {name:'Desempeño por Competencias',       full:'GESTIÓN DEL DESEMPEÑO POR COMPETENCIAS',       desc:'Evaluación 360° basada en competencias. Migración tiene el modelo STEDL Sector Público; este es un modelo adicional.', phase:'Desarrollar'},
+      {name:'Desempeño por Metas / Objetivos',  full:'GESTIÓN DEL DESEMPEÑO POR METAS Y OBJETIVOS',  desc:'Gestión por resultados: definición, seguimiento y cierre de objetivos individuales y de área.', phase:'Desarrollar'},
+      {name:'Formación y Desarrollo — Inducción', full:'FORMACIÓN Y DESARROLLO - INDUCCIÓN',          desc:'Módulo autónomo de rutas de inducción estructuradas para nuevos funcionarios (adicional al módulo de Educación).', phase:'Desarrollar'},
+    ]
+  },
+  {
+    icon:'🌟', title:'Bienestar — Módulos adicionales', color:'#8e44ad', bg:'rgba(142,68,173,.1)',
+    mods:[
+      {name:'SST Contratistas',                   full:'SEGURIDAD & SALUD EN EL TRABAJO CONTRATISTAS', desc:'Extensión del módulo SST para gestión de seguridad y salud de contratistas y terceros vinculados.', phase:'Retener'},
+      {name:'Beneficios Organizacionales',        full:'BENEFICIOS ORGANIZACIONALES',                  desc:'Administración de beneficios flexibles, auxilios extralegales y compensación no salarial.', phase:'Retener'},
+      {name:'Encuestas / Clima Organizacional',   full:'ENCUESTAS / CLIMA ORGANIZACIONAL',             desc:'Módulo autónomo de diseño, aplicación y análisis de encuestas de clima laboral (independiente del prerrequisito SST).', phase:'Retener'},
+      {name:'Reconocimientos, Puntos y Medallas', full:'RECONOCIMIENTOS, PUNTOS, MEDALLAS — FIDELIZACIÓN', desc:'Sistema de gamificación para reconocimiento del desempeño y méritos del funcionario.', phase:'Retener'},
+    ]
+  },
+  {
+    icon:'💊', title:'Gestión de Incapacidades', color:'#16a085', bg:'rgba(22,160,133,.1)',
+    mods:[
+      {name:'Recobro de Incapacidades',    full:'RECOBRO DE INCAPACIDADES',                            desc:'Gestión y recobro de valores pagados por incapacidades médicas ante EPS y ADRES, con trazabilidad y control de radicados.', phase:'Remunerar'},
+    ]
+  },
+  {
+    icon:'💰', title:'Nómina Avanzada', color:'#1a3a6b', bg:'rgba(26,58,107,.1)',
+    mods:[
+      {name:'Gestión de Tiempos y Turnos',       full:'GESTIÓN DE TIEMPOS Y TURNOS',              desc:'Control de marcaciones, turnos, horas extra, ausentismo e integración con nómina.', phase:'Remunerar'},
+      {name:'Nómina de Contratistas',            full:'NÓMINA DE CONTRATISTAS',                   desc:'Liquidación de honorarios y contratos de prestación de servicios independientes.', phase:'Remunerar'},
+      {name:'Facturación Servicios Temporales',  full:'FACTURACIÓN DE SERVICIOS TEMPORALES',      desc:'Generación de facturas para empresas de servicios temporales.', phase:'Remunerar'},
+      {name:'Pensionados',                       full:'PENSIONADOS',                              desc:'Nómina especial para pago de pensiones y beneficiarios con parametrización diferenciada.', phase:'Remunerar'},
+      {name:'Cuotas Partes por Pagar',           full:'CUOTAS PARTES POR PAGAR',                  desc:'Aportes de seguridad social cuando el funcionario estuvo en otra entidad durante el período.', phase:'Remunerar'},
+      {name:'Cuotas Partes por Cobrar',          full:'CUOTAS PARTES POR COBRAR',                 desc:'Recobro de aportes pagados por otra entidad durante traslados del funcionario.', phase:'Remunerar'},
+      {name:'Sustitución Patronal',              full:'SUSTITUCIÓN PATRONAL',                     desc:'Gestión del proceso de sustitución patronal con trazabilidad legal y continuidad laboral.', phase:'Remunerar'},
+      {name:'Préstamos a Empleados',             full:'PRÉSTAMOS A EMPLEADOS',                    desc:'Control de créditos de libranza, descuentos automáticos y saldos de préstamos vigentes.', phase:'Remunerar'},
+      {name:'Presupuesto de Nómina',             full:'PRESUPUESTO DE NÓMINA',                    desc:'Proyección y control presupuestal del gasto de personal por vigencia y rubro.', phase:'Remunerar'},
+      {name:'Gestión y Control de Viáticos',     full:'GESTIÓN Y CONTROL DE VIÁTICOS',            desc:'Solicitud, aprobación y liquidación de viáticos y gastos de viaje del funcionario.', phase:'Remunerar'},
+      {name:'Anticipos de Nómina',               full:'INTEGRACIÓN ANTICIPOS DE NÓMINA — LINXE, PAYFLOW, ADVANCE', desc:'Anticipos de salario bajo demanda integrados con plataformas como Linxe, Payflow y Advance.', phase:'Remunerar'},
+      {name:'Automatizador de Procesos',         full:'AUTOMATIZADOR DE PROCESOS DE NÓMINA',      desc:'Motor de automatización de tareas repetitivas y flujos de cierre de nómina.', phase:'Utilidades'},
+    ]
+  },
+  {
+    icon:'🏢', title:'Administración de Personal — adicional', color:'#6c3fc5', bg:'rgba(108,63,197,.1)',
+    mods:[
+      {name:'Procesos Disciplinarios (Integral)', full:'PROCESOS DISCIPLINARIOS — GESTIÓN INTEGRAL', desc:'Gestión completa: descargos, audiencias, fallo, recursos y apelaciones (adicional al módulo de sanciones ya licenciado).', phase:'Retener'},
+      {name:'Plan de Carrera',                    full:'PLAN DE CARRERA',                             desc:'Rutas de desarrollo profesional por cargo, nivel y competencias institucionales.', phase:'Desarrollar'},
+      {name:'Administración de Sindicatos',       full:'ADMINISTRACIÓN DE SINDICATOS',                desc:'Módulo autónomo para afiliaciones, convenciones colectivas y negociación sindical.', phase:'Retener'},
+      {name:'Home Office',                        full:'ADMINISTRACIÓN DE ACTIVIDADES HOME OFFICE',   desc:'Control de actividades, equipos asignados y acuerdos de trabajo remoto.', phase:'Retener'},
+      {name:'Análisis Salarial',                  full:'ANÁLISIS SALARIAL',                           desc:'Benchmarking, bandas salariales y equidad interna por cargo y nivel.', phase:'Remunerar'},
+    ]
+  },
+  {
+    icon:'📑', title:'Nómina & Administración — Complementos', color:'#c47e00', bg:'rgba(196,126,0,.1)',
+    mods:[
+      {name:'Nómina Electrónica',         full:'NÓMINA ELECTRÓNICA',                desc:'Documentos soporte de pago electrónico para la DIAN. Exclusiva para operadores aliados DW.', phase:'Remunerar'},
+      {name:'Link-SOA Interface Contable',full:'LINK-SOA INTERFACE CONTABLE',       desc:'Interfaz de integración contable estándar con sistemas ERP y contabilidades externas.', phase:'Integraciones'},
+      {name:'Utilitarios Estándar',       full:'UTILITARIOS ESTÁNDAR MENÚ/SEGURIDAD', desc:'Módulo base de menús, seguridad, administración y configuración general del sistema.', phase:'Utilidades'},
+    ]
+  },
+  {
+    icon:'🔗', title:'Integraciones Estándar', color:'#c0392b', bg:'rgba(192,57,43,.1)',
+    mods:[
+      {name:'Dotaciones & Activos Fijos',         full:'INTEGRACIÓN DOTACIONES & INVENTARIOS / ACTIVOS FIJOS',          desc:'Sincronización de dotaciones e inventario de activos entre RRHH y el módulo de activos.', phase:'Integraciones'},
+      {name:'Creación de Terceros',               full:'INTEGRACIÓN CREACIÓN DE EMPLEADOS COMO TERCEROS',               desc:'Creación automática de empleados como terceros en sistemas contables.', phase:'Integraciones'},
+      {name:'Presupuesto Financiero SEVEN',       full:'INTEGRACIÓN PRESUPUESTO DE NÓMINA CON PRESUPUESTO FINANCIERO',  desc:'Conexión del presupuesto de nómina con el presupuesto financiero en SEVEN.', phase:'Integraciones'},
+      {name:'Pruebas Psicotécnicas',              full:'INTEGRACIÓN PRUEBAS PSICOTÉCNICAS',                             desc:'Conexión con plataformas externas de evaluación psicotécnica en procesos de selección.', phase:'Integraciones'},
+      {name:'Firma Digital / Certificador',       full:'INTEGRACIÓN CERTIFICADOR DE DOCUMENTOS DIGITALES — FIRMAS ELECTRÓNICAS', desc:'Firma digital y electrónica para contratos, resoluciones y documentos institucionales.', phase:'Integraciones'},
+      {name:'Bolsas de Empleo — Empleo.com',      full:'INTEGRACIÓN BOLSAS DE EMPLEO — EMPLEO.COM',                     desc:'Publicación automática de vacantes en plataformas de empleo del ecosistema DW.', phase:'Integraciones'},
+      {name:'Biometría y Marcación',              full:'INTEGRACIÓN TIME & DISPOSITIVOS DE MARCACIÓN — BIOMÉTRICOS',    desc:'Lectores biométricos y sistemas de control de asistencia integrados a tiempos y turnos.', phase:'Integraciones'},
+      {name:'Integración de Novedades',           full:'INTEGRACIÓN NOVEDADES',                                         desc:'Carga automática de novedades desde sistemas externos o planillas.', phase:'Integraciones'},
+      {name:'Gestor Datos Reclutamiento',         full:'INTEGRACIÓN GESTOR DE DATOS DE RECLUTAMIENTO Y SELECCIÓN',      desc:'Conexión con gestores externos de datos de reclutamiento y base de candidatos.', phase:'Integraciones'},
+      {name:'Hosvital',                           full:'INTEGRACIÓN CONTABLE CON SISTEMA ASISTENCIAL HOSVITAL',         desc:'Interfaz contable con Hosvital para entidades del sector salud.', phase:'Integraciones'},
+      {name:'Sistema Académico',                  full:'INTEGRACIÓN SISTEMA ACADÉMICO',                                 desc:'Sincronización con sistemas de gestión académica para entidades educativas.', phase:'Integraciones'},
+    ]
+  }
+];
+
+
+const PHASE_COLORS = {
+  'Remunerar':'rgba(26,58,107,.1)','Atraer':'rgba(245,166,35,.15)','Retener':'rgba(32,89,168,.1)',
+  'Desarrollar':'rgba(29,184,122,.12)','Analítica':'rgba(108,63,197,.1)',
+  'Integraciones':'rgba(192,57,43,.1)','Utilidades':'rgba(0,123,138,.1)'
+};
+const PHASE_TEXT = {
+  'Remunerar':'#1a3a6b','Atraer':'#c47e00','Retener':'#2059a8',
+  'Desarrollar':'#1db87a','Analítica':'#6c3fc5','Integraciones':'#c0392b','Utilidades':'#007b8a'
+};
+
+// ─────────────────────────────────────────────
+// SCREEN SWITCHING
+// ─────────────────────────────────────────────
+const SCREENS=['intro','licencia','modulos','valor','oportunidad','cierre'];
+const PROG=[15,30,48,63,80,100];
+let curMod=0;
+
+function show(id){
+  SCREENS.forEach(s=>{
+    document.getElementById('scr-'+s).classList.toggle('active',s===id);
+    document.getElementById('tnav-'+s).classList.toggle('active',s===id);
+  });
+  document.getElementById('scr-detail').classList.remove('active');
+  document.getElementById('pFill').style.width=PROG[SCREENS.indexOf(id)]+'%';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ─────────────────────────────────────────────
+// OPORTUNIDAD VIEW TOGGLE
+// ─────────────────────────────────────────────
+function showOpView(which){
+  document.getElementById('opSummary').style.display = which==='none' ? '' : 'none';
+  document.getElementById('opViewLicensed').classList.toggle('active', which==='licensed');
+  document.getElementById('opViewUnlicensed').classList.toggle('active', which==='unlicensed');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ─────────────────────────────────────────────
+// BUILD MODULE GRID
+// ─────────────────────────────────────────────
+function buildGrid(){
+  document.getElementById('modGrid').innerHTML=MODS.map((m,i)=>`
+    <div class="mod-tile" onclick="openModule(${i})">
+      <div class="mct-bar" style="background:${m.color}"></div>
+      <div class="mct-body">
+        <div class="mct-icon" style="background:${m.bg}">${m.icon}</div>
+        <div class="mct-num">Módulo ${m.num}</div>
+        <div class="mct-name">${m.name}</div>
+        <div class="mct-desc">${m.short}</div>
+        <div class="mct-arrow" style="color:${m.color}">Ver detalle</div>
+      </div>
+    </div>`).join('');
+}
+
+// ─────────────────────────────────────────────
+// BUILD INTRO CHIPS
+// ─────────────────────────────────────────────
+function buildChips(){
+  document.getElementById('introChips').innerHTML=MODS.map((m,i)=>`
+    <div class="chip" onclick="openModule(${i})"><span>${m.icon}</span>${m.name.split('—')[0].split('&')[0].split('(')[0].trim()}</div>`).join('');
+}
+
+// ─────────────────────────────────────────────
+// BUILD OP VIEWS
+// ─────────────────────────────────────────────
+function buildOpViews(){
+  // Licensed list
+  document.getElementById('licListContainer').innerHTML = LIC_MODULES_LIST.map((m,i)=>`
+    <div class="lic-list-item" onclick="openModule(${i})" style="cursor:pointer">
+      <div class="lli-check">${m.icon}</div>
+      <div>
+        <div class="lli-name">${m.name}</div>
+        <div class="lli-cat">${m.cat}</div>
+        <div class="lli-desc">${m.desc}</div>
+      </div>
+    </div>`).join('');
+
+  // Unlicensed cats
+  let total=0;
+  document.getElementById('opCats').innerHTML = OP_CATS.map(cat=>{
+    total+=cat.mods.length;
+    return `
+      <div class="op-cat">
+        <div class="op-cat-header">
+          <div class="op-cat-icon" style="background:${cat.bg}">${cat.icon}</div>
+          <div class="op-cat-title">${cat.title}</div>
+          <div class="op-cat-count">${cat.mods.length} módulo${cat.mods.length>1?'s':''}</div>
+        </div>
+        <div class="op-cards">
+          ${cat.mods.map((m,i)=>`
+            <div class="op-card">
+              <div style="position:absolute;top:0;left:0;right:0;height:3px;background:${cat.color}"></div>
+              <div class="op-card-seq" style="color:${cat.color}">${String(i+1).padStart(2,'0')}</div>
+              <div class="op-card-name">${m.name}</div>
+              <div class="op-card-full">${m.full}</div>
+              <div class="op-card-desc">${m.desc}</div>
+              <div class="op-card-phase" style="background:${PHASE_COLORS[m.phase]||'rgba(26,58,107,.1)'};color:${PHASE_TEXT[m.phase]||'#1a3a6b'}">${m.phase}</div>
+            </div>`).join('')}
+        </div>
+      </div>`;
+  }).join('');
+}
+
+// ─────────────────────────────────────────────
+// OPEN MODULE DETAIL
+// ─────────────────────────────────────────────
+function openModule(idx){
+  curMod=idx; const m=MODS[idx];
+
+  // Sidebar
+  document.getElementById('detSidebar').innerHTML=`
+    <button class="ds-back" onclick="show('modulos')">Todos los módulos</button>
+    <div class="ds-icon" style="background:${m.bg}">${m.icon}</div>
+    <div class="ds-num">Módulo ${m.num} · ${m.phase}</div>
+    <div class="ds-name">${m.name}</div>
+    <div class="ds-tag">${m.short}</div>
+    <div class="ds-impact" style="background:${m.color}22;border:1px solid ${m.color}33">
+      <div class="ds-impact-lbl">⚡ Valor para Migración Colombia</div>
+      <div class="ds-impact-txt">${m.impact}</div>
+    </div>
+    <div class="ds-feats"><div class="ds-feats-lbl">Funcionalidades</div>
+      ${m.feats.map(f=>`<div class="ds-feat"><div class="ds-fdot" style="background:${m.acc}"></div>${f}</div>`).join('')}
+    </div>`;
+
+  // Build flow HTML
+  const flowHtml = m.flow ? `
+    <div class="d-sec">
+      <div class="d-lbl" style="color:${m.color}"><div class="d-dot" style="background:${m.color}"></div>${m.flow.title}</div>
+      <div class="flow-wrap">
+        <div class="flow">
+          ${m.flow.steps.map((s,i)=>`
+            <div class="flow-step">
+              <div class="flow-box" style="background:${s.color}">
+                <div><div style="font-size:.65rem;opacity:.8;margin-bottom:2px">${String(i+1).padStart(2,'0')}</div>${s.label}</div>
+              </div>
+              <div class="flow-num">${s.detail}</div>
+            </div>
+            ${i<m.flow.steps.length-1?'<div class="flow-arrow">›</div>':''}`).join('')}
+        </div>
+      </div>
+    </div>` : '';
+
+  const prev=idx>0?`<button class="dnav-btn" onclick="openModule(${idx-1})">← ${MODS[idx-1].icon} ${MODS[idx-1].name.split('—')[0].split('&')[0].trim().substring(0,22)}</button>`:`<button class="dnav-btn" disabled>← Anterior</button>`;
+  const next=idx<MODS.length-1?`<button class="dnav-btn" onclick="openModule(${idx+1})">${MODS[idx+1].icon} Siguiente →</button>`:`<button class="dnav-btn" disabled>Siguiente →</button>`;
+
+  document.getElementById('detMain').innerHTML=`
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:1.4rem">
+      <div style="width:5px;height:46px;background:${m.color};border-radius:3px;flex-shrink:0"></div>
+      <div><div style="font-size:.68rem;font-weight:800;color:${m.color};text-transform:uppercase;letter-spacing:.1em;margin-bottom:2px">${m.phase}</div>
+        <h2 style="font-family:Nunito,sans-serif;font-size:1.5rem;font-weight:900;color:#1a2b45;letter-spacing:-.02em">${m.icon} ${m.name}</h2>
+      </div>
+    </div>
+
+    <div class="d-sec">
+      <div class="d-lbl" style="color:${m.acc}"><div class="d-dot" style="background:${m.acc}"></div>Funcionalidades principales para el sector público</div>
+      <div class="d-card">
+        <div class="feat-2col">${m.feats.map(f=>`<div class="feat-item">${f}</div>`).join('')}</div>
+      </div>
+    </div>
+
+    ${flowHtml}
+
+    <div class="d-example" style="background:${m.color}">
+      <div class="d-example-lbl">📍 Caso de uso — Migración Colombia</div>
+      <div class="d-example-txt">${m.example}</div>
+    </div>
+    <div class="detail-nav">${prev}${next}</div>`;
+
+  SCREENS.forEach(s=>document.getElementById('scr-'+s).classList.remove('active'));
+  document.getElementById('scr-detail').classList.add('active');
+  document.getElementById('pFill').style.width='55%';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ─────────────────────────────────────────────
+// KEYBOARD NAV
+// ─────────────────────────────────────────────
+document.addEventListener('keydown',e=>{
+  if(document.getElementById('scr-detail').classList.contains('active')){
+    if(e.key==='ArrowRight'&&curMod<MODS.length-1)openModule(curMod+1);
+    if(e.key==='ArrowLeft'&&curMod>0)openModule(curMod-1);
+    if(e.key==='Escape')show('modulos');return;
+  }
+  const c=SCREENS.findIndex(s=>document.getElementById('scr-'+s).classList.contains('active'));
+  if(e.key==='ArrowRight'&&c<SCREENS.length-1)show(SCREENS[c+1]);
+  if(e.key==='ArrowLeft'&&c>0)show(SCREENS[c-1]);
+});
+
+// INIT
+buildGrid(); buildChips(); buildOpViews();
+
+// ── PASSWORD LOCK ──
+(function(){
+  const HASH = '7a6eb3c2d4f1e8b5a9c0d2e4f6a8b0c2d4e6f8a0b2c4d6e8f0a2b4c6d8e0f2a4';
+
+  function sha256simple(str){
+    // Simple check — compare directly (obfuscated via btoa)
+    return btoa(str);
+  }
+
+  const _p = ['D','i','g','i','t','a','l','W','a','r','e','2','0','2','6'];
+  const CORRECT = btoa(_p.join(''));
+
+  function checkPwd(){
+    const val = document.getElementById('pwdInput').value;
+    const inp = document.getElementById('pwdInput');
+    const err = document.getElementById('pwdError');
+    if(btoa(val) === CORRECT){
+      document.getElementById('pwd-overlay').classList.add('hidden');
+      document.getElementById('pwdInput').value = '';
+      err.textContent = '';
+    } else {
+      inp.classList.add('error');
+      err.textContent = 'Contraseña incorrecta. Intente nuevamente.';
+      inp.value = '';
+      setTimeout(()=>inp.classList.remove('error'), 400);
+      setTimeout(()=>{ if(err.textContent) err.textContent=''; }, 2500);
+    }
+  }
+  window.checkPwd = checkPwd;
+
+  // Auto-focus input when overlay is visible
+  window.addEventListener('load', ()=>{
+    setTimeout(()=>document.getElementById('pwdInput').focus(), 100);
+  });
+})();
+
+</script>
+
+<!-- ═══════ CIERRE ═══════ -->
+<div class="screen" id="scr-cierre">
+  <div style="min-height:calc(100vh - 56px);display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#0d2348 0%,#1a3a6b 50%,#2059a8 100%);position:relative;overflow:hidden;padding:2rem">
+    <!-- Background decoration -->
+    <div style="position:absolute;top:-120px;right:-80px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(245,166,35,.12) 0%,transparent 70%);pointer-events:none"></div>
+    <div style="position:absolute;bottom:-80px;left:-60px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(0,180,200,.1) 0%,transparent 70%);pointer-events:none"></div>
+    <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:900px;height:900px;border-radius:50%;border:1px solid rgba(255,255,255,.04);pointer-events:none"></div>
+    <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;border-radius:50%;border:1px solid rgba(255,255,255,.04);pointer-events:none"></div>
+
+    <div style="max-width:820px;width:100%;position:relative;z-index:2;text-align:center">
+      <!-- Badge -->
+      <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(245,166,35,.15);border:1px solid rgba(245,166,35,.35);color:#f5a623;font-size:.72rem;font-weight:700;padding:.4rem 1rem;border-radius:20px;margin-bottom:2rem;letter-spacing:.08em;text-transform:uppercase">
+        <span style="font-size:.55rem;animation:blink 1.5s ease-in-out infinite">●</span>
+        Kactus HCM · Próxima Evolución
+      </div>
+
+      <!-- Main message -->
+      <h2 style="font-family:'Nunito',sans-serif;font-size:2.6rem;font-weight:900;color:white;line-height:1.1;letter-spacing:-.025em;margin-bottom:1rem">
+        Migración Colombia ya tiene<br>la herramienta.
+      </h2>
+      <p style="font-family:'Nunito',sans-serif;font-size:1.35rem;font-weight:700;color:#f5a623;margin-bottom:2rem">
+        El siguiente paso es aprovecharla al máximo.
+      </p>
+
+      <!-- License summary -->
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:2.5rem">
+        <div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:1rem">
+          <div style="font-family:'Nunito',sans-serif;font-size:1.8rem;font-weight:900;color:#f5a623;line-height:1">1.670</div>
+          <div style="font-size:.7rem;color:rgba(255,255,255,.55);margin-top:3px;text-transform:uppercase;letter-spacing:.05em">Empleados<br>habilitados</div>
+        </div>
+        <div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:1rem">
+          <div style="font-family:'Nunito',sans-serif;font-size:1.8rem;font-weight:900;color:#f5a623;line-height:1">11</div>
+          <div style="font-size:.7rem;color:rgba(255,255,255,.55);margin-top:3px;text-transform:uppercase;letter-spacing:.05em">Módulos<br>activos</div>
+        </div>
+        <div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:1rem">
+          <div style="font-family:'Nunito',sans-serif;font-size:1.8rem;font-weight:900;color:#f5a623;line-height:1">47</div>
+          <div style="font-size:.7rem;color:rgba(255,255,255,.55);margin-top:3px;text-transform:uppercase;letter-spacing:.05em">Módulos<br>disponibles</div>
+        </div>
+        <div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:1rem">
+          <div style="font-family:'Nunito',sans-serif;font-size:1.8rem;font-weight:900;color:#f5a623;line-height:1">V.26</div>
+          <div style="font-size:.7rem;color:rgba(255,255,255,.55);margin-top:3px;text-transform:uppercase;letter-spacing:.05em">Versión<br>actual</div>
+        </div>
+      </div>
+
+      <!-- Evolution message -->
+      <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:2rem 2.5rem;margin-bottom:2rem;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#f5a623,#00b4c8,#f5a623)"></div>
+        <div style="display:flex;align-items:flex-start;gap:1.2rem;text-align:left">
+          <div style="font-size:2.2rem;flex-shrink:0;margin-top:2px">🚀</div>
+          <div>
+            <div style="font-family:'Nunito',sans-serif;font-size:1.1rem;font-weight:900;color:white;margin-bottom:.5rem">Kactus HCM está evolucionando hacia una nueva versión multinavegador</div>
+            <p style="font-size:.9rem;color:rgba(255,255,255,.75);line-height:1.7;margin-bottom:.8rem">
+              Digital Ware trabaja en el rediseño completo del <strong style="color:white">front-end de Kactus HCM</strong>, transformándolo en una plataforma <strong style="color:white">100% web, multinavegador y responsive</strong>. Esta nueva versión mantendrá toda la funcionalidad actual y la potenciará con una experiencia de usuario moderna, ágil e intuitiva — accesible desde cualquier dispositivo y navegador, sin dependencias de tecnologías obsoletas.
+            </p>
+            <div style="display:flex;flex-wrap:wrap;gap:8px">
+              <span style="background:rgba(245,166,35,.2);color:#ffc84a;font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:8px">🌐 Multinavegador</span>
+              <span style="background:rgba(0,180,200,.15);color:#00b4c8;font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:8px">📱 Responsive</span>
+              <span style="background:rgba(29,184,122,.15);color:#2ed494;font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:8px">⚡ Nuevo front-end</span>
+              <span style="background:rgba(108,63,197,.2);color:#c4a0ff;font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:8px">🔄 Misma funcionalidad</span>
+              <span style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.8);font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:8px">🗓️ Próximamente</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <p style="font-size:.8rem;color:rgba(255,255,255,.35)">
+        Digital Ware S.A.S · Kactus HCM by Ophelia V.26 · www.digitalware.com.co · Calle 72 #12-65 Piso 4, Bogotá · PBX: (57) 601 9142208
+      </p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
