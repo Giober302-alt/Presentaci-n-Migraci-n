@@ -550,365 +550,501 @@ body{font-family:'Open Sans',sans-serif;background:var(--white);color:var(--text
 // MODULE DATA — 14 licensed modules
 // ─────────────────────────────────────────────
 const MODS = [
+
+  /* ─── 01 NÓMINA ─── */
   {
     id:'nomina', icon:'📊', num:'01',
     name:'Nómina & Administración de Salarios',
-    short:'Motor de liquidación pública para el sector estatal colombiano',
-    color:'#1a3a6b', bg:'rgba(26,58,107,.1)', acc:'#3a7bd5',
-    phase:'Remunerar',
-    impact:'Nómina 100% trazable, auditable y sin reprocesos manuales para los 1.670 funcionarios de Migración Colombia.',
+    short:'Liquidación universal, paramétrica y multiempresa para sector público y privado',
+    color:'#1a3a6b', bg:'rgba(26,58,107,.1)', acc:'#3a7bd5', phase:'Remunerar',
+    cardDesc:'Motor de cálculo paramétrico que liquida cualquier tipo de nómina sin necesidad de programación: múltiples contratos, periodicidades, sindicatos, convenciones colectivas y cumplimiento normativo DIAN · MinTrabajo · UGPP.',
+    impact:'Cierre de nómina trazable y sin reprocesos para 1.670 funcionarios, con dispersión bancaria e interface automática a SIIF Nación.',
+    summary:[
+      'Parametrización universal de conceptos sin necesidad de programación',
+      'Múltiples tipos de nómina: normal, adicional y extranómina',
+      'Gestión completa de novedades, prestaciones sociales y seguridad social',
+      'Encargos de funciones y salario con cálculo diferencial automático',
+      'Sindicatos, convenciones colectivas y embargos de todo tipo',
+      'Dispersión bancaria, PILA e interface SIIF Nación',
+    ],
     feats:[
-      'Parametrización universal de conceptos salariales y descuentos sector público',
-      'Contratos y vinculación: carrera administrativa, libre nombramiento, provisionales',
-      'Novedades: horas extra, incapacidades, permisos, licencias, comisiones de servicio',
-      'Encargos de funciones con cálculo automático de prima técnica o diferencial salarial',
-      'Prestaciones sociales: cesantías, primas, vacaciones, indemnizaciones, liquidaciones',
-      'Seguridad social: SENA, ICBF, Caja Compensación, EPS, ARL, Pensión (PILA)',
-      'Administración de sindicatos: afiliaciones y descuentos por convención colectiva',
-      'Embargos judiciales y libranzas con control de topes legales',
-      'Magnéticos bancarios y dispersión electrónica de pagos',
-      'Procesos disciplinarios (sanciones) con efecto automático en nómina',
-      'Interface contable automática SIIF Nación y sistemas ERP (LINK-SOA)',
-      'Reportes DANE, certificados de ingresos y retenciones',
-      'Integración SIIF: traslado automático de la nómina al presupuesto nacional',
+      'Liquidación de nóminas de cualquier sector sin conocimientos de programación (paramétrica)',
+      'Tipos: nómina normal, adicional, extranómina, pensionados y contratistas',
+      'Novedades vía archivo plano, correo o Internet: horas extra, recargos, incapacidades, permisos',
+      'Liquidación de compensatorios, ausentismos y días no trabajados',
+      'Embargos civiles, alimentarios y ejecutivos con topes y magnético de pago a terceros',
+      'Control de sanciones y demandas integrado a la liquidación',
+      'Manejo de encargos de funciones y de salario con cálculo automático del diferencial',
+      'Múltiples sindicatos, convenciones colectivas y descuentos asociados',
+      'Prestaciones sociales: cesantías (parcial, definitiva, fin de año), primas, vacaciones en tiempo o dinero',
+      'Seguridad social PILA: EPS, ARL, AFP, SENA, ICBF, Caja Compensación con todas las novedades',
+      'Dispersión bancaria: magnéticos para pago electrónico, cheques y efectivo',
+      'Interface contable: SIIF Nación, SAP, Oracle, JDE, Dynamics y otros ERP',
+      'Motor de reglas BRM: ajuste normativo sin depender del proveedor',
+      'Certificados de ingresos y retenciones, reportes DANE y UGPP',
     ],
     flow:{
-      title:'Flujo: Novedad → Liquidación → Legalización contable',
+      title:'Flujo: Novedad → Preliquidación → Cierre → Dispersión → Interface SIIF',
       steps:[
-        {label:'Registro de Novedades', detail:'Horas extra, incapacidades, permisos, encargos, embargos', color:'#2059a8'},
-        {label:'Validación y Aprobación', detail:'Revisión RRHH y autorización por perfil de usuario', color:'#1a3a6b'},
-        {label:'Preliquidación', detail:'Simulación de nómina para revisión antes del cierre', color:'#007b8a'},
+        {label:'Registro Novedades', detail:'Horas extra, incapacidades, encargos, embargos — vía sistema o archivo plano', color:'#2059a8'},
+        {label:'Validación', detail:'Revisión RRHH con alertas de inconsistencias', color:'#1a3a6b'},
+        {label:'Preliquidación', detail:'Simulación completa antes del cierre definitivo', color:'#007b8a'},
         {label:'Liquidación Oficial', detail:'Cálculo definitivo de todos los conceptos parametrizados', color:'#1db87a'},
-        {label:'Seguridad Social', detail:'Generación PILA: EPS, pensión, ARL, SENA, ICBF, Caja', color:'#6c3fc5'},
-        {label:'Dispersión Bancaria', detail:'Magnéticos para pago electrónico a los funcionarios', color:'#f5a623'},
-        {label:'Interfaz SIIF', detail:'Traslado automático al Sistema Integrado de Inf. Financiera', color:'#c47e00'},
+        {label:'PILA y Dispersión', detail:'Planilla integrada y magnéticos bancarios generados', color:'#6c3fc5'},
+        {label:'Interface SIIF', detail:'Traslado automático al Sistema Integrado de Información Financiera', color:'#f5a623'},
+        {label:'Cierre y Auditoría', detail:'Período bloqueado con trazabilidad completa de cambios', color:'#c47e00'},
       ]
     },
-    example:'El área de nómina de Migración registra novedades del período (horas extras, incapacidades, encargos), ejecuta la preliquidación para validar cifras, aprueba el cierre y Kactus genera simultáneamente la dispersión bancaria para los <strong>1.670 funcionarios</strong>, el archivo PILA y el traslado automático a <strong>SIIF Nación</strong> — sin digitación manual adicional.',
+    example:'',
+    exampleEditable: true,
   },
+
+  /* ─── 02 BIODATA ─── */
   {
     id:'biodata', icon:'👤', num:'02',
     name:'Biodata — Hoja de Vida del Funcionario',
-    short:'Expediente digital único centralizado por empleado',
-    color:'#007b8a', bg:'rgba(0,123,138,.1)', acc:'#00b4c8',
-    phase:'Atraer',
-    impact:'Expediente digital único con trazabilidad total. Consulta en segundos desde cualquier módulo del sistema.',
+    short:'Repositorio digital único del colaborador, integrado con todos los módulos del sistema',
+    color:'#007b8a', bg:'rgba(0,123,138,.1)', acc:'#00b4c8', phase:'Atraer',
+    cardDesc:'Centraliza toda la información del funcionario: datos personales, historia laboral interna, formación académica y no formal, competencias, datos familiares y documentos adjuntos — consultable en tiempo real por múltiples usuarios y por todos los módulos de Kactus.',
+    impact:'Expediente digital único que elimina carpetas físicas y garantiza coherencia de datos en nómina, desempeño, formación y bienestar.',
+    summary:[
+      'Datos personales, laborales y de vinculación del funcionario',
+      'Historia laboral interna: cargos, salarios, sanciones y conformidades',
+      'Formación académica, no formal, competencias y experiencia previa',
+      'Información familiar y de beneficiarios',
+      'Documentos digitales adjuntos: hoja de vida, diplomas, contratos (KACTUS-IM)',
+      'Integración en tiempo real con nómina, desempeño, formación y bienestar',
+    ],
     feats:[
-      'Maestro de empleados: datos personales, contacto, identificación, tipo de vinculación',
-      'Historial laboral completo: cargos, dependencias, áreas, salarios históricos',
-      'Información académica: títulos, estudios formales, especializaciones, idiomas',
-      'Información familiar: beneficiarios, cónyuge, hijos con documentos',
-      'Experiencia laboral previa documentada con entidades y cargos',
-      'Documentos digitales adjuntos por categoría (contratos, resoluciones, soportes)',
-      'Trazabilidad de cambios: quién modificó, qué campo y cuándo',
-      'Alertas de vencimiento de documentos (tarjetas profesionales, exámenes médicos)',
-      'Consulta en tiempo real desde nómina, desempeño, SST y bienestar',
-      'Exportación de hoja de vida en formato institucional',
+      'Información general: nombres, identificación, dirección, e-mail, RH, grupo sanguíneo',
+      'Información profesional: educación formal, no formal, experiencia, proyectos y publicaciones',
+      'Datos familiares: nombre, tipo de relación, dependientes para bienestar y SS',
+      'Datos adicionales: peso, talla, tipo de vivienda, hobbies y otras variables',
+      'Historia laboral interna completa: cargos, salarios, traslados, sanciones y conformidades',
+      'Competencias y habilidades registradas para uso en reclutamiento y evaluación de desempeño',
+      'Actualización automática de educación y competencias desde módulos FD, GD y SL',
+      'Dotación asignada: prendas y elementos devolutivos por funcionario',
+      'Gestión de imágenes y documentos digitales adjuntos sin necesidad de carpeta física (KACTUS-IM)',
+      'Consulta simultánea por múltiples usuarios desde cualquier módulo del sistema',
+      'Filosofía cero papel: todos los documentos del funcionario archivados y accesibles digitalmente',
     ],
     flow:{
-      title:'Flujo: Vinculación → Expediente completo → Consulta integrada',
+      title:'Flujo: Vinculación → Expediente completo → Uso integrado en todos los módulos',
       steps:[
-        {label:'Creación del Funcionario', detail:'Datos básicos al maestro de empleados', color:'#007b8a'},
-        {label:'Carga de Documentos', detail:'Resolución de nombramiento, cédula, títulos', color:'#2059a8'},
-        {label:'Completar Biodata', detail:'Formación académica, experiencia, familia', color:'#1a3a6b'},
-        {label:'Validación RRHH', detail:'Revisión y aprobación del expediente', color:'#f5a623'},
-        {label:'Integración Activa', detail:'Disponible para nómina, desempeño, SST', color:'#1db87a'},
-        {label:'Actualización Continua', detail:'Cambios trazados: quién, qué y cuándo', color:'#6c3fc5'},
+        {label:'Crear Registro', detail:'Datos básicos: identificación, cargo, dependencia, tipo de vinculación', color:'#007b8a'},
+        {label:'Adjuntar Documentos', detail:'Resolución, títulos, contrato — repositorio digital KACTUS-IM', color:'#2059a8'},
+        {label:'Completar Biodata', detail:'Formación, competencias, familia, experiencia previa', color:'#1a3a6b'},
+        {label:'Historia Laboral Activa', detail:'Cada movimiento laboral queda registrado automáticamente', color:'#f5a623'},
+        {label:'Integración', detail:'Disponible en tiempo real para nómina, desempeño, formación, SST', color:'#1db87a'},
+        {label:'Actualización Continua', detail:'Módulos FD y GD actualizan formación y competencias automáticamente', color:'#6c3fc5'},
       ]
     },
-    example:'Cuando la Contraloría solicita información de un funcionario, RRHH accede en segundos al expediente completo: resolución de nombramiento, historial salarial, formación académica y certificados — todo <strong>centralizado, trazado y disponible sin búsqueda en archivos físicos</strong>.',
+    example:'',
+    exampleEditable: true,
   },
+
+  /* ─── 03 ANÁLISIS DE CARGOS ─── */
   {
     id:'cargos', icon:'🔍', num:'03',
     name:'Análisis de Cargos & Estructura Organizacional',
-    short:'Manual de funciones digital, estructura de planta y perfiles de cargo',
-    color:'#6c3fc5', bg:'rgba(108,63,197,.1)', acc:'#9b72f0',
-    phase:'Atraer',
-    impact:'Planta de personal estructurada con manuales de funciones digitales, perfiles estandarizados y trazabilidad organizacional.',
+    short:'Estructura organizacional, planta de personal, manual de funciones y diccionario de competencias',
+    color:'#6c3fc5', bg:'rgba(108,63,197,.1)', acc:'#9b72f0', phase:'Atraer',
+    cardDesc:'Permite definir y mantener la estructura organizacional, identificar los perfiles de cargo con sus competencias y generar el Manual de Funciones digitalizado — disponible para consulta de líderes y colaboradores desde el Self Service.',
+    impact:'Manual de funciones digital disponible en Self Service, planta de personal sincronizada y base técnica para reclutamiento, evaluación y plan de carrera.',
+    summary:[
+      'Estructura organizacional: cargos, niveles jerárquicos y dependencias',
+      'Administración de planta: provistos, vacantes y en encargo',
+      'Manual de funciones por cargo: responsabilidades, misión y funciones',
+      'Perfiles: competencias, habilidades, destrezas y requisitos del cargo',
+      'Diccionario de competencias comportamentales y funcionales',
+      'Plan carrera: árbol de ascensos con semáforo de perfil vs. cargo siguiente',
+    ],
     feats:[
-      'Estructura organizacional: dependencias, grupos, seccionales y niveles',
-      'Administración de planta de personal: cargos creados, vacantes, provistos y en encargo',
-      'Manual de funciones digitalizado por cargo: propósito, funciones, competencias, requisitos',
-      'Perfiles de competencias: nivel educativo mínimo, experiencia requerida, habilidades',
-      'Diccionario de competencias institucional parametrizable',
-      'Valoración de cargos y categorización según escala salarial pública',
-      'Análisis de brechas: perfil del funcionario vs. requisitos del cargo',
-      'Control de vacantes vs. planta global para reporte a Función Pública',
-      'Gestión de comisiones de servicio y encargos de funciones desde la estructura',
-      'Integración con reclutamiento: la convocatoria toma el perfil del cargo automáticamente',
-      'Reportes de planta para DANE, DAFP y organismos de control',
+      'Definición de la estructura: cargos, niveles jerárquicos, dependencias y cadenas de mando',
+      'Planta de personal: creación y control de vacantes, maestro actual e histórico de cambios',
+      'Manual de funciones digitalizado: responsabilidades, misión, funciones, componentes actitudinales',
+      'Habilidades, destrezas, cargos que reportan, dependencias relacionadas, comités y riesgos del cargo',
+      'Diccionario de competencias: comportamentales y funcionales parametrizables por la organización',
+      'Perfil del cargo: educación mínima, experiencia requerida y conocimientos específicos',
+      'Valoración de cargos por factores de complejidad, impacto y supervisión',
+      'Análisis de brechas: comparativo perfil del funcionario vs. requisitos del cargo',
+      'Plan de carrera: árbol de ascensos con semáforo por cercanía al perfil del cargo siguiente',
+      'Publicación del Manual de Funciones en el Self Service para consulta de colaboradores y líderes',
+      'Interacción con Selección (cubrir vacante) y Nómina (liberar cargo al retiro del trabajador)',
+      'Reportes de planta para DAFP, DANE y organismos de control',
     ],
     flow:{
-      title:'Flujo: Diseño de cargo → Manual de funciones → Planta activa',
+      title:'Flujo: Diseño del cargo → Manual → Planta activa → Self Service',
       steps:[
-        {label:'Definir Cargo', detail:'Nombre, grado, nivel, dependencia en estructura', color:'#6c3fc5'},
-        {label:'Diseñar Manual', detail:'Propósito, funciones específicas, responsabilidades', color:'#2059a8'},
-        {label:'Definir Perfil', detail:'Formación requerida, experiencia, competencias', color:'#1a3a6b'},
-        {label:'Valorar Cargo', detail:'Puntuación por impacto, complejidad y supervisión', color:'#f5a623'},
-        {label:'Publicar en Planta', detail:'Cargo disponible para ocupar, reclutar o evaluar', color:'#1db87a'},
-        {label:'Analizar Brechas', detail:'Perfil del titular vs. requisitos del cargo', color:'#007b8a'},
+        {label:'Definir Cargo', detail:'Nombre, grado, nivel, dependencia en la estructura', color:'#6c3fc5'},
+        {label:'Redactar Manual', detail:'Misión, funciones, responsabilidades y riesgos del cargo', color:'#2059a8'},
+        {label:'Definir Perfil', detail:'Formación mínima, experiencia, competencias y habilidades', color:'#1a3a6b'},
+        {label:'Valorar y Publicar', detail:'Puntuación por complejidad e impacto — cargo en planta', color:'#f5a623'},
+        {label:'Self Service', detail:'Manual disponible para consulta del titular y su jefe', color:'#1db87a'},
+        {label:'Alimentar Procesos', detail:'Perfil disponible para reclutamiento, desempeño y plan carrera', color:'#007b8a'},
       ]
     },
-    example:'Migración Colombia actualiza el manual de funciones del cargo "Profesional Especializado" directamente en Kactus: define funciones, nivel educativo requerido y competencias institucionales. El manual queda disponible para reclutamiento, evaluación de desempeño y planta — <strong>sin papel, sin versiones desactualizadas, trazable y consultable 24/7</strong>.',
+    example:'',
+    exampleEditable: true,
   },
+
+  /* ─── 04 RECLUTAMIENTO ─── */
   {
     id:'reclutamiento', icon:'🎯', num:'04',
     name:'Reclutamiento y Selección',
-    short:'Proceso de selección trazable desde la vacante hasta la vinculación',
-    color:'#2059a8', bg:'rgba(32,89,168,.1)', acc:'#5591e8',
-    phase:'Atraer',
-    impact:'Proceso de selección 100% documentado, trazable y vinculado automáticamente al expediente del funcionario.',
-    feats:[
-      'Gestión de vacantes: apertura, justificación y aprobación',
-      'Publicación de convocatorias internas y externas',
-      'Recepción y filtro de hojas de vida por perfil del cargo',
-      'Configuración de etapas del proceso por convocatoria',
-      'Registro de pruebas, entrevistas y valoraciones por etapa',
-      'Matriz comparativa de candidatos por puntaje',
-      'Actas de proceso de selección con soporte documental',
-      'Vinculación automática del seleccionado a Biodata y nómina',
+    short:'Portal web de recolección de HV, comparativo de perfiles, ranking y vinculación automática',
+    color:'#2059a8', bg:'rgba(32,89,168,.1)', acc:'#5591e8', phase:'Atraer',
+    cardDesc:'Portal web que permite a candidatos externos registrar y mantener actualizada su hoja de vida, con publicación de vacantes, comparativo automático perfil candidato vs. cargo, sistema de ranking para preselección y registro completo del proceso hasta la vinculación.',
+    impact:'Proceso de selección 100% trazable desde la vacante hasta la vinculación automática en Biodata y nómina — sin re-digitación.',
+    summary:[
+      'Portal web para registro y actualización de hojas de vida externas',
+      'Publicación de vacantes y postulación de candidatos por perfil',
+      'Comparativo automático candidato vs. perfil del cargo con ranking',
+      'Registro de etapas: pruebas, entrevistas, citación automática y evaluaciones',
       'Banco de hojas de vida para futuras convocatorias',
-      'Integración con el perfil del cargo (Manual de Funciones)',
-      'Reportes de proceso para CNSC y entes de control',
+      'Vinculación directa a Biodata y Nómina del candidato seleccionado',
+    ],
+    feats:[
+      'Portal web de recolección de HV: datos básicos, educación, experiencia, idiomas, dotación (tallas)',
+      'Publicación de cargos vacantes para postulación por perfil del candidato',
+      'Candidatos pueden adjuntar foto y soportes documentales digitales',
+      'Banco propio de hojas de vida consultable para futuros procesos',
+      'Registro y aprobación web de requerimientos de personal por el líder',
+      'Comparativo automático perfil candidato vs. perfil del cargo',
+      'Ranking de candidatos por cercanía al perfil requerido para preselección eficiente',
+      'Calendario del proceso y citación automática a pruebas',
+      'Registro de evaluaciones, conceptos de selección y aprobaciones por etapa y evaluador',
+      'Inclusión de candidatos internos (empleados activos) que cumplan el perfil',
+      'Vinculación automática del seleccionado a KACTUS-BI (Biodata) y KACTUS-NM (Nómina)',
+      'Generación de necesidades de formación para inducción y capacitación del nuevo ingreso',
+      'Reportes consolidados y gerenciales del proceso para seguimiento e interpretación',
     ],
     flow:{
-      title:'Flujo: Vacante → Convocatoria → Selección → Vinculación',
+      title:'Flujo: Vacante → Portal HV → Ranking → Etapas → Vinculación',
       steps:[
-        {label:'Apertura de Vacante', detail:'Solicitud formal con justificación y cargo', color:'#2059a8'},
-        {label:'Publicación', detail:'Convocatoria con perfil del cargo parametrizado', color:'#1a3a6b'},
-        {label:'Recepción HV', detail:'Registro y filtro de candidatos elegibles', color:'#007b8a'},
-        {label:'Pruebas y Entrevistas', detail:'Resultados registrados por etapa y candidato', color:'#f5a623'},
-        {label:'Selección Final', detail:'Acta con soporte documental adjunto', color:'#1db87a'},
-        {label:'Vinculación Automática', detail:'Datos a Biodata y nómina sin re-digitación', color:'#6c3fc5'},
+        {label:'Publicar Vacante', detail:'Cargo y perfil requerido publicados en el portal web', color:'#2059a8'},
+        {label:'Recepción HV', detail:'Candidatos registran y actualizan su HV en el portal', color:'#1a3a6b'},
+        {label:'Comparativo y Ranking', detail:'Sistema rankea candidatos por cumplimiento del perfil', color:'#007b8a'},
+        {label:'Etapas del Proceso', detail:'Pruebas, entrevistas y evaluaciones con registro por evaluador', color:'#f5a623'},
+        {label:'Selección Final', detail:'Concepto de selección con reporte consolidado del proceso', color:'#1db87a'},
+        {label:'Vinculación Automática', detail:'Datos a Biodata y Nómina — necesidades de inducción generadas', color:'#6c3fc5'},
       ]
     },
-    example:'Al abrirse una vacante, el módulo genera la convocatoria con el perfil ya parametrizado, recibe hojas de vida, registra resultados de pruebas y, al declarar el ganador, <strong>sus datos fluyen automáticamente a Biodata y nómina</strong> — sin re-digitación, sin papel.',
+    example:'',
+    exampleEditable: true,
   },
+
+  /* ─── 05 DESEMPEÑO ─── */
   {
     id:'desempeno', icon:'⭐', num:'05',
     name:'Evaluación de Desempeño STEDL — Sector Público',
-    short:'Modelo oficial de evaluación del desempeño laboral del Estado colombiano',
-    color:'#c47e00', bg:'rgba(196,126,0,.1)', acc:'#f5a623',
-    phase:'Alinear y Desarrollar',
-    impact:'Evaluación normativa sector público con ciclo cerrado: compromisos → seguimientos → calificación → plan de mejora.',
+    short:'Modelo normativo colombiano: compromisos, seguimientos, calificación y feedback 360°',
+    color:'#c47e00', bg:'rgba(196,126,0,.1)', acc:'#f5a623', phase:'Alinear y Desarrollar',
+    cardDesc:'Implementa el Sistema de Evaluación del Desempeño Laboral (STEDL) con gestión de compromisos laborales y de comportamiento, seguimientos periódicos, calificaciones definitivas, feedback y generación automática de necesidades de formación.',
+    impact:'Ciclo completo documentado: compromisos → seguimientos → calificación → plan de mejora → necesidades de formación para el PIC.',
+    summary:[
+      'Modelo STEDL: compromisos laborales y comportamentales',
+      'Seguimientos periódicos con registro de avance por compromiso',
+      'Calificación definitiva con acta digital y feedback estructurado',
+      'Plan de mejoramiento automático para evaluados no satisfactorios',
+      'Generación automática de necesidades de formación para el PIC',
+      'Reportes para la CNSC y datos históricos en Biodata',
+    ],
     feats:[
-      'Modelo STEDL (Sistema de Evaluación del Desempeño Laboral) para sector público',
-      'Evaluación por competencias comportamentales y funcionales según CNSC',
-      'Definición de compromisos laborales y de gestión por cargo y período',
-      'Primer y segundo seguimiento con registro de avances',
-      'Evaluación anual con calificación definitiva (sobresaliente, satisfactoria, no satisfactoria)',
-      'Actas de evaluación digitales con firma de evaluador y evaluado',
-      'Plan de mejoramiento para funcionarios con calificación no satisfactoria',
-      'Integración con módulo de Educación para ruta de formación',
-      'Reportes para la CNSC — Comisión Nacional del Servicio Civil',
-      'Trazabilidad histórica de evaluaciones por funcionario',
-      'Alertas de vencimiento de períodos de evaluación',
+      'Modelo STEDL: definición de compromisos laborales y comportamentales al inicio del período',
+      'Primer y segundo seguimiento con registro del nivel de avance por compromiso',
+      'Calificación definitiva: sobresaliente, satisfactoria, no satisfactoria — con acta digital',
+      'Feedback estructurado entre evaluador y evaluado con establecimiento de compromisos',
+      'Plan de mejoramiento generado automáticamente para funcionarios no satisfactorios',
+      'Modelos adicionales (no licenciados): evaluación 360°, 270°, 180° y 90° por competencias',
+      'Modelo por metas y objetivos con Balance Score Card y flujo Workflow de aprobación',
+      'Método Nine Box para visualización y clasificación de empleados por potencial',
+      'Reportes para la Comisión Nacional del Servicio Civil (CNSC)',
+      'Generación automática de necesidades de formación para incluir en el plan de capacitación',
+      'Trazabilidad histórica de evaluaciones por funcionario en Biodata',
+      'Alertas de vencimiento de períodos y seguimientos pendientes',
     ],
     flow:{
-      title:'Flujo: Compromisos → Seguimientos → Evaluación → Plan de mejora',
+      title:'Flujo: Compromisos → Seguimientos → Calificación → Plan mejora → Formación',
       steps:[
         {label:'Definir Compromisos', detail:'Evaluador y evaluado acuerdan compromisos del período', color:'#c47e00'},
-        {label:'1er Seguimiento', detail:'Revisión del avance a mitad del período', color:'#f5a623'},
-        {label:'2do Seguimiento', detail:'Segunda verificación antes del cierre', color:'#1a3a6b'},
-        {label:'Evaluación Final', detail:'Calificación definitiva con acta digital firmada', color:'#2059a8'},
-        {label:'Análisis Resultados', detail:'Consolidación por área, dependencia y entidad', color:'#1db87a'},
-        {label:'Plan de Mejora', detail:'Funcionarios no satisfactorios: plan de mejoramiento', color:'#6c3fc5'},
+        {label:'1er Seguimiento', detail:'Revisión del nivel de avance a mitad del período', color:'#f5a623'},
+        {label:'2do Seguimiento', detail:'Segunda verificación antes del cierre anual', color:'#1a3a6b'},
+        {label:'Calificación Final', detail:'Definitiva con acta digital y sesión de feedback', color:'#2059a8'},
+        {label:'Plan de Mejora', detail:'Generado automáticamente para no satisfactorios', color:'#1db87a'},
+        {label:'Necesidades Formación', detail:'Deficiencias identificadas pasan al Plan de Capacitación', color:'#6c3fc5'},
       ]
     },
-    example:'Al inicio del semestre, cada jefe define los compromisos con su equipo en Kactus. El sistema programa las alertas de seguimiento, consolida las calificaciones al cierre y genera automáticamente los reportes para la CNSC y los planes de mejoramiento — <strong>todo documentado, trazable y normativo</strong>.',
+    example:'',
+    exampleEditable: true,
   },
+
+  /* ─── 06 EDUCACIÓN ─── */
   {
     id:'educacion', icon:'🎓', num:'06',
     name:'Educación y Capacitación',
-    short:'Plan Institucional de Capacitación (PIC) con trazabilidad y medición de impacto',
-    color:'#1db87a', bg:'rgba(29,184,122,.1)', acc:'#2ed494',
-    phase:'Alinear y Desarrollar',
-    impact:'Plan de formación alineado a brechas de desempeño. Historial de capacitación trazable por funcionario.',
+    short:'Gestión integral del plan de formación: programación, inscripción, control de asistencia y presupuesto',
+    color:'#1db87a', bg:'rgba(29,184,122,.1)', acc:'#2ed494', phase:'Alinear y Desarrollar',
+    cardDesc:'Permite registrar y mantener actualizada la información de educación formal y no formal, diseñar programas de formación estructurados por perfil y competencias, controlar inscripciones, asistencia y presupuesto, y actualizar automáticamente el historial en Biodata.',
+    impact:'Plan de capacitación ejecutado, medido y trazable — con evidencia para DAFP y ESAP.',
+    summary:[
+      'Plan de formación anual por cargo y mallas de entrenamiento',
+      'Programación: entidades, cursos, inscripciones, calendario y logística',
+      'Control de asistencia, presupuesto y facturación por actividad',
+      'Publicación, inscripción y certificaciones vía Self Service',
+      'Actualización automática de educación en Biodata tras cada capacitación',
+      'Necesidades de formación desde selección, desempeño y solicitudes de líderes',
+    ],
     feats:[
-      'Plan Institucional de Capacitación (PIC) anual parametrizable',
-      'Diagnóstico de necesidades de formación por cargo y área',
-      'Catálogo de programas: cursos, talleres, diplomados, seminarios',
-      'Programación de grupos, facilitadores, horarios y sedes',
-      'Registro de asistencia y participación por funcionario',
-      'Control de presupuesto de formación por programa y vigencia',
-      'Certificaciones y constancias de participación descargables',
-      'Historial de formación acumulado por funcionario integrado a Biodata',
-      'Integración con resultados de evaluación de desempeño (brechas)',
-      'Inducción y reinducción institucional digitalizada',
-      'Reportes para ESAP, DAFP y organismos de control',
+      'Registro de entidades prestadoras de servicios de capacitación y catálogo de cursos',
+      'Requisiciones de capacitación, programación de cursos y control de inscripciones',
+      'Confirmación, calendarización de agenda y asignación de materiales logísticos',
+      'Control de asistencia, facturación y presupuesto ejecutado vs. planificado',
+      'Estructuración de cursos por perfil y competencias del cargo',
+      'Control de repetición de cursos, personal en vacaciones o incapacitado',
+      'Control de costos por inasistencia',
+      'Publicación de cursos, inscripciones, cancelaciones y confirmaciones vía Self Service',
+      'Consulta de material bibliográfico y certificaciones de asistencia desde Self Service',
+      'Actualización automática de educación formal y no formal en Biodata (KACTUS-BI)',
+      'Necesidades de formación generadas desde: selección, desempeño, metas/objetivos y solicitud del líder',
+      'Reportes de ejecución del PIC para DAFP, ESAP y organismos de control',
     ],
     flow:{
-      title:'Flujo: Diagnóstico → PIC → Ejecución → Medición',
+      title:'Flujo: Necesidad → Programación → Ejecución → Actualización Biodata',
       steps:[
-        {label:'Diagnóstico', detail:'Brechas identificadas desde evaluación de desempeño', color:'#1db87a'},
-        {label:'Elaborar PIC', detail:'Plan con actividades, presupuesto y metas', color:'#2059a8'},
-        {label:'Programar', detail:'Grupos, fechas, facilitadores, sedes', color:'#1a3a6b'},
-        {label:'Ejecutar', detail:'Registro de asistencia y participación', color:'#f5a623'},
-        {label:'Evaluar Impacto', detail:'Encuesta satisfacción y medición de aprendizaje', color:'#007b8a'},
-        {label:'Actualizar Historial', detail:'Formación registrada en Biodata del funcionario', color:'#6c3fc5'},
+        {label:'Identificar Necesidad', detail:'Desde desempeño, selección, solicitud del líder o directriz interna', color:'#1db87a'},
+        {label:'Programar', detail:'Entidad, curso, fechas, grupos, logística y presupuesto', color:'#2059a8'},
+        {label:'Publicar en Self Service', detail:'Funcionarios consultan e inscriben desde el portal', color:'#1a3a6b'},
+        {label:'Ejecutar y Controlar', detail:'Asistencia, facturación y costos por inasistencia', color:'#f5a623'},
+        {label:'Certificar', detail:'Constancias de asistencia descargables desde Self Service', color:'#007b8a'},
+        {label:'Actualizar Biodata', detail:'Educación actualizada automáticamente en la hoja de vida', color:'#6c3fc5'},
       ]
     },
-    example:'El equipo de gestión del talento elabora el PIC en Kactus, identifica brechas de formación, programa talleres para 340 funcionarios, registra asistencia y actualiza automáticamente el historial de formación de cada participante — <strong>listo para reportar al DAFP</strong>.',
+    example:'',
+    exampleEditable: true,
   },
+
+  /* ─── 07 SST ─── */
   {
     id:'salud', icon:'🏥', num:'07',
     name:'Seguridad y Salud en el Trabajo',
-    short:'Sistema de Gestión SST documentado, auditable y normativo',
-    color:'#c0392b', bg:'rgba(192,57,43,.1)', acc:'#e84545',
-    phase:'Retener',
-    impact:'Sistema SST con registros centralizados, auditables y listos para inspecciones del Ministerio de Trabajo.',
+    short:'SG-SST completo: matriz de riesgos, accidentalidad, exámenes médicos, inspecciones y vigilancia epidemiológica',
+    color:'#c0392b', bg:'rgba(192,57,43,.1)', acc:'#e84545', phase:'Retener',
+    cardDesc:'Proporciona herramientas para controlar los riesgos a los que están expuestos los trabajadores: panorama de riesgos, accidentalidad y ausentismo, exámenes médicos, EPP, inspecciones, comités y vigilancia epidemiológica — a través de Kactus HCM y su portal web KACTUS-SO.',
+    impact:'SG-SST centralizado con indicadores en tiempo real, soporte documental completo y gestión vía portal web para inspecciones, comités y actas.',
+    summary:[
+      'Matriz de peligros y evaluación del riesgo por cargo actualizable',
+      'Registro de AT, enfermedades laborales, ILI y estadísticas de ausentismo',
+      'Profesiograma, exámenes médicos y vigilancia epidemiológica',
+      'Inspecciones, comités (COPASST, convivencia, brigadistas) y planes de acción',
+      'Control de EPP y dotaciones por perfil de cargo',
+      'Indicadores SST en línea e integración con planta de personal activa',
+    ],
     feats:[
-      'Identificación de peligros y valoración de riesgos por cargo (GTC-45)',
-      'Registro y reporte de accidentes de trabajo (FURAT) con soporte documental',
-      'Registro de enfermedades laborales y seguimiento de casos',
-      'Programación y registro de exámenes médicos ocupacionales',
-      'Alertas automáticas de vencimiento de exámenes periódicos por cargo',
-      'Cronograma anual de actividades SST (PESV, SVE, inspecciones)',
-      'Control de elementos de protección personal (EPP) por cargo y trabajador',
-      'Gestión de ausentismo: incapacidades, accidentes, ausencias no justificadas',
-      'Indicadores de gestión SST: frecuencia, severidad, ausentismo, cobertura',
-      'Plan de emergencias y administración de brigadas de seguridad',
-      'Formación SST: inducción, reinducción y capacitaciones por riesgo (incluida)',
+      'Panorama y matriz de riesgos por cargo con descripción, factores, causas y consecuencias',
+      'Registro de AT e incidentes con investigación, FURAT y generación del ILI',
+      'Manejo estadístico de incapacidades y ausentismos con índice de lesiones incapacitantes',
+      'Historia clínica del funcionario: ingreso, periódico, retiro y antecedentes',
+      'Profesiograma y vigilancia epidemiológica: ciclo ingreso-periodicidad-retiro',
+      'Inspecciones vía KACTUS-SO web: registro, notificaciones, evidencias y cierre de no conformidades',
+      'Comités (COPASST, convivencia, brigadistas): actas, seguimiento, tareas y estado global',
+      'Dotaciones y EPP: perfiles de entrega por cargo, área y proceso con control de asignación',
+      'Cronograma SST: simulacros, capacitaciones de seguridad y actividades preventivas',
+      'Categorización, programación y priorización de planes de acción correctivos',
+      'Indicadores SST en tiempo real con la planta de personal activa e inactiva',
       'Reportes para ARL, Ministerio de Trabajo e inspecciones Resolución 0312',
     ],
     flow:{
-      title:'Flujo: Accidente laboral → FURAT → ARL → Seguimiento → Cierre',
+      title:'Flujo: Accidente → FURAT → ARL → Seguimiento médico → Cierre',
       steps:[
-        {label:'Reporte del Evento', detail:'Registro inmediato del accidente o incidente', color:'#c0392b'},
-        {label:'Investigación', detail:'Causa raíz, factores, testigos, evidencias', color:'#e84545'},
+        {label:'Reporte del Evento', detail:'Registro en KACTUS-SO web: accidente o incidente', color:'#c0392b'},
+        {label:'Investigación', detail:'Causa raíz, factores, testigos y carga de evidencias', color:'#e84545'},
         {label:'Generar FURAT', detail:'Formato Único de Reporte de Accidente de Trabajo', color:'#1a3a6b'},
-        {label:'Notificar ARL', detail:'Envío formal a la Administradora de Riesgos Laborales', color:'#2059a8'},
-        {label:'Seguimiento Médico', detail:'Control de incapacidad y reintegro progresivo', color:'#f5a623'},
-        {label:'Cierre y Lecciones', detail:'Plan correctivo y actualización matriz de riesgos', color:'#1db87a'},
+        {label:'Notificar ARL', detail:'Soporte formal a la Administradora de Riesgos Laborales', color:'#2059a8'},
+        {label:'Seguimiento Médico', detail:'Control de incapacidad, historia clínica y reintegro', color:'#f5a623'},
+        {label:'Plan Correctivo', detail:'Acciones, responsables y actualización de la matriz de riesgos', color:'#1db87a'},
       ]
     },
-    example:'Al presentarse un accidente en un puesto de control de Migración, el coordinador SST registra el evento en Kactus, el sistema genera el FURAT, notifica a la ARL, programa seguimiento médico y actualiza la matriz de riesgos — todo en un <strong>flujo digital trazable y listo para inspección del Ministerio de Trabajo</strong>.',
+    example:'',
+    exampleEditable: true,
   },
+
+  /* ─── 08 BIENESTAR ─── */
   {
     id:'bienestar', icon:'😊', num:'08',
     name:'Bienestar de Personal',
-    short:'Plan institucional de bienestar social e incentivos no salariales',
-    color:'#8e44ad', bg:'rgba(142,68,173,.1)', acc:'#c39bd3',
-    phase:'Retener',
-    impact:'Programas de bienestar trazables con evidencia de cumplimiento para el Comité de Personal y rendición de cuentas.',
+    short:'Planeación, administración y evaluación de eventos, beneficios, préstamos y programas de reconocimiento',
+    color:'#8e44ad', bg:'rgba(142,68,173,.1)', acc:'#c39bd3', phase:'Retener',
+    cardDesc:'Permite controlar desde la asignación del presupuesto hasta la evaluación de actividades, pasando por planeación, perfil y control de asistentes, costos y beneficios organizacionales — con publicación vía Self Service e integración con nómina para descuentos automáticos.',
+    impact:'PBSI ejecutado con participación medida, beneficios asignados automáticamente y descuentos integrados a nómina.',
+    summary:[
+      'Eventos de cualquier tipo (familiares, culturales, deportivos, recreativos)',
+      'Publicación con imágenes, inscripción y asignación de entradas vía Self Service',
+      'Beneficios organizacionales con políticas, condiciones y controles presupuestales',
+      'Préstamos al empleado: cartera, amortización y pago vía nómina',
+      'Programas de puntos, insignias y reconocimientos para fidelización',
+      'Descuentos de eventos y beneficios integrados automáticamente a KACTUS-NM',
+    ],
     feats:[
-      'Plan de Bienestar Social e Incentivos (PBSI) anual parametrizable',
-      'Registro de actividades: deportivas, culturales, recreativas y de salud',
-      'Control de participación por funcionario, dependencia y sede',
-      'Beneficios organizacionales: auxilios, bonos y subsidios institucionales',
-      'Sistema de reconocimientos e incentivos no salariales (mérito, antigüedad)',
-      'Control de presupuesto de bienestar por rubro y programa',
-      'Cronograma de actividades institucionales con alertas de ejecución',
-      'Informes de cumplimiento PBSI para Comité de Personal y control interno',
-      'Integración con Biodata: historial de beneficios por funcionario',
+      'Creación de eventos: familiares, culturales, recreativos, deportivos y de bienestar',
+      'Publicación con imágenes y documentación del evento vía Self Service para inscripción',
+      'Asignación de entradas y control de asistentes por evento',
+      'Descuento por nómina cuando el evento tiene costo para el funcionario',
+      'Beneficios organizacionales: políticas paramétricas por tipo de contrato, antigüedad, cargo y salario',
+      'Validación automática de la viabilidad del beneficio solicitado desde el Self Service',
+      'Controles presupuestales: topes por beneficiario, por beneficio, en cantidades o porcentajes',
+      'Préstamos al empleado: vivienda, vehículo, libre inversión, hogar, calamidad',
+      'Amortización y pago de préstamos a través de KACTUS-NM (nómina)',
+      'Programas de puntos, insignias y reconocimientos para promover participación activa',
+      'Encuestas de satisfacción con tabulación automática de resultados',
+      'Informes de cumplimiento del PBSI para Comité de Personal y control interno',
     ],
     flow:{
-      title:'Flujo: Plan de bienestar → Ejecución → Seguimiento → Informe',
+      title:'Flujo: PBSI → Publicación → Inscripción → Ejecución → Descuento nómina',
       steps:[
-        {label:'Elaborar PBSI', detail:'Plan con actividades, presupuesto y metas', color:'#8e44ad'},
-        {label:'Programar Actividades', detail:'Fechas, tipo, responsable, recursos', color:'#6c3fc5'},
-        {label:'Ejecutar', detail:'Registro de participantes y recursos utilizados', color:'#2059a8'},
-        {label:'Registrar Beneficios', detail:'Auxilios, incentivos y reconocimientos por funcionario', color:'#1db87a'},
-        {label:'Medir Satisfacción', detail:'Percepción post-actividad de los participantes', color:'#f5a623'},
-        {label:'Generar Informe', detail:'Cumplimiento PBSI para Comité de Personal', color:'#c47e00'},
+        {label:'Crear Evento', detail:'Tipo, presupuesto, perfil de asistentes y documentación', color:'#8e44ad'},
+        {label:'Publicar en Self Service', detail:'Funcionarios ven el evento, se inscriben o solicitan beneficio', color:'#6c3fc5'},
+        {label:'Validación Automática', detail:'Sistema verifica condiciones del beneficio por parámetros', color:'#2059a8'},
+        {label:'Asignar y Ejecutar', detail:'Entradas, registro de asistentes y control de costos', color:'#1db87a'},
+        {label:'Descuento / Pago', detail:'Integración automática con nómina si hay costo', color:'#f5a623'},
+        {label:'Informe PBSI', detail:'Evaluación, participación y cumplimiento para control', color:'#c47e00'},
       ]
     },
-    example:'El equipo de bienestar planea el PBSI en Kactus: jornadas de salud, torneos, conmemoración del día del funcionario. Registra participación, entrega auxilios educativos y al final genera el informe de cumplimiento con porcentajes por dependencia — <strong>listo para el Comité de Personal y organismos de control</strong>.',
+    example:'',
+    exampleEditable: true,
   },
+
+  /* ─── 09 SELF SERVICE ─── */
   {
     id:'selfservice', icon:'💻', num:'09',
     name:'Self Service — Autogestión del Funcionario',
-    short:'Portal de autogestión digital 24/7 para consultas y trámites del empleado',
-    color:'#0d2348', bg:'rgba(13,35,72,.1)', acc:'#00b4c8',
-    phase:'Remunerar / Retener',
-    impact:'RRHH liberado de trámites repetitivos. Funcionarios con acceso autónomo a su información laboral las 24 horas.',
+    short:'Portal transaccional web (Intranet/Internet) con filosofía de cajero electrónico para el empleado',
+    color:'#0d2348', bg:'rgba(13,35,72,.1)', acc:'#00b4c8', phase:'Remunerar / Retener',
+    cardDesc:'Diseñado para mejorar la satisfacción del empleado y liberar la carga operativa de RRHH. Funciona como un cajero electrónico en Intranet o Internet: el funcionario accede a su información, genera documentos y solicita trámites de forma autónoma desde cualquier lugar.',
+    impact:'RRHH orientado al análisis y decisiones estratégicas — no a trámites operativos. Disponible 24/7 desde cualquier lugar del mundo.',
+    summary:[
+      'Comprobantes de nómina, nivel de endeudamiento y vacaciones pendientes',
+      'Certificaciones laborales, de ingresos y entidades vigentes (EPS, AFP, ARL, Caja)',
+      'Solicitud de permisos, préstamos y vacaciones en línea',
+      'Consulta y actualización de datos: dirección, teléfono, estudios, familiares',
+      'Flujos prediseñados para gestión de solicitudes con aprobación del líder',
+      'Mensajes institucionales y acceso al Manual de Funciones del cargo',
+    ],
     feats:[
-      'Desprendibles de nómina en línea: consulta y descarga por período',
-      'Certificaciones laborales: generación inmediata sin tramitar a RRHH',
-      'Consulta de vacaciones: días disponibles, disfrutados y pendientes',
-      'Solicitud de vacaciones en línea con flujo de aprobación por jefe',
-      'Constancias de vinculación y cargo para entidades externas',
-      'Actualización de datos personales: dirección, teléfono, contactos de emergencia',
-      'Consulta del historial de formación y certificados',
-      'Solicitudes a RRHH con seguimiento del estado de la solicitud',
-      'Consulta del manual de funciones y perfil del cargo propio',
-      'Acceso web responsive desde cualquier dispositivo (PC, tablet, celular)',
-      'Disponible 24/7 sin intervención del área de RRHH',
+      'Generación de comprobantes de nómina por período — descarga inmediata',
+      'Reporte de nivel de endeudamiento del funcionario',
+      'Consulta de vacaciones pendientes y saldo disponible',
+      'Generación de certificaciones laborales sin intervención de RRHH',
+      'Certificados de ingresos y retenciones',
+      'Consulta de entidades vigentes: EPS, AFP, ARL, corporación o caja de compensación',
+      'Solicitud de permisos, vacaciones y préstamos con flujo de aprobación',
+      'Actualización de datos personales: dirección, teléfono, estudios realizados, familiares',
+      'Recepción de mensajes institucionales de la compañía',
+      'Publicación y consulta del Manual de Funciones del cargo (KACTUS-AC)',
+      'Inscripción a eventos de bienestar y capacitación, cancelaciones y confirmaciones',
+      'Acceso y consulta de resultados de evaluación de desempeño del colaborador',
+      'Disponible vía web desde cualquier lugar del mundo — Intranet o Internet',
     ],
     flow:{
-      title:'Flujo: Solicitud del funcionario → Aprobación → Respuesta automática',
+      title:'Flujo: Solicitud → Flujo prediseñado → Aprobación → Respuesta automática',
       steps:[
-        {label:'Acceso al Portal', detail:'Funcionario ingresa desde PC, tablet o celular', color:'#0d2348'},
-        {label:'Solicitud / Consulta', detail:'Certificación, vacaciones, desprendible, datos', color:'#2059a8'},
-        {label:'Notificación', detail:'Alerta automática al responsable de RRHH si aplica', color:'#007b8a'},
-        {label:'Aprobación', detail:'RRHH o jefe inmediato aprueba o rechaza en línea', color:'#f5a623'},
-        {label:'Respuesta', detail:'Notificación inmediata al funcionario con resultado', color:'#1db87a'},
-        {label:'Descarga / Acción', detail:'Documento descargable o novedad aplicada en sistema', color:'#6c3fc5'},
+        {label:'Acceso Web', detail:'Funcionario ingresa desde cualquier dispositivo — Intranet o Internet', color:'#0d2348'},
+        {label:'Seleccionar Trámite', detail:'Certificación, vacaciones, permiso, préstamo, datos', color:'#2059a8'},
+        {label:'Flujo Prediseñado', detail:'Sistema guía el trámite paso a paso con aprobaciones', color:'#007b8a'},
+        {label:'Notificación', detail:'Alerta al responsable de RRHH o jefe según aplique', color:'#f5a623'},
+        {label:'Aprobación', detail:'Jefe o RRHH aprueba o rechaza en línea', color:'#1db87a'},
+        {label:'Documento / Novedad', detail:'Descarga inmediata o novedad aplicada en el sistema', color:'#6c3fc5'},
       ]
     },
-    example:'Un funcionario de Migración necesita una certificación laboral urgente a las 8 pm. Ingresa al Self Service desde su celular, la genera firmada, la descarga en PDF y la envía — <strong>sin llamar a RRHH, sin esperar el día hábil siguiente, sin filas</strong>.',
+    example:'',
+    exampleEditable: true,
   },
+
+  /* ─── 10 ENCARGOS ─── */
   {
     id:'encargos', icon:'🔄', num:'10',
     name:'Encargos — Sector Público',
-    short:'Gestión de encargos de funciones con afectación automática en nómina',
-    color:'#c47e00', bg:'rgba(196,126,0,.1)', acc:'#f5a623',
-    phase:'Remunerar',
-    impact:'Encargos trazables, con soporte documental y efecto automático en la nómina del período correspondiente.',
+    short:'Registro y liquidación automática de encargos de funciones y de cargo con soporte del acto administrativo',
+    color:'#c47e00', bg:'rgba(196,126,0,.1)', acc:'#f5a623', phase:'Remunerar',
+    cardDesc:'Gestiona los encargos de funciones y de cargo propios del sector estatal: registra el tipo de encargo con su soporte normativo, calcula el diferencial salarial o prima técnica según normativa y lo incorpora automáticamente en la nómina del período.',
+    impact:'Encargos trazables con resolución adjunta, cálculo exacto sin intervención manual y control de vencimientos.',
+    summary:[
+      'Tipos de encargo: funciones superiores, interinidad y suplencia',
+      'Vinculación del acto administrativo como soporte documental',
+      'Cálculo automático del diferencial salarial o prima técnica',
+      'Incorporación directa en nómina del período correspondiente',
+      'Control de vigencia y alertas de vencimiento',
+      'Trazabilidad: resolución, funcionario, cargo, período y valor liquidado',
+    ],
     feats:[
-      'Creación y aprobación de encargos por resolución administrativa',
-      'Tipos de encargo: nivel superior, interinidad, suplencia y reemplazo',
-      'Cálculo automático de prima técnica o diferencial salarial según normativa',
-      'Vinculación del encargo al período de nómina correspondiente',
-      'Reporte de funcionarios en encargo por dependencia y período',
-      'Alertas de vencimiento y renovación de encargos próximos a vencer',
-      'Integración con Análisis de Cargos para validar perfil del encargado',
-      'Trazabilidad: resoluciones asociadas y soporte normativo adjunto',
+      'Registro del tipo de encargo: funciones superiores, interinidad, suplencia y reemplazo',
+      'Vinculación de la resolución administrativa como soporte normativo adjunto',
+      'Cálculo automático del diferencial salarial o prima técnica según normativa sectorial vigente',
+      'Incorporación del valor calculado en la nómina del período sin paso manual adicional',
+      'Control de fechas de inicio, terminación y alertas de encargos próximos a vencer',
+      'Reporte de funcionarios en encargo activos por dependencia y período',
+      'Validación del perfil del encargado vs. requisitos del cargo (integración con Análisis de Cargos)',
+      'Trazabilidad completa: resolución, funcionario, cargo, período y valor liquidado',
     ],
     flow:{
-      title:'Flujo: Necesidad de encargo → Resolución → Nómina → Fin',
+      title:'Flujo: Necesidad → Resolución → Registro → Nómina → Cierre',
       steps:[
-        {label:'Identificar Necesidad', detail:'Vacancia o ausencia en dependencia', color:'#c47e00'},
-        {label:'Gestionar Resolución', detail:'Acto administrativo con fechas y funcionario', color:'#1a3a6b'},
-        {label:'Registrar en Kactus', detail:'Tipo, cargo, período, diferencia salarial', color:'#2059a8'},
-        {label:'Afectar Nómina', detail:'Prima técnica calculada automáticamente', color:'#1db87a'},
-        {label:'Generar Reportes', detail:'Listado de encargos activos y por vencer', color:'#f5a623'},
-        {label:'Cierre del Encargo', detail:'Fin del período, regreso o renovación', color:'#6c3fc5'},
+        {label:'Identificar Necesidad', detail:'Vacancia o ausencia temporal en la dependencia', color:'#c47e00'},
+        {label:'Acto Administrativo', detail:'Resolución de encargo con fechas y funcionario designado', color:'#1a3a6b'},
+        {label:'Registrar en Kactus', detail:'Tipo, cargo, período — resolución adjunta al registro', color:'#2059a8'},
+        {label:'Cálculo Automático', detail:'Diferencial salarial o prima técnica calculada', color:'#1db87a'},
+        {label:'Impacto en Nómina', detail:'Valor incorporado al cierre del período sin paso adicional', color:'#f5a623'},
+        {label:'Alerta de Vencimiento', detail:'Control de vigencia y gestión de renovación o cierre', color:'#6c3fc5'},
       ]
     },
-    example:'La Dirección de Gestión Humana registra el encargo de Coordinador de Operaciones en Kactus. El sistema calcula automáticamente la prima técnica, la incorpora en la nómina y genera el reporte para el archivo — <strong>sin cálculos manuales ni riesgo de error normativo</strong>.',
+    example:'',
+    exampleEditable: true,
   },
+
+  /* ─── 11 DISCIPLINARIOS ─── */
   {
     id:'disciplinario', icon:'⚖️', num:'11',
-    name:'Procesos Disciplinarios (Sanciones)',
-    short:'Registro y seguimiento de sanciones integrado a nómina',
-    color:'#2c3e50', bg:'rgba(44,62,80,.1)', acc:'#546e7a',
-    phase:'Retener',
-    impact:'Sanciones documentadas con efecto automático en nómina y trazabilidad completa para auditorías.',
+    name:'Procesos Disciplinarios — Sanciones',
+    short:'Seguimiento a procesos disciplinarios con plantillas, generación del documento y efecto en nómina',
+    color:'#2c3e50', bg:'rgba(44,62,80,.1)', acc:'#546e7a', phase:'Retener',
+    cardDesc:'Módulo que mediante plantillas permite generar el proceso de disciplina, producir el documento en el formato diseñado por la entidad y registrar la sanción con efecto automático en nómina — manteniendo el historial en el expediente del funcionario.',
+    impact:'Sanciones documentadas con formato institucional, descuento automático en nómina e historial trazable en Biodata.',
+    summary:[
+      'Seguimiento al proceso disciplinario mediante plantillas configurables',
+      'Generación del documento en el formato diseñado por la entidad',
+      'Tipos: amonestación, multa y suspensión sin sueldo',
+      'Descuento automático en nómina por días de suspensión',
+      'Historial de sanciones en el expediente Biodata del funcionario',
+      'Reportes por dependencia para Comité de Personal y control interno',
+    ],
     feats:[
-      'Registro de sanciones: amonestación escrita, multa y suspensión',
+      'Generación del proceso disciplinario mediante plantillas configurables por la entidad',
+      'Producción del documento sancionatorio en el formato definido por el usuario',
+      'Tipos de sanción: amonestación escrita, multa económica y suspensión sin sueldo',
+      'Vinculación de la resolución sancionatoria como soporte digital al expediente',
       'Cálculo automático del descuento en nómina por días de suspensión',
-      'Vinculación al expediente Biodata del funcionario sancionado',
-      'Soporte documental: acto administrativo y resolución sancionatoria adjunta',
-      'Historial de sanciones por funcionario y por dependencia',
-      'Alertas de vencimiento de términos del proceso disciplinario',
-      'Integración con nómina para efecto económico inmediato',
-      'Reportes para Comité de Personal y Oficina de Control Interno',
+      'Incorporación del descuento en el período de nómina correspondiente',
+      'Historial de sanciones registrado en Biodata para consulta y auditoría',
+      'Reporte de sanciones por dependencia y período para el Comité de Personal',
     ],
     flow:{
-      title:'Flujo: Falta → Investigación → Sanción → Nómina → Historial',
+      title:'Flujo: Apertura → Plantilla → Documento → Sanción → Nómina → Historial',
       steps:[
-        {label:'Registrar Falta', detail:'Apertura con descripción de la conducta', color:'#2c3e50'},
-        {label:'Investigación', detail:'Descargos, pruebas, valoración de cargos', color:'#1a3a6b'},
-        {label:'Decisión', detail:'Tipo: amonestación, multa o suspensión', color:'#c0392b'},
-        {label:'Acto Administrativo', detail:'Resolución adjunta al expediente digital', color:'#f5a623'},
-        {label:'Efecto en Nómina', detail:'Descuento automático por suspensión', color:'#1db87a'},
-        {label:'Historial', detail:'Sanción registrada en Biodata del funcionario', color:'#6c3fc5'},
+        {label:'Apertura', detail:'Registro de la falta y descripción de la conducta', color:'#2c3e50'},
+        {label:'Generar Plantilla', detail:'Documento sancionatorio en el formato de la entidad', color:'#1a3a6b'},
+        {label:'Tipo de Sanción', detail:'Amonestación, multa o suspensión según gravedad', color:'#c0392b'},
+        {label:'Adjuntar Resolución', detail:'Acto administrativo vinculado al expediente digital', color:'#f5a623'},
+        {label:'Descuento Nómina', detail:'Cálculo e incorporación automática al período', color:'#1db87a'},
+        {label:'Historial Biodata', detail:'Sanción registrada definitivamente en el expediente', color:'#6c3fc5'},
       ]
     },
-    example:'La Oficina de Control Disciplinario registra la sanción de suspensión de 5 días en Kactus, el sistema adjunta la resolución al expediente, calcula el descuento en nómina del período y actualiza el historial disciplinario del funcionario — <strong>sin digitación adicional en el sistema de nómina</strong>.',
+    example:'',
+    exampleEditable: true,
   },
+
 ];
+
+
 
 
 // ─────────────────────────────────────────────
@@ -1065,10 +1201,10 @@ function buildGrid(){
       <div class="mct-bar" style="background:${m.color}"></div>
       <div class="mct-body">
         <div class="mct-icon" style="background:${m.bg}">${m.icon}</div>
-        <div class="mct-num">Módulo ${m.num}</div>
+        <div class="mct-num">Módulo ${m.num} · ${m.phase}</div>
         <div class="mct-name">${m.name}</div>
-        <div class="mct-desc">${m.short}</div>
-        <div class="mct-arrow" style="color:${m.color}">Ver detalle</div>
+        <div class="mct-desc">${m.cardDesc||m.short}</div>
+        <div class="mct-arrow" style="color:${m.color}">Ver funcionalidades →</div>
       </div>
     </div>`).join('');
 }
@@ -1078,7 +1214,7 @@ function buildGrid(){
 // ─────────────────────────────────────────────
 function buildChips(){
   document.getElementById('introChips').innerHTML=MODS.map((m,i)=>`
-    <div class="chip" onclick="openModule(${i})"><span>${m.icon}</span>${m.name.split('—')[0].split('&')[0].split('(')[0].trim()}</div>`).join('');
+    <div class="chip" onclick="openModule(${i})"><span>${m.icon}</span>${m.name.split('—')[0].split('&')[0].trim()}</div>`).join('');
 }
 
 // ─────────────────────────────────────────────
@@ -1125,197 +1261,259 @@ function buildOpViews(){
 // ─────────────────────────────────────────────
 // OPEN MODULE DETAIL
 // ─────────────────────────────────────────────
+// ── Module cases stored in memory (no localStorage dependency) ──
+const modCases = {};
+
 function openModule(idx){
-  curMod=idx; const m=MODS[idx];
+  curMod = idx;
+  var m = MODS[idx];
 
-  // Sidebar
-  document.getElementById('detSidebar').innerHTML=`
-    <button class="ds-back" onclick="show('modulos')">Todos los módulos</button>
-    <div class="ds-icon" style="background:${m.bg}">${m.icon}</div>
-    <div class="ds-num">Módulo ${m.num} · ${m.phase}</div>
-    <div class="ds-name">${m.name}</div>
-    <div class="ds-tag">${m.short}</div>
-    <div class="ds-impact" style="background:${m.color}22;border:1px solid ${m.color}33">
-      <div class="ds-impact-lbl">⚡ Valor para Migración Colombia</div>
-      <div class="ds-impact-txt">${m.impact}</div>
-    </div>
-    <div class="ds-feats"><div class="ds-feats-lbl">Funcionalidades</div>
-      ${m.feats.map(f=>`<div class="ds-feat"><div class="ds-fdot" style="background:${m.acc}"></div>${f}</div>`).join('')}
-    </div>`;
+  // ── SIDEBAR: summary bullets ──
+  var summaryHtml = '';
+  var bullets = m.summary || m.feats;
+  for(var i=0;i<bullets.length;i++){
+    summaryHtml += '<div class="ds-feat"><div class="ds-fdot" style="background:'+m.acc+'"></div>'+bullets[i]+'</div>';
+  }
+  document.getElementById('detSidebar').innerHTML =
+    '<button class="ds-back" onclick="show(\'modulos\')">← Todos los módulos</button>'+
+    '<div class="ds-icon" style="background:'+m.bg+'">'+m.icon+'</div>'+
+    '<div class="ds-num">Módulo '+m.num+' · '+m.phase+'</div>'+
+    '<div class="ds-name">'+m.name+'</div>'+
+    '<div class="ds-tag" style="font-size:.76rem;color:rgba(255,255,255,.5);line-height:1.55;margin-bottom:.5rem">'+m.cardDesc+'</div>'+
+    '<div class="ds-impact" style="background:'+m.color+'22;border:1px solid '+m.color+'33">'+
+      '<div class="ds-impact-lbl">⚡ Valor para Migración Colombia</div>'+
+      '<div class="ds-impact-txt">'+m.impact+'</div>'+
+    '</div>'+
+    '<div class="ds-feats"><div class="ds-feats-lbl">Funciones</div>'+summaryHtml+'</div>';
 
-  // Build flow HTML
-  const flowHtml = m.flow ? `
-    <div class="d-sec">
-      <div class="d-lbl" style="color:${m.color}"><div class="d-dot" style="background:${m.color}"></div>${m.flow.title}</div>
-      <div class="flow-wrap">
-        <div class="flow">
-          ${m.flow.steps.map((s,i)=>`
-            <div class="flow-step">
-              <div class="flow-box" style="background:${s.color}">
-                <div><div style="font-size:.65rem;opacity:.8;margin-bottom:2px">${String(i+1).padStart(2,'0')}</div>${s.label}</div>
-              </div>
-              <div class="flow-num">${s.detail}</div>
-            </div>
-            ${i<m.flow.steps.length-1?'<div class="flow-arrow">›</div>':''}`).join('')}
-        </div>
-      </div>
-    </div>` : '';
+  // ── MAIN: feats grid ──
+  var featsHtml = '';
+  for(var j=0;j<m.feats.length;j++){
+    featsHtml += '<div class="feat-item">'+m.feats[j]+'</div>';
+  }
 
-  const prev=idx>0?`<button class="dnav-btn" onclick="openModule(${idx-1})">← ${MODS[idx-1].icon} ${MODS[idx-1].name.split('—')[0].split('&')[0].trim().substring(0,22)}</button>`:`<button class="dnav-btn" disabled>← Anterior</button>`;
-  const next=idx<MODS.length-1?`<button class="dnav-btn" onclick="openModule(${idx+1})">${MODS[idx+1].icon} Siguiente →</button>`:`<button class="dnav-btn" disabled>Siguiente →</button>`;
+  // ── Flow ──
+  var flowHtml = '';
+  if(m.flow){
+    var stepsHtml = '';
+    for(var k=0;k<m.flow.steps.length;k++){
+      var s = m.flow.steps[k];
+      var num = k<9 ? '0'+(k+1) : ''+(k+1);
+      stepsHtml +=
+        '<div class="flow-step">'+
+          '<div class="flow-box" style="background:'+s.color+'">'+
+            '<div><div style="font-size:.6rem;opacity:.75;margin-bottom:2px">'+num+'</div>'+s.label+'</div>'+
+          '</div>'+
+          '<div class="flow-num">'+s.detail+'</div>'+
+        '</div>'+
+        (k < m.flow.steps.length-1 ? '<div class="flow-arrow">›</div>' : '');
+    }
+    flowHtml =
+      '<div class="d-sec">'+
+        '<div class="d-lbl" style="color:'+m.color+'"><div class="d-dot" style="background:'+m.color+'"></div>'+m.flow.title+'</div>'+
+        '<div class="flow-wrap"><div class="flow">'+stepsHtml+'</div></div>'+
+      '</div>';
+  }
 
-  document.getElementById('detMain').innerHTML=`
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:1.4rem">
-      <div style="width:5px;height:46px;background:${m.color};border-radius:3px;flex-shrink:0"></div>
-      <div><div style="font-size:.68rem;font-weight:800;color:${m.color};text-transform:uppercase;letter-spacing:.1em;margin-bottom:2px">${m.phase}</div>
-        <h2 style="font-family:Nunito,sans-serif;font-size:1.5rem;font-weight:900;color:#1a2b45;letter-spacing:-.02em">${m.icon} ${m.name}</h2>
-      </div>
-    </div>
+  // ── Editable case (stored in memory, not localStorage) ──
+  var savedCase = modCases[m.id] || '';
+  var caseHtml =
+    '<div class="d-sec">'+
+      '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">'+
+        '<div class="d-lbl" style="color:'+m.color+';margin-bottom:0">'+
+          '<div class="d-dot" style="background:'+m.color+'"></div>Caso de uso — Migración Colombia'+
+        '</div>'+
+        '<button id="caseBtnAdd_'+idx+'" onclick="showCaseEditor('+idx+')" '+
+          'style="font-size:.7rem;font-weight:700;padding:4px 12px;border-radius:6px;'+
+          'border:1.5px solid '+m.color+';background:transparent;color:'+m.color+';cursor:pointer">'+
+          (savedCase ? '✏️ Editar' : '+ Agregar')+
+        '</button>'+
+      '</div>'+
+      (savedCase ?
+        '<div style="background:'+m.color+';border-radius:12px;padding:1.2rem 1.4rem;position:relative">'+
+          '<div style="font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.6);margin-bottom:6px">📍 Caso registrado</div>'+
+          '<div style="font-size:.9rem;color:white;line-height:1.7" id="caseText_'+idx+'">'+savedCase+'</div>'+
+        '</div>' :
+        '<div style="font-size:.78rem;color:#aaa;font-style:italic;padding:.4rem 0">'+
+          'Sin caso registrado. Use "+ Agregar" durante la reunión.'+
+        '</div>'
+      )+
+      '<div id="caseEditor_'+idx+'" style="display:none;margin-top:10px">'+
+        '<textarea id="caseInput_'+idx+'" '+
+          'style="width:100%;min-height:90px;padding:.75rem;border:1.5px solid '+m.color+'55;'+
+          'border-radius:8px;font-family:Open Sans,sans-serif;font-size:.87rem;line-height:1.6;'+
+          'resize:vertical;outline:none;background:#f7f9fc" '+
+          'placeholder="Documente el caso de uso durante la presentación...">'+savedCase+'</textarea>'+
+        '<div style="display:flex;gap:8px;margin-top:6px">'+
+          '<button onclick="saveCase('+idx+')" '+
+            'style="font-size:.78rem;font-weight:700;padding:6px 14px;border-radius:7px;'+
+            'border:none;background:'+m.color+';color:white;cursor:pointer">Guardar</button>'+
+          '<button onclick="closeCase('+idx+')" '+
+            'style="font-size:.78rem;font-weight:600;padding:6px 12px;border-radius:7px;'+
+            'border:1.5px solid #e8edf5;background:white;color:#8898aa;cursor:pointer">Cancelar</button>'+
+          (savedCase ?
+            '<button onclick="deleteCase('+idx+')" '+
+              'style="font-size:.78rem;font-weight:600;padding:6px 12px;border-radius:7px;'+
+              'border:none;background:transparent;color:#e84545;cursor:pointer">Eliminar</button>' : ''
+          )+
+        '</div>'+
+      '</div>'+
+    '</div>';
 
-    <div class="d-sec">
-      <div class="d-lbl" style="color:${m.acc}"><div class="d-dot" style="background:${m.acc}"></div>Funcionalidades principales para el sector público</div>
-      <div class="d-card">
-        <div class="feat-2col">${m.feats.map(f=>`<div class="feat-item">${f}</div>`).join('')}</div>
-      </div>
-    </div>
+  // ── Nav ──
+  var prev = idx>0 ?
+    '<button class="dnav-btn" onclick="openModule('+(idx-1)+')">← '+MODS[idx-1].icon+' '+MODS[idx-1].name.split('—')[0].trim().substring(0,22)+'</button>' :
+    '<button class="dnav-btn" disabled>← Anterior</button>';
+  var next = idx<MODS.length-1 ?
+    '<button class="dnav-btn" onclick="openModule('+(idx+1)+')">'+MODS[idx+1].icon+' Siguiente →</button>' :
+    '<button class="dnav-btn" disabled>Siguiente →</button>';
 
-    ${flowHtml}
+  document.getElementById('detMain').innerHTML =
+    '<div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:1.4rem">'+
+      '<div style="width:5px;min-height:60px;background:'+m.color+';border-radius:3px;flex-shrink:0;margin-top:4px"></div>'+
+      '<div>'+
+        '<div style="font-size:.67rem;font-weight:800;color:'+m.color+';text-transform:uppercase;letter-spacing:.1em;margin-bottom:3px">'+m.phase+'</div>'+
+        '<h2 style="font-family:Nunito,sans-serif;font-size:1.4rem;font-weight:900;color:#1a2b45;letter-spacing:-.02em;line-height:1.2;margin-bottom:4px">'+m.icon+' '+m.name+'</h2>'+
+        '<p style="font-size:.8rem;color:#8898aa;font-style:italic;line-height:1.5">'+m.short+'</p>'+
+      '</div>'+
+    '</div>'+
+    '<div class="d-sec">'+
+      '<div class="d-lbl" style="color:'+m.acc+'"><div class="d-dot" style="background:'+m.acc+'"></div>Funciones</div>'+
+      '<div class="d-card"><div class="feat-2col">'+featsHtml+'</div></div>'+
+    '</div>'+
+    flowHtml+
+    caseHtml+
+    '<div class="detail-nav">'+prev+next+'</div>';
 
-    <div class="d-example" style="background:${m.color}">
-      <div class="d-example-lbl">📍 Caso de uso — Migración Colombia</div>
-      <div class="d-example-txt">${m.example}</div>
-    </div>
-    <div class="detail-nav">${prev}${next}</div>`;
-
-  SCREENS.forEach(s=>document.getElementById('scr-'+s).classList.remove('active'));
+  SCREENS.forEach(function(s){
+    document.getElementById('scr-'+s).classList.remove('active');
+  });
   document.getElementById('scr-detail').classList.add('active');
   document.getElementById('pFill').style.width='55%';
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
-// ─────────────────────────────────────────────
-// KEYBOARD NAV
-// ─────────────────────────────────────────────
-document.addEventListener('keydown',e=>{
-  if(document.getElementById('scr-detail').classList.contains('active')){
-    if(e.key==='ArrowRight'&&curMod<MODS.length-1)openModule(curMod+1);
-    if(e.key==='ArrowLeft'&&curMod>0)openModule(curMod-1);
-    if(e.key==='Escape')show('modulos');return;
+function showCaseEditor(idx){
+  var ed = document.getElementById('caseEditor_'+idx);
+  if(ed){ ed.style.display = ed.style.display==='none' ? 'block' : 'none'; }
+}
+function saveCase(idx){
+  var inp = document.getElementById('caseInput_'+idx);
+  if(inp && inp.value.trim()){
+    modCases[MODS[idx].id] = inp.value.trim();
+    openModule(idx);
   }
-  const c=SCREENS.findIndex(s=>document.getElementById('scr-'+s).classList.contains('active'));
-  if(e.key==='ArrowRight'&&c<SCREENS.length-1)show(SCREENS[c+1]);
-  if(e.key==='ArrowLeft'&&c>0)show(SCREENS[c-1]);
-});
+}
+function closeCase(idx){
+  var ed = document.getElementById('caseEditor_'+idx);
+  if(ed) ed.style.display='none';
+}
+function deleteCase(idx){
+  if(confirm('¿Eliminar el caso de uso registrado?')){
+    delete modCases[MODS[idx].id];
+    openModule(idx);
+  }
+}
 
-// INIT
-buildGrid(); buildChips(); buildOpViews();
 
-// ── PASSWORD LOCK ──
+
+
+
+// ── PASSWORD ──────────────────────────────────────────
+
+// ── PASSWORD ──
 (function(){
-  const HASH = '7a6eb3c2d4f1e8b5a9c0d2e4f6a8b0c2d4e6f8a0b2c4d6e8f0a2b4c6d8e0f2a4';
-
-  function sha256simple(str){
-    // Simple check — compare directly (obfuscated via btoa)
-    return btoa(str);
-  }
-
-  const _p = ['D','i','g','i','t','a','l','W','a','r','e','2','0','2','6'];
-  const CORRECT = btoa(_p.join(''));
+  // Split into parts so it's not a plain string search in source
+  const _a='Digital', _b='Ware', _c='2026';
+  const _pw = _a+_b+_c;
 
   function checkPwd(){
-    const val = document.getElementById('pwdInput').value;
     const inp = document.getElementById('pwdInput');
     const err = document.getElementById('pwdError');
-    if(btoa(val) === CORRECT){
+    const val = (inp.value||'').trim();
+    if(val === _pw){
       document.getElementById('pwd-overlay').classList.add('hidden');
-      document.getElementById('pwdInput').value = '';
-      err.textContent = '';
+      document.body.style.overflow='';
+      inp.value=''; err.textContent='';
     } else {
       inp.classList.add('error');
       err.textContent = 'Contraseña incorrecta. Intente nuevamente.';
-      inp.value = '';
-      setTimeout(()=>inp.classList.remove('error'), 400);
-      setTimeout(()=>{ if(err.textContent) err.textContent=''; }, 2500);
+      inp.value=''; inp.focus();
+      setTimeout(()=>{ inp.classList.remove('error'); err.textContent=''; }, 2000);
     }
   }
   window.checkPwd = checkPwd;
 
-  // Auto-focus input when overlay is visible
-  window.addEventListener('load', ()=>{
-    setTimeout(()=>document.getElementById('pwdInput').focus(), 100);
+  // Prevent body scroll while overlay visible
+  document.body.style.overflow='hidden';
+
+  window.addEventListener('load',()=>{
+    const overlay = document.getElementById('pwd-overlay');
+    if(overlay && !overlay.classList.contains('hidden')){
+      document.body.style.overflow='hidden';
+      setTimeout(()=>{ const i=document.getElementById('pwdInput'); if(i) i.focus(); },150);
+    }
   });
 })();
 
+
+buildGrid(); buildChips(); buildOpViews();
 </script>
 
 <!-- ═══════ CIERRE ═══════ -->
 <div class="screen" id="scr-cierre">
-  <div style="min-height:calc(100vh - 56px);display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#0d2348 0%,#1a3a6b 50%,#2059a8 100%);position:relative;overflow:hidden;padding:2rem">
-    <!-- Background decoration -->
+  <div style="min-height:calc(100vh - 56px);display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#0d2348 0%,#1a3a6b 55%,#2059a8 100%);position:relative;overflow:hidden;padding:2rem">
     <div style="position:absolute;top:-120px;right:-80px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(245,166,35,.12) 0%,transparent 70%);pointer-events:none"></div>
     <div style="position:absolute;bottom:-80px;left:-60px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(0,180,200,.1) 0%,transparent 70%);pointer-events:none"></div>
-    <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:900px;height:900px;border-radius:50%;border:1px solid rgba(255,255,255,.04);pointer-events:none"></div>
-    <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;border-radius:50%;border:1px solid rgba(255,255,255,.04);pointer-events:none"></div>
-
     <div style="max-width:820px;width:100%;position:relative;z-index:2;text-align:center">
-      <!-- Badge -->
       <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(245,166,35,.15);border:1px solid rgba(245,166,35,.35);color:#f5a623;font-size:.72rem;font-weight:700;padding:.4rem 1rem;border-radius:20px;margin-bottom:2rem;letter-spacing:.08em;text-transform:uppercase">
-        <span style="font-size:.55rem;animation:blink 1.5s ease-in-out infinite">●</span>
-        Kactus HCM · Próxima Evolución
+        Kactus HCM &nbsp;·&nbsp; Proxima Evolución
       </div>
-
-      <!-- Main message -->
-      <h2 style="font-family:'Nunito',sans-serif;font-size:2.6rem;font-weight:900;color:white;line-height:1.1;letter-spacing:-.025em;margin-bottom:1rem">
-        Migración Colombia ya tiene<br>la herramienta.
+      <h2 style="font-family:Nunito,sans-serif;font-size:2.6rem;font-weight:900;color:white;line-height:1.1;letter-spacing:-.025em;margin-bottom:1rem">
+        Migracion Colombia ya tiene<br>la herramienta.
       </h2>
-      <p style="font-family:'Nunito',sans-serif;font-size:1.35rem;font-weight:700;color:#f5a623;margin-bottom:2rem">
-        El siguiente paso es aprovecharla al máximo.
+      <p style="font-family:Nunito,sans-serif;font-size:1.35rem;font-weight:700;color:#f5a623;margin-bottom:2rem">
+        El siguiente paso es aprovecharla al maximo.
       </p>
-
-      <!-- License summary -->
       <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:2.5rem">
         <div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:1rem">
-          <div style="font-family:'Nunito',sans-serif;font-size:1.8rem;font-weight:900;color:#f5a623;line-height:1">1.670</div>
+          <div style="font-family:Nunito,sans-serif;font-size:1.8rem;font-weight:900;color:#f5a623;line-height:1">1.670</div>
           <div style="font-size:.7rem;color:rgba(255,255,255,.55);margin-top:3px;text-transform:uppercase;letter-spacing:.05em">Empleados<br>habilitados</div>
         </div>
         <div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:1rem">
-          <div style="font-family:'Nunito',sans-serif;font-size:1.8rem;font-weight:900;color:#f5a623;line-height:1">11</div>
-          <div style="font-size:.7rem;color:rgba(255,255,255,.55);margin-top:3px;text-transform:uppercase;letter-spacing:.05em">Módulos<br>activos</div>
+          <div style="font-family:Nunito,sans-serif;font-size:1.8rem;font-weight:900;color:#f5a623;line-height:1">11</div>
+          <div style="font-size:.7rem;color:rgba(255,255,255,.55);margin-top:3px;text-transform:uppercase;letter-spacing:.05em">Modulos<br>activos</div>
         </div>
         <div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:1rem">
-          <div style="font-family:'Nunito',sans-serif;font-size:1.8rem;font-weight:900;color:#f5a623;line-height:1">47</div>
-          <div style="font-size:.7rem;color:rgba(255,255,255,.55);margin-top:3px;text-transform:uppercase;letter-spacing:.05em">Módulos<br>disponibles</div>
+          <div style="font-family:Nunito,sans-serif;font-size:1.8rem;font-weight:900;color:#f5a623;line-height:1">47</div>
+          <div style="font-size:.7rem;color:rgba(255,255,255,.55);margin-top:3px;text-transform:uppercase;letter-spacing:.05em">Modulos<br>disponibles</div>
         </div>
         <div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:1rem">
-          <div style="font-family:'Nunito',sans-serif;font-size:1.8rem;font-weight:900;color:#f5a623;line-height:1">V.26</div>
-          <div style="font-size:.7rem;color:rgba(255,255,255,.55);margin-top:3px;text-transform:uppercase;letter-spacing:.05em">Versión<br>actual</div>
+          <div style="font-family:Nunito,sans-serif;font-size:1.8rem;font-weight:900;color:#f5a623;line-height:1">V.26</div>
+          <div style="font-size:.7rem;color:rgba(255,255,255,.55);margin-top:3px;text-transform:uppercase;letter-spacing:.05em">Version<br>actual</div>
         </div>
       </div>
-
-      <!-- Evolution message -->
       <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:2rem 2.5rem;margin-bottom:2rem;position:relative;overflow:hidden">
         <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#f5a623,#00b4c8,#f5a623)"></div>
         <div style="display:flex;align-items:flex-start;gap:1.2rem;text-align:left">
-          <div style="font-size:2.2rem;flex-shrink:0;margin-top:2px">🚀</div>
+          <div style="font-size:2.2rem;flex-shrink:0;margin-top:2px">&#x1F680;</div>
           <div>
-            <div style="font-family:'Nunito',sans-serif;font-size:1.1rem;font-weight:900;color:white;margin-bottom:.5rem">Kactus HCM está evolucionando hacia una nueva versión multinavegador</div>
+            <div style="font-family:Nunito,sans-serif;font-size:1.1rem;font-weight:900;color:white;margin-bottom:.5rem">Kactus HCM esta evolucionando hacia una nueva version multinavegador</div>
             <p style="font-size:.9rem;color:rgba(255,255,255,.75);line-height:1.7;margin-bottom:.8rem">
-              Digital Ware trabaja en el rediseño completo del <strong style="color:white">front-end de Kactus HCM</strong>, transformándolo en una plataforma <strong style="color:white">100% web, multinavegador y responsive</strong>. Esta nueva versión mantendrá toda la funcionalidad actual y la potenciará con una experiencia de usuario moderna, ágil e intuitiva — accesible desde cualquier dispositivo y navegador, sin dependencias de tecnologías obsoletas.
+              Digital Ware trabaja en el rediseno completo del front-end de Kactus HCM, transformandolo en una plataforma 100% web, multinavegador y responsive. Esta nueva version mantendra toda la funcionalidad actual potenciada con una experiencia moderna, agil e intuitiva — accesible desde cualquier dispositivo y navegador, sin dependencias de tecnologias obsoletas.
             </p>
             <div style="display:flex;flex-wrap:wrap;gap:8px">
-              <span style="background:rgba(245,166,35,.2);color:#ffc84a;font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:8px">🌐 Multinavegador</span>
-              <span style="background:rgba(0,180,200,.15);color:#00b4c8;font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:8px">📱 Responsive</span>
-              <span style="background:rgba(29,184,122,.15);color:#2ed494;font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:8px">⚡ Nuevo front-end</span>
-              <span style="background:rgba(108,63,197,.2);color:#c4a0ff;font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:8px">🔄 Misma funcionalidad</span>
-              <span style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.8);font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:8px">🗓️ Próximamente</span>
+              <span style="background:rgba(245,166,35,.2);color:#ffc84a;font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:8px">&#x1F310; Multinavegador</span>
+              <span style="background:rgba(0,180,200,.15);color:#00b4c8;font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:8px">&#x1F4F1; Responsive</span>
+              <span style="background:rgba(29,184,122,.15);color:#2ed494;font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:8px">&#x26A1; Nuevo front-end</span>
+              <span style="background:rgba(108,63,197,.2);color:#c4a0ff;font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:8px">&#x1F504; Misma funcionalidad</span>
+              <span style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.8);font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:8px">&#x1F5D3; Proximamente</span>
             </div>
           </div>
         </div>
       </div>
-
-      <!-- Footer -->
       <p style="font-size:.8rem;color:rgba(255,255,255,.35)">
-        Digital Ware S.A.S · Kactus HCM by Ophelia V.26 · www.digitalware.com.co · Calle 72 #12-65 Piso 4, Bogotá · PBX: (57) 601 9142208
+        Digital Ware S.A.S &nbsp;·&nbsp; Kactus HCM by Ophelia V.26 &nbsp;·&nbsp; www.digitalware.com.co
       </p>
     </div>
   </div>
