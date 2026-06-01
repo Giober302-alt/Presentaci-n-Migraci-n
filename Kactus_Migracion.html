@@ -20,7 +20,7 @@ body{font-family:'Open Sans',sans-serif;background:var(--white);color:var(--text
   border-bottom:2px solid var(--light);display:flex;align-items:center;justify-content:space-between;
   padding:0 2rem;box-shadow:0 2px 12px rgba(26,58,107,.08);}
 .logo-kactus{font-family:'Nunito',sans-serif;font-size:1.35rem;font-weight:900;color:var(--navy);}
-.logo-kactus span{color:var(--gold)}
+.logo-kactus span{color:var(--blue2)}
 .logo-sep{width:1px;height:28px;background:var(--light);margin:0 12px}
 .logo-dw{font-family:'Nunito',sans-serif;font-size:.85rem;font-weight:700;color:var(--navy);opacity:.6}
 .topbar-logo{display:flex;align-items:center}
@@ -47,7 +47,7 @@ body{font-family:'Open Sans',sans-serif;background:var(--white);color:var(--text
 .eyebrow-dot{width:28px;height:8px;background:var(--gold);border-radius:4px}
 .eyebrow-text{font-family:'Nunito',sans-serif;font-size:.72rem;font-weight:700;color:var(--gold);letter-spacing:.1em;text-transform:uppercase}
 .intro-title{font-family:'Nunito',sans-serif;font-size:2.3rem;font-weight:900;color:var(--navy);line-height:1.1;margin-bottom:.25rem;letter-spacing:-.02em}
-.intro-subtitle{font-family:'Nunito',sans-serif;font-size:1.3rem;font-weight:700;color:var(--gold);margin-bottom:1rem}
+.intro-subtitle{font-family:'Nunito',sans-serif;font-size:1.3rem;font-weight:700;color:var(--blue2);margin-bottom:1rem}
 .intro-desc{font-size:.87rem;color:var(--gray);line-height:1.7;max-width:400px;margin-bottom:1.5rem}
 .chips-title{font-size:.68rem;font-weight:700;color:var(--navy);opacity:.5;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.6rem}
 .chips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:1.5rem}
@@ -343,20 +343,159 @@ body{font-family:'Open Sans',sans-serif;background:var(--white);color:var(--text
     <div class="logo-sep"></div>
     <div class="logo-dw">DigitalWare</div>
   </div>
-  <div class="topbar-nav">
-    <button class="tnav-btn active" onclick="show('intro')"       id="tnav-intro">Inicio</button>
+    <button class="tnav-btn active" onclick="show('kickoff')"     id="tnav-kickoff">🏁 Inicio</button>
     <button class="tnav-btn"        onclick="show('licencia')"    id="tnav-licencia">📋 Licencia</button>
     <button class="tnav-btn"        onclick="show('modulos')"     id="tnav-modulos">⚙️ Módulos</button>
     <button class="tnav-btn"        onclick="show('valor')"       id="tnav-valor">🚀 Valor</button>
     <button class="tnav-btn"        onclick="show('oportunidad')" id="tnav-oportunidad">💎 Oportunidades</button>
-    <button class="tnav-btn"        onclick="show('cierre')"       id="tnav-cierre">🌟 Cierre</button>
-  </div>
-  <div class="topbar-badge">Migración Colombia · DWK-032-2026 · V.26</div>
+    <button class="tnav-btn"        onclick="show('canales')"     id="tnav-canales">📞 Canales</button>
+    <button class="tnav-btn"        onclick="show('soporte')"     id="tnav-soporte">🛠️ Soporte</button>
+    <button class="tnav-btn"        onclick="show('cierre')"      id="tnav-cierre">🌟 Cierre</button>
+  <div class="topbar-badge">Migración Colombia · CO1.PCCNTR.9282837 · SP 110.2</div>
 </nav>
 <div class="progress-bar"><div class="progress-fill" id="pFill" style="width:20%"></div></div>
 
-<!-- ═══════ INTRO ═══════ -->
-<div class="screen active" id="scr-intro">
+
+<!-- ═══════ KICKOFF — INICIO ═══════ -->
+<div class="screen active" id="scr-kickoff">
+  <div class="page-inner fade-up" style="max-width:1100px">
+
+    <!-- Hero -->
+    <div style="background:linear-gradient(135deg,#0d2348 0%,#1a3a6b 55%,#2059a8 100%);border-radius:18px;padding:3rem 3.5rem;margin-bottom:2rem;position:relative;overflow:hidden">
+      <div style="position:absolute;top:-80px;right:-60px;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(245,166,35,.15) 0%,transparent 70%);pointer-events:none"></div>
+      <div style="display:flex;align-items:center;gap:1.2rem;margin-bottom:1rem">
+        <div style="background:rgba(58,123,213,.18);border:1px solid rgba(58,123,213,.4);color:#3a7bd5;font-size:.72rem;font-weight:800;padding:.35rem .9rem;border-radius:20px;letter-spacing:.1em;text-transform:uppercase">Digital Ware</div>
+      </div>
+      <h1 style="font-family:Nunito,sans-serif;font-size:2.4rem;font-weight:900;color:white;line-height:1.1;letter-spacing:-.025em;margin-bottom:.6rem">KACTUS HCM &nbsp;–&nbsp; <span style="color:#3a7bd5">Migración Colombia</span></h1>
+      
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:1.6rem">
+        <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:.7rem 1.2rem;text-align:center;min-width:110px">
+          <div style="font-family:Nunito,sans-serif;font-size:1.7rem;font-weight:900;color:#f5a623;line-height:1">34+</div>
+          <div style="font-size:.65rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.06em;margin-top:2px">Años trayectoria</div>
+        </div>
+        <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:.7rem 1.2rem;text-align:center;min-width:110px">
+          <div style="font-family:Nunito,sans-serif;font-size:1.7rem;font-weight:900;color:#f5a623;line-height:1">500+</div>
+          <div style="font-size:.65rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.06em;margin-top:2px">Profesionales</div>
+        </div>
+        <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:.7rem 1.2rem;text-align:center;min-width:110px">
+          <div style="font-family:Nunito,sans-serif;font-size:1.7rem;font-weight:900;color:#f5a623;line-height:1">12+</div>
+          <div style="font-size:.65rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.06em;margin-top:2px">Países</div>
+        </div>
+        <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:.7rem 1.2rem;text-align:center;min-width:110px">
+          <div style="font-family:Nunito,sans-serif;font-size:1.7rem;font-weight:900;color:#f5a623;line-height:1">4 ISO</div>
+          <div style="font-size:.65rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.06em;margin-top:2px">Certificaciones</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DigitalWare + Kactus side by side -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:2rem">
+
+      <!-- Quiénes somos -->
+      <div style="background:white;border:1.5px solid var(--light);border-radius:var(--r);padding:1.8rem;box-shadow:0 2px 10px rgba(26,58,107,.06)">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:1rem">
+          <div style="width:40px;height:40px;border-radius:10px;background:rgba(26,58,107,.08);display:flex;align-items:center;justify-content:center;font-size:1.3rem">🏢</div>
+          <div>
+            <div style="font-family:Nunito,sans-serif;font-size:1rem;font-weight:900;color:var(--navy)">¿Quiénes somos?</div>
+            <div style="font-size:.75rem;color:var(--gray)">Digital Ware S.A.S.</div>
+          </div>
+        </div>
+        <p style="font-size:.86rem;color:var(--text);line-height:1.7;margin-bottom:1rem">
+          Digital Ware SAS hace parte de <strong>HIG Capital</strong>, reconocido fondo de capital privado americano con destacada presencia global en EE.UU., Europa y Latinoamérica. Especializado en invertir en empresas medianas con alto potencial de crecimiento.
+        </p>
+        <p style="font-size:.86rem;color:var(--text);line-height:1.7;margin-bottom:1.2rem">
+          Llevamos <strong>más de 34 años</strong> desarrollando soluciones de software empresarial para el sector público y privado, con presencia en Colombia y Ecuador y proyectos activos en Perú, Chile, Costa Rica, Bolivia, Honduras, Nicaragua, Guatemala, El Salvador y República Dominicana.
+        </p>
+        <!-- Certificaciones -->
+        <div style="display:flex;flex-wrap:wrap;gap:7px">
+          <span style="background:rgba(26,58,107,.08);color:var(--navy);font-size:.7rem;font-weight:700;padding:4px 9px;border-radius:8px">ISO 9001</span>
+          <span style="background:rgba(245,166,35,.12);color:#c47e00;font-size:.7rem;font-weight:700;padding:4px 9px;border-radius:8px">ISO 20000-1</span>
+          <span style="background:rgba(29,184,122,.12);color:#0d8a4f;font-size:.7rem;font-weight:700;padding:4px 9px;border-radius:8px">ISO 27001</span>
+          <span style="background:rgba(108,63,197,.12);color:#6c3fc5;font-size:.7rem;font-weight:700;padding:4px 9px;border-radius:8px">IT Mark Elite</span>
+          <span style="background:rgba(32,89,168,.1);color:#2059a8;font-size:.7rem;font-weight:700;padding:4px 9px;border-radius:8px">HCM · ERP · Innovación</span>
+        </div>
+      </div>
+
+      <!-- Qué es Kactus -->
+      <div style="background:white;border:1.5px solid var(--light);border-radius:var(--r);padding:1.8rem;box-shadow:0 2px 10px rgba(26,58,107,.06)">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:1rem">
+          <div style="width:40px;height:40px;border-radius:10px;background:rgba(245,166,35,.1);display:flex;align-items:center;justify-content:center;font-size:1.3rem">⭐</div>
+          <div>
+            <div style="font-family:Nunito,sans-serif;font-size:1rem;font-weight:900;color:var(--navy)">¿Qué es Kactus HCM?</div>
+            <div style="font-size:.75rem;color:var(--gray)">La solución más usada en Colombia y Latam para nómina y RRHH</div>
+          </div>
+        </div>
+        <p style="font-size:.86rem;color:var(--text);line-height:1.7;margin-bottom:1rem">
+          Kactus HCM es el software más usado por las compañías líderes en Colombia y Latinoamérica para la <strong>gestión de procesos de nómina y talento humano</strong>, bajo un modelo de autogestión. Cubre el ciclo de vida completo del funcionario: <em>Atraer · Remunerar · Alinear &amp; Desarrollar · Retener.</em>
+        </p>
+        <p style="font-size:.86rem;color:var(--text);line-height:1.7;margin-bottom:1.2rem">
+          Migración Colombia cuenta con la licencia <strong>DWK-032-2026</strong> en su versión <strong>V.26 (Ophelia)</strong>, On Premise, sobre SQL Server, con <strong>1.670 empleados habilitados</strong> y <strong>14 módulos licenciados</strong> (incluye encargos y procesos disciplinarios integrados en nómina).
+        </p>
+        <div style="display:flex;flex-wrap:wrap;gap:7px">
+          <span style="background:rgba(26,58,107,.08);color:var(--navy);font-size:.7rem;font-weight:700;padding:4px 9px;border-radius:8px">61 módulos disponibles</span>
+          <span style="background:rgba(245,166,35,.12);color:#c47e00;font-size:.7rem;font-weight:700;padding:4px 9px;border-radius:8px">Self Service</span>
+          <span style="background:rgba(29,184,122,.12);color:#0d8a4f;font-size:.7rem;font-weight:700;padding:4px 9px;border-radius:8px">Sector Público</span>
+          <span style="background:rgba(32,89,168,.1);color:#2059a8;font-size:.7rem;font-weight:700;padding:4px 9px;border-radius:8px">On Premise · V.26</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Agenda -->
+    <div style="background:white;border:1.5px solid var(--light);border-radius:var(--r);padding:1.8rem;margin-bottom:2rem;box-shadow:0 2px 10px rgba(26,58,107,.06)">
+      <div style="font-family:Nunito,sans-serif;font-size:.68rem;font-weight:800;color:var(--navy);opacity:.45;letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.2rem">▸ Agenda de esta presentación</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
+        <div onclick="show('licencia')" style="cursor:pointer;background:var(--off);border:1px solid var(--light);border-radius:10px;padding:1rem;transition:all .18s" onmouseover="this.style.borderColor='#1a3a6b';this.style.background='#f0f4ff'" onmouseout="this.style.borderColor='var(--light)';this.style.background='var(--off)'">
+          <div style="font-size:1.3rem;margin-bottom:.4rem">📋</div>
+          <div style="font-family:Nunito,sans-serif;font-size:.85rem;font-weight:800;color:var(--navy);margin-bottom:.3rem">Ficha técnica</div>
+          <div style="font-size:.74rem;color:var(--gray);line-height:1.4">CO1.PCCNTR.9282837 · Licencia DWK-032-2026</div>
+        </div>
+        <div onclick="show('modulos')" style="cursor:pointer;background:var(--off);border:1px solid var(--light);border-radius:10px;padding:1rem;transition:all .18s" onmouseover="this.style.borderColor='#1a3a6b';this.style.background='#f0f4ff'" onmouseout="this.style.borderColor='var(--light)';this.style.background='var(--off)'">
+          <div style="font-size:1.3rem;margin-bottom:.4rem">⚙️</div>
+          <div style="font-family:Nunito,sans-serif;font-size:.85rem;font-weight:800;color:var(--navy);margin-bottom:.3rem">Módulos activos</div>
+          <div style="font-size:.74rem;color:var(--gray);line-height:1.4">14 módulos licenciados en producción</div>
+        </div>
+        <div onclick="show('canales')" style="cursor:pointer;background:var(--off);border:1px solid var(--light);border-radius:10px;padding:1rem;transition:all .18s" onmouseover="this.style.borderColor='#1a3a6b';this.style.background='#f0f4ff'" onmouseout="this.style.borderColor='var(--light)';this.style.background='var(--off)'">
+          <div style="font-size:1.3rem;margin-bottom:.4rem">📞</div>
+          <div style="font-family:Nunito,sans-serif;font-size:.85rem;font-weight:800;color:var(--navy);margin-bottom:.3rem">Canales posventa</div>
+          <div style="font-size:.74rem;color:var(--gray);line-height:1.4">SAC · Mesa de experiencia · Comercial Posventa</div>
+        </div>
+        <div onclick="show('oportunidad')" style="cursor:pointer;background:var(--off);border:1px solid var(--light);border-radius:10px;padding:1rem;transition:all .18s" onmouseover="this.style.borderColor='#1a3a6b';this.style.background='#f0f4ff'" onmouseout="this.style.borderColor='var(--light)';this.style.background='var(--off)'">
+          <div style="font-size:1.3rem;margin-bottom:.4rem">💎</div>
+          <div style="font-family:Nunito,sans-serif;font-size:.85rem;font-weight:800;color:var(--navy);margin-bottom:.3rem">Oportunidades</div>
+          <div style="font-size:.74rem;color:var(--gray);line-height:1.4">47 módulos disponibles · Recurso inhouse</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modelo de servicio -->
+    <div style="background:white;border:1.5px solid var(--light);border-radius:var(--r);padding:1.8rem;box-shadow:0 2px 10px rgba(26,58,107,.06)">
+      <div style="font-family:Nunito,sans-serif;font-size:.68rem;font-weight:800;color:var(--navy);opacity:.45;letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.2rem">▸ Modelo de servicio — Basado en ITIL Foundation</div>
+      <p style="font-size:.87rem;color:var(--text);line-height:1.7;margin-bottom:1.2rem">En Digital Ware la experiencia del cliente es un aspecto fundamental en la entrega de nuestros servicios. Empleamos procesos basados en la <strong>Guía de Buenas Prácticas ITIL Foundation</strong>. Nuestro modelo abarca desde la estrategia inicial hasta el continuo mejoramiento del servicio.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px">
+        <div style="flex:1;min-width:160px;background:rgba(26,58,107,.05);border-radius:10px;padding:.9rem 1.1rem">
+          <div style="font-family:Nunito,sans-serif;font-size:.8rem;font-weight:800;color:var(--navy);margin-bottom:.3rem">Mesa de Experiencia Técnica</div>
+          <div style="font-size:.77rem;color:var(--gray);line-height:1.5">Lunes a viernes · 7:30 am – 6:00 pm · Personal certificado</div>
+        </div>
+        <div style="flex:1;min-width:160px;background:rgba(245,166,35,.07);border-radius:10px;padding:.9rem 1.1rem">
+          <div style="font-family:Nunito,sans-serif;font-size:.8rem;font-weight:800;color:var(--navy);margin-bottom:.3rem">Comercial de Posventa y Fidelización de Cliente</div>
+          <div style="font-size:.77rem;color:var(--gray);line-height:1.5">Canal dedicado para temas posventa, contractuales y optimización de la herramienta</div>
+        </div>
+        <div style="flex:1;min-width:160px;background:rgba(29,184,122,.07);border-radius:10px;padding:.9rem 1.1rem">
+          <div style="font-family:Nunito,sans-serif;font-size:.8rem;font-weight:800;color:var(--navy);margin-bottom:.3rem">Actualizaciones Continuas</div>
+          <div style="font-size:.77rem;color:var(--gray);line-height:1.5">Service Packs publicados en la plataforma SAC durante la vigencia del contrato</div>
+        </div>
+        <div style="flex:1;min-width:160px;background:rgba(108,63,197,.07);border-radius:10px;padding:.9rem 1.1rem">
+          <div style="font-family:Nunito,sans-serif;font-size:.8rem;font-weight:800;color:var(--navy);margin-bottom:.3rem">Gestión PQRSF</div>
+          <div style="font-size:.77rem;color:var(--gray);line-height:1.5">Registro y seguimiento de peticiones, quejas, reclamos, sugerencias y felicitaciones</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════ INTRO (legacy) ═══════ -->
+<div class="screen" id="scr-intro">
   <div class="intro-layout">
     <div class="intro-left fade-up">
       <div class="eyebrow"><div class="eyebrow-dot"></div><div class="eyebrow-text">Presentación Comercial · Digital Ware S.A.S.</div></div>
@@ -367,7 +506,7 @@ body{font-family:'Open Sans',sans-serif;background:var(--white);color:var(--text
       <div class="chips" id="introChips"></div>
       <div class="intro-stats">
         <div class="istat"><div class="istat-val">1.670</div><div class="istat-lbl">Empleados habilitados</div></div>
-        <div class="istat"><div class="istat-val">11</div><div class="istat-lbl">Módulos licenciados</div></div>
+        <div class="istat"><div class="istat-val">14</div><div class="istat-lbl">Módulos licenciados</div></div>
         <div class="istat"><div class="istat-val">V.26</div><div class="istat-lbl">Versión Kactus HCM</div></div>
         <div class="istat"><div class="istat-val">2013</div><div class="istat-lbl">Primer licenciamiento</div></div>
       </div>
@@ -438,8 +577,60 @@ body{font-family:'Open Sans',sans-serif;background:var(--white);color:var(--text
     <div class="kpis">
       <div class="kpi"><div class="kpi-val">1.670</div><div class="kpi-lbl">Empleados habilitados</div></div>
       <div class="kpi"><div class="kpi-val">1 NIT</div><div class="kpi-lbl">Empresa licenciada</div></div>
-      <div class="kpi"><div class="kpi-val gold">11</div><div class="kpi-lbl">Módulos licenciados</div></div>
+      <div class="kpi"><div class="kpi-val">14</div><div class="kpi-lbl">Módulos licenciados</div></div>
       <div class="kpi"><div class="kpi-val">V.26</div><div class="kpi-lbl">Kactus HCM by Ophelia</div></div>
+    </div>
+
+    <!-- Ficha técnica del contrato -->
+    <div style="background:white;border:1.5px solid var(--light);border-radius:var(--r);padding:1.8rem;margin-bottom:1.5rem;box-shadow:0 2px 8px rgba(26,58,107,.06)">
+      <div class="tl-head">▸ Ficha técnica del contrato</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <div>
+          <div style="display:flex;flex-direction:column;gap:.7rem">
+            <div style="background:var(--off);border-radius:8px;padding:.8rem 1rem">
+              <div style="font-size:.68rem;font-weight:800;color:var(--navy);opacity:.55;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px">Contrato</div>
+              <div style="font-size:.85rem;color:var(--text);font-weight:600">CO1.PCCNTR.9282837</div>
+            </div>
+            <div style="background:var(--off);border-radius:8px;padding:.8rem 1rem">
+              <div style="font-size:.68rem;font-weight:800;color:var(--navy);opacity:.55;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px">Objeto del contrato</div>
+              <div style="font-size:.82rem;color:var(--text);line-height:1.55">Actualizar licencias Seven y KACTUS y brindar soporte de acuerdo con las especificaciones técnicas requeridas en el marco del proyecto de fortalecimiento de las capacidades y evolución de las tecnologías de la información.</div>
+            </div>
+            <div style="background:var(--off);border-radius:8px;padding:.8rem 1rem">
+              <div style="font-size:.68rem;font-weight:800;color:var(--navy);opacity:.55;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px">Supervisor</div>
+              <div style="font-size:.85rem;color:var(--text);font-weight:600">Carlos Sánchez</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div style="display:flex;flex-direction:column;gap:.7rem">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:.7rem">
+              <div style="background:rgba(29,184,122,.07);border:1px solid rgba(29,184,122,.2);border-radius:8px;padding:.8rem 1rem">
+                <div style="font-size:.68rem;font-weight:800;color:#0d8a4f;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px">📅 Inicio</div>
+                <div style="font-size:.85rem;color:var(--text);font-weight:700">30 enero 2026</div>
+              </div>
+              <div style="background:rgba(192,57,43,.06);border:1px solid rgba(192,57,43,.15);border-radius:8px;padding:.8rem 1rem">
+                <div style="font-size:.68rem;font-weight:800;color:#c0392b;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px">📅 Fin</div>
+                <div style="font-size:.85rem;color:var(--text);font-weight:700">31 diciembre 2026</div>
+              </div>
+            </div>
+            <div style="background:var(--off);border-radius:8px;padding:.8rem 1rem">
+              <div style="font-size:.68rem;font-weight:800;color:var(--navy);opacity:.55;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px">Estado de actualización KACTUS HCM</div>
+              <div style="display:flex;flex-wrap:wrap;gap:.5rem">
+                <div style="background:rgba(26,58,107,.08);border-radius:6px;padding:5px 10px;font-size:.78rem;color:var(--navy)">
+                  <span style="font-weight:700">SP en producción:</span> 110.2
+                </div>
+                <div style="background:rgba(245,166,35,.1);border-radius:6px;padding:5px 10px;font-size:.78rem;color:#c47e00">
+                  <span style="font-weight:700">En pruebas:</span> Versión 112
+                </div>
+              </div>
+            </div>
+            <div style="background:rgba(32,89,168,.05);border:1px solid rgba(32,89,168,.12);border-radius:8px;padding:.8rem 1rem">
+              <div style="font-size:.68rem;font-weight:800;color:#2059a8;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px">Licencia</div>
+              <div style="font-size:.82rem;color:var(--text);line-height:1.5">DWK-032-2026 · On Premise · SQL Server · Versión V.26 · 1.670 empleados habilitados</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="tl-box">
       <div class="tl-head">▸ Historial de licenciamiento</div>
@@ -537,6 +728,149 @@ body{font-family:'Open Sans',sans-serif;background:var(--white);color:var(--text
         <div style="font-size:.8rem;color:rgba(255,255,255,.7)">Disponibles para activar sobre la misma plataforma e infraestructura existente · Sin migración · Sin cambio de sistema</div></div>
       </div>
       <div id="opCats"></div>
+    </div>
+
+    <!-- ─── SECCIÓN ESTRATÉGICA ─── -->
+    <div style="margin-top:2.5rem">
+
+      <!-- ══ PARTE 1: DIAGNÓSTICO ══ -->
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:1.2rem;padding-bottom:.8rem;border-bottom:2px solid var(--light)">
+        <div style="width:38px;height:38px;border-radius:10px;background:rgba(192,57,43,.1);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0">🔍</div>
+        <div style="font-family:Nunito,sans-serif;font-size:1.1rem;font-weight:900;color:var(--navy)">Diagnóstico: ¿Por qué no se han implementado completamente los módulos?</div>
+      </div>
+
+      <div style="background:white;border:1.5px solid var(--light);border-radius:var(--r);padding:1.8rem;margin-bottom:.9rem;box-shadow:0 2px 8px rgba(26,58,107,.06)">
+        <p style="font-size:.87rem;color:var(--gray);line-height:1.7;margin-bottom:1.4rem">Migración Colombia cuenta con una licencia robusta de Kactus HCM. Sin embargo, con base en la experiencia de Digital Ware en entidades públicas similares, estas son las causas más frecuentes que impiden aprovechar el potencial completo del sistema:</p>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:1.2rem">
+          <div style="background:rgba(245,166,35,.05);border:1px solid rgba(245,166,35,.2);border-radius:10px;padding:1.1rem">
+            <div style="display:flex;align-items:center;gap:7px;margin-bottom:.5rem">
+              <span style="font-size:1rem">⏱️</span>
+              <div style="font-family:Nunito,sans-serif;font-size:.82rem;font-weight:800;color:var(--navy)">Alta carga operativa</div>
+            </div>
+            <p style="font-size:.78rem;color:var(--gray);line-height:1.55">El equipo de RRHH está enfocado en la operación diaria (nómina, novedades, liquidaciones). No queda tiempo ni capacidad para gestionar proyectos de implementación de nuevas funcionalidades.</p>
+          </div>
+          <div style="background:rgba(32,89,168,.05);border:1px solid rgba(32,89,168,.15);border-radius:10px;padding:1.1rem">
+            <div style="display:flex;align-items:center;gap:7px;margin-bottom:.5rem">
+              <span style="font-size:1rem">🔄</span>
+              <div style="font-family:Nunito,sans-serif;font-size:.82rem;font-weight:800;color:var(--navy)">Flujos de trabajo que no permiten dedicación</div>
+            </div>
+            <p style="font-size:.78rem;color:var(--gray);line-height:1.55">Los procesos internos de la entidad no contemplan un rol dedicado a la gestión del sistema. Sin espacio formal para ello, los proyectos de mejora quedan siempre en segundo plano.</p>
+          </div>
+          <div style="background:rgba(108,63,197,.05);border:1px solid rgba(108,63,197,.15);border-radius:10px;padding:1.1rem">
+            <div style="display:flex;align-items:center;gap:7px;margin-bottom:.5rem">
+              <span style="font-size:1rem">📡</span>
+              <div style="font-family:Nunito,sans-serif;font-size:.82rem;font-weight:800;color:var(--navy)">Falta de articulación con el proveedor</div>
+            </div>
+            <p style="font-size:.78rem;color:var(--gray);line-height:1.55">Sin un punto focal interno, la comunicación con Digital Ware se dispersa entre múltiples personas y áreas, sin continuidad ni seguimiento estructurado. Los requerimientos llegan fragmentados y sin priorización.</p>
+          </div>
+          <div style="background:rgba(0,123,138,.05);border:1px solid rgba(0,123,138,.2);border-radius:10px;padding:1.1rem">
+            <div style="display:flex;align-items:center;gap:7px;margin-bottom:.5rem">
+              <span style="font-size:1rem">👥</span>
+              <div style="font-family:Nunito,sans-serif;font-size:.82rem;font-weight:800;color:var(--navy)">Rotación del personal de RRHH</div>
+            </div>
+            <p style="font-size:.78rem;color:var(--gray);line-height:1.55">Cada vez que cambia el equipo, se pierde el conocimiento acumulado del sistema. Sin documentación interna o recurso estable, la curva de aprendizaje se reinicia y los proyectos quedan inconclusos.</p>
+          </div>
+          <div style="background:rgba(29,184,122,.05);border:1px solid rgba(29,184,122,.2);border-radius:10px;padding:1.1rem">
+            <div style="display:flex;align-items:center;gap:7px;margin-bottom:.5rem">
+              <span style="font-size:1rem">📋</span>
+              <div style="font-family:Nunito,sans-serif;font-size:.82rem;font-weight:800;color:var(--navy)">Procesos no documentados ni estandarizados</div>
+            </div>
+            <p style="font-size:.78rem;color:var(--gray);line-height:1.55">Si los procedimientos internos de RRHH no están documentados en el lenguaje del sistema, los módulos no se configuran correctamente y no se usan de forma óptima.</p>
+          </div>
+          <div style="background:rgba(192,57,43,.05);border:1px solid rgba(192,57,43,.15);border-radius:10px;padding:1.1rem">
+            <div style="display:flex;align-items:center;gap:7px;margin-bottom:.5rem">
+              <span style="font-size:1rem">🔒</span>
+              <div style="font-family:Nunito,sans-serif;font-size:.82rem;font-weight:800;color:var(--navy)">Desconocimiento del potencial del sistema</div>
+            </div>
+            <p style="font-size:.78rem;color:var(--gray);line-height:1.55">Muchas entidades no conocen la totalidad de módulos y funcionalidades disponibles en su licencia. Lo que no se conoce, no se usa ni se solicita.</p>
+          </div>
+        </div>
+        <div style="background:linear-gradient(90deg,rgba(192,57,43,.06),rgba(245,166,35,.06));border-radius:10px;padding:1rem 1.4rem;display:flex;align-items:flex-start;gap:10px">
+          <span style="font-size:1.3rem;flex-shrink:0">⚠️</span>
+          <p style="font-size:.83rem;color:var(--text);line-height:1.65"><strong>Resultado:</strong> Módulos licenciados sin uso completo, requerimientos sin canalización eficiente y una inversión subutilizada. La entidad paga por funcionalidades que no aprovecha.</p>
+        </div>
+      </div>
+
+      <!-- ══ PARTE 2: PROPUESTA — RECURSO INHOUSE ══ -->
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:1.2rem;padding-top:1.5rem;padding-bottom:.8rem;border-bottom:2px solid var(--light)">
+        <div style="width:38px;height:38px;border-radius:10px;background:rgba(245,166,35,.12);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0">🏆</div>
+        <div style="font-family:Nunito,sans-serif;font-size:1.1rem;font-weight:900;color:var(--navy)">Propuesta: Recurso InHouse — Consultor Especializado en KACTUS HCM</div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:1.5rem">
+        <!-- Benchmarking entidades públicas -->
+        <div style="background:linear-gradient(135deg,#0d2348,#1a3a6b);border-radius:var(--r);padding:1.8rem;position:relative;overflow:hidden">
+          <div style="position:absolute;top:-30px;right:-30px;width:130px;height:130px;border-radius:50%;background:rgba(58,123,213,.15);pointer-events:none"></div>
+          <div style="font-family:Nunito,sans-serif;font-size:.68rem;font-weight:800;color:rgba(255,255,255,.45);letter-spacing:.12em;text-transform:uppercase;margin-bottom:1rem">▸ Experiencia en entidades públicas</div>
+          <p style="font-size:.87rem;color:rgba(255,255,255,.85);line-height:1.7;margin-bottom:1rem">Con base en nuestra experiencia en otras entidades públicas del sector, <strong style="color:#3a7bd5">el modelo de mayor éxito en la implementación y aprovechamiento de Kactus HCM</strong> ha sido contar con un consultor interno dedicado a la articulación entre el área de RRHH, la tecnología y Digital Ware.</p>
+          <div style="display:flex;flex-direction:column;gap:.5rem">
+            <div style="display:flex;align-items:flex-start;gap:7px;font-size:.8rem;color:rgba(255,255,255,.75);line-height:1.4"><span style="color:#3a7bd5;flex-shrink:0;font-weight:700">›</span>Entidades con este modelo logran implementar módulos en menor tiempo</div>
+            <div style="display:flex;align-items:flex-start;gap:7px;font-size:.8rem;color:rgba(255,255,255,.75);line-height:1.4"><span style="color:#3a7bd5;flex-shrink:0;font-weight:700">›</span>Reducción significativa de solicitudes de soporte redundantes</div>
+            <div style="display:flex;align-items:flex-start;gap:7px;font-size:.8rem;color:rgba(255,255,255,.75);line-height:1.4"><span style="color:#3a7bd5;flex-shrink:0;font-weight:700">›</span>Mayor aprovechamiento del presupuesto del contrato en mejoras reales</div>
+            <div style="display:flex;align-items:flex-start;gap:7px;font-size:.8rem;color:rgba(255,255,255,.75);line-height:1.4"><span style="color:#3a7bd5;flex-shrink:0;font-weight:700">›</span>Continuidad operativa ante rotación de personal en RRHH</div>
+          </div>
+        </div>
+
+        <!-- Qué hace el recurso inhouse -->
+        <div style="background:white;border:1.5px solid var(--light);border-radius:var(--r);padding:1.8rem;box-shadow:0 2px 8px rgba(26,58,107,.06)">
+          <div style="font-family:Nunito,sans-serif;font-size:.68rem;font-weight:800;color:var(--navy);opacity:.45;letter-spacing:.12em;text-transform:uppercase;margin-bottom:1rem">▸ Rol del consultor especializado</div>
+          <p style="font-size:.86rem;color:var(--text);line-height:1.7;margin-bottom:1rem">Un profesional especializado en Kactus HCM que actúa como <strong>punto articulador entre Migración Colombia y Digital Ware</strong>, enfocado en proyectos de implementación, mejoras funcionales y evolución de la plataforma — no en soporte operativo del día a día.</p>
+          <div style="display:flex;flex-direction:column;gap:.6rem">
+            <div style="background:var(--off);border-radius:8px;padding:.7rem 1rem;display:flex;align-items:flex-start;gap:8px">
+              <span style="color:var(--blue2);font-size:1rem;flex-shrink:0">🚀</span>
+              <div style="font-size:.78rem;color:var(--text);line-height:1.4"><strong>Gestión de proyectos de implementación</strong> — Lidera la puesta en marcha de módulos no activos con metodología y tiempos definidos</div>
+            </div>
+            <div style="background:var(--off);border-radius:8px;padding:.7rem 1rem;display:flex;align-items:flex-start;gap:8px">
+              <span style="color:var(--blue2);font-size:1rem;flex-shrink:0">🔗</span>
+              <div style="font-size:.78rem;color:var(--text);line-height:1.4"><strong>Articulación con Digital Ware</strong> — Canal único de comunicación para proyectos, mejoras y evolución del sistema</div>
+            </div>
+            <div style="background:var(--off);border-radius:8px;padding:.7rem 1rem;display:flex;align-items:flex-start;gap:8px">
+              <span style="color:var(--blue2);font-size:1rem;flex-shrink:0">⚙️</span>
+              <div style="font-size:.78rem;color:var(--text);line-height:1.4"><strong>Parametrización y configuración</strong> — Gestiona ajustes del sistema sin depender exclusivamente del proveedor para cada cambio</div>
+            </div>
+            <div style="background:var(--off);border-radius:8px;padding:.7rem 1rem;display:flex;align-items:flex-start;gap:8px">
+              <span style="color:var(--blue2);font-size:1rem;flex-shrink:0">📊</span>
+              <div style="font-size:.78rem;color:var(--text);line-height:1.4"><strong>Transferencia de conocimiento interno</strong> — Documenta y genera continuidad ante la rotación de personal de RRHH</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Situación actual vs. con recurso inhouse -->
+      <div style="background:white;border:1.5px solid var(--light);border-radius:var(--r);padding:1.8rem;margin-bottom:1.5rem;box-shadow:0 2px 8px rgba(26,58,107,.06)">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:1.2rem">
+          <div style="width:36px;height:36px;border-radius:10px;background:rgba(32,89,168,.08);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0">💡</div>
+          <div style="font-family:Nunito,sans-serif;font-size:1rem;font-weight:900;color:var(--navy)">Situación actual vs. con consultor especializado</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+          <div>
+            <div style="font-size:.72rem;font-weight:700;color:#c0392b;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.7rem">📍 Situación actual</div>
+            <p style="font-size:.85rem;color:var(--text);line-height:1.7;margin-bottom:.8rem">Actualmente, <strong>Migración Colombia no cuenta con un consultor interno</strong> dedicado a la articulación entre RRHH y Kactus HCM. Esto genera que los módulos no sean aprovechados al máximo de su potencial.</p>
+            <div style="background:rgba(192,57,43,.05);border-left:3px solid #c0392b;padding:.8rem 1rem;border-radius:0 8px 8px 0;font-size:.8rem;color:var(--text);line-height:1.6">
+              De los <strong>14 módulos licenciados</strong>, varios no se utilizan completamente. Los <strong>47 módulos adicionales disponibles</strong> en la misma plataforma permanecen sin explorar.
+            </div>
+          </div>
+          <div>
+            <div style="font-size:.72rem;font-weight:700;color:#1db87a;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.7rem">🚀 Con consultor especializado</div>
+            <p style="font-size:.85rem;color:var(--text);line-height:1.7;margin-bottom:.8rem">La incorporación de este perfil, <strong>con el acompañamiento directo de Digital Ware</strong>, permitiría potencializar módulos subutilizados, implementar nuevas funcionalidades y mejorar la eficiencia operativa de RRHH.</p>
+            <div style="background:rgba(29,184,122,.06);border-left:3px solid #1db87a;padding:.8rem 1rem;border-radius:0 8px 8px 0;font-size:.8rem;color:var(--text);line-height:1.6">
+              Digital Ware actúa como <strong>factor clave de éxito</strong>: aporta metodología de implementación, formación del consultor interno y soporte especializado durante todo el proceso de evolución.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Conclusión estratégica -->
+      <div style="background:linear-gradient(135deg,#0d2348,#1a3a6b);border-radius:var(--r);padding:1.8rem">
+        <div style="display:flex;align-items:flex-start;gap:1.2rem">
+          <div style="font-size:2rem;flex-shrink:0">🎯</div>
+          <div>
+            <div style="font-family:Nunito,sans-serif;font-size:1rem;font-weight:900;color:white;margin-bottom:.5rem">Conclusión: Maximizar el retorno de la inversión ya realizada</div>
+            <p style="font-size:.87rem;color:rgba(255,255,255,.8);line-height:1.7">La implementación de un consultor especializado en Kactus HCM, con el acompañamiento estructurado de Digital Ware, es la respuesta directa a las problemáticas identificadas. No representa un costo adicional al contrato — es la inversión que <strong style="color:#3a7bd5">transforma el área de RRHH en un socio estratégico</strong> y maximiza el retorno de la licencia ya adquirida por Migración Colombia.</p>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
@@ -1168,8 +1502,8 @@ const PHASE_TEXT = {
 // ─────────────────────────────────────────────
 // SCREEN SWITCHING
 // ─────────────────────────────────────────────
-const SCREENS=['intro','licencia','modulos','valor','oportunidad','cierre'];
-const PROG=[15,30,48,63,80,100];
+const SCREENS=['kickoff','licencia','modulos','valor','oportunidad','canales','soporte','cierre'];
+const PROG=[12,24,36,50,64,76,88,100];
 let curMod=0;
 
 function show(id){
@@ -1460,6 +1794,267 @@ function deleteCase(idx){
 buildGrid(); buildChips(); buildOpViews();
 </script>
 
+<!-- ═══════ CANALES DE COMUNICACIÓN POSVENTA ═══════ -->
+<div class="screen" id="scr-canales">
+  <div class="page-inner fade-up" style="max-width:1060px">
+    <div class="page-header">
+      <div class="page-header-line"></div>
+      <div class="page-header-text">
+        <h1>Canales de Comunicación Posventa</h1>
+        <p>Todos los medios disponibles para reportar incidentes, solicitudes, PQRSF y gestionar su contrato · Contrato CO1.PCCNTR.9282837</p>
+      </div>
+    </div>
+
+    <!-- Tarjetas principales de canal -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:2rem">
+
+      <!-- SAC -->
+      <div style="background:white;border:1.5px solid var(--light);border-radius:var(--r);padding:1.6rem;box-shadow:0 2px 8px rgba(26,58,107,.06)">
+        <div style="width:46px;height:46px;border-radius:12px;background:rgba(26,58,107,.08);display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:.9rem">🖥️</div>
+        <div style="font-family:Nunito,sans-serif;font-size:1rem;font-weight:800;color:var(--navy);margin-bottom:.4rem">Plataforma SAC</div>
+        <div style="font-size:.78rem;color:var(--gray);line-height:1.6;margin-bottom:1rem">Canal principal para reporte y seguimiento de casos, incidentes, solicitudes de requerimiento y acceso a actualizaciones.</div>
+        <div style="background:var(--off);border-radius:8px;padding:.7rem 1rem;font-size:.78rem;color:var(--navy);font-weight:600">🔗 https://sac.digitalware.co</div>
+        <div style="margin-top:.8rem;font-size:.73rem;color:var(--gray)">✔ Seguimiento en tiempo real de sus casos<br>✔ Acceso a Service Packs y documentación<br>✔ Historial completo de interacciones</div>
+      </div>
+
+      <!-- Mesa de Experiencia Técnica -->
+      <div style="background:white;border:1.5px solid var(--light);border-radius:var(--r);padding:1.6rem;box-shadow:0 2px 8px rgba(26,58,107,.06)">
+        <div style="width:46px;height:46px;border-radius:12px;background:rgba(245,166,35,.1);display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:.9rem">🎧</div>
+        <div style="font-family:Nunito,sans-serif;font-size:1rem;font-weight:800;color:var(--navy);margin-bottom:.4rem">Mesa de Experiencia Técnica (MET)</div>
+        <div style="font-size:.78rem;color:var(--gray);line-height:1.6;margin-bottom:1rem">Atención telefónica y por WhatsApp para soporte técnico de Kactus HCM con personal especializado.</div>
+        <div style="background:var(--off);border-radius:8px;padding:.7rem 1rem;font-size:.78rem;color:var(--navy);font-weight:600;margin-bottom:.5rem">📞 +57 601 9142208 · Opción 2</div>
+        <div style="background:var(--off);border-radius:8px;padding:.7rem 1rem;font-size:.78rem;color:var(--navy);font-weight:600">💬 +57 300 7978903 (Solo WhatsApp)</div>
+        <div style="background:var(--off);border-radius:8px;padding:.7rem 1rem;font-size:.78rem;color:var(--navy);font-weight:600;margin-top:.5rem">📧 Met@digitalware.com.co</div>
+        <div style="margin-top:.8rem;font-size:.73rem;color:var(--gray)">✔ Lunes a viernes 7:30 am – 6:00 pm<br>✔ Personal idóneo y certificado<br>✔ Atención jornada continua</div>
+      </div>
+
+      <!-- Comercial Posventa -->
+      <div style="background:white;border:1.5px solid var(--light);border-radius:var(--r);padding:1.6rem;box-shadow:0 2px 8px rgba(26,58,107,.06)">
+        <div style="width:46px;height:46px;border-radius:12px;background:rgba(29,184,122,.1);display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:.9rem">🤝</div>
+        <div style="font-family:Nunito,sans-serif;font-size:1rem;font-weight:800;color:var(--navy);margin-bottom:.4rem">Comercial de Posventa y Fidelización de Cliente</div>
+        <div style="font-size:.78rem;color:var(--gray);line-height:1.6;margin-bottom:1rem">Canal dedicado para temas comerciales, contractuales y de posventa. Optimización de la herramienta con foco en usabilidad y procesos del cliente.</div>
+        <div style="background:var(--off);border-radius:8px;padding:.7rem 1rem;font-size:.78rem;color:var(--navy);font-weight:600">📧 GiovannyL@digitalware.com.co</div>
+        <div style="margin-top:.8rem;font-size:.73rem;color:var(--gray)">✔ Seguimiento contractual y de entregables<br>✔ Asesoría en expansión de módulos<br>✔ Escalamiento a niveles superiores</div>
+      </div>
+    </div>
+
+    <!-- Canales adicionales -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:2rem">
+
+      <!-- Correo y PQRSF -->
+      <div style="background:white;border:1.5px solid var(--light);border-radius:var(--r);padding:1.6rem;box-shadow:0 2px 8px rgba(26,58,107,.06)">
+        <div style="font-family:Nunito,sans-serif;font-size:.68rem;font-weight:800;color:var(--navy);opacity:.45;letter-spacing:.12em;text-transform:uppercase;margin-bottom:1rem">▸ Correo y PQRSF</div>
+        <div style="display:flex;flex-direction:column;gap:.6rem">
+          <div style="background:var(--off);border-radius:8px;padding:.7rem 1rem">
+            <div style="font-size:.7rem;font-weight:700;color:var(--navy);margin-bottom:2px">Servicio al Cliente — Correo</div>
+            <div style="font-size:.78rem;color:var(--gray)">servicioalcliente@digitalware.com.co</div>
+          </div>
+          <div style="background:var(--off);border-radius:8px;padding:.7rem 1rem">
+            <div style="font-size:.7rem;font-weight:700;color:var(--navy);margin-bottom:2px">Portal PQRSF — Quejas y Sugerencias</div>
+            <div style="font-size:.78rem;color:var(--gray)">https://digitalware.com.co/formulario-pqrsf/</div>
+          </div>
+          <div style="background:var(--off);border-radius:8px;padding:.7rem 1rem">
+            <div style="font-size:.7rem;font-weight:700;color:var(--navy);margin-bottom:2px">En plataforma SAC</div>
+            <div style="font-size:.78rem;color:var(--gray)">Opción "Quejas y Sugerencias" en sac.digitalware.co</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Información para reportar -->
+      <div style="background:white;border:1.5px solid var(--light);border-radius:var(--r);padding:1.6rem;box-shadow:0 2px 8px rgba(26,58,107,.06)">
+        <div style="font-family:Nunito,sans-serif;font-size:.68rem;font-weight:800;color:var(--navy);opacity:.45;letter-spacing:.12em;text-transform:uppercase;margin-bottom:1rem">▸ Información necesaria al reportar un caso</div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:.55rem">
+          <li style="display:flex;align-items:flex-start;gap:7px;font-size:.8rem;color:var(--text);line-height:1.4"><span style="color:var(--gold);font-weight:900;flex-shrink:0">›</span>Datos de contacto: nombre, teléfono, celular y/o correo</li>
+          <li style="display:flex;align-items:flex-start;gap:7px;font-size:.8rem;color:var(--text);line-height:1.4"><span style="color:var(--gold);font-weight:900;flex-shrink:0">›</span>Nombre del programa o proceso relacionado con el caso</li>
+          <li style="display:flex;align-items:flex-start;gap:7px;font-size:.8rem;color:var(--text);line-height:1.4"><span style="color:var(--gold);font-weight:900;flex-shrink:0">›</span>Versión del programa (Service Pack instalado)</li>
+          <li style="display:flex;align-items:flex-start;gap:7px;font-size:.8rem;color:var(--text);line-height:1.4"><span style="color:var(--gold);font-weight:900;flex-shrink:0">›</span>Descripción detallada con evidencias: capturas y resultado esperado</li>
+          <li style="display:flex;align-items:flex-start;gap:7px;font-size:.8rem;color:var(--text);line-height:1.4"><span style="color:var(--gold);font-weight:900;flex-shrink:0">›</span>Garantice tener aplicadas las actualizaciones más recientes del SAC</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Priorización y tiempos -->
+    <div style="background:white;border:1.5px solid var(--light);border-radius:var(--r);padding:1.8rem;margin-bottom:1.5rem;box-shadow:0 2px 8px rgba(26,58,107,.06)">
+      <div style="font-family:Nunito,sans-serif;font-size:.68rem;font-weight:800;color:var(--navy);opacity:.45;letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.2rem">▸ Priorización y tiempos de atención — Contrato CO1.PCCNTR.9282837</div>
+      <div style="overflow-x:auto">
+        <table style="width:100%;border-collapse:collapse;font-size:.8rem">
+          <thead>
+            <tr style="background:var(--navy);color:white">
+              <th style="padding:.6rem 1rem;text-align:left;border-radius:8px 0 0 0;font-size:.72rem">Prioridad</th>
+              <th style="padding:.6rem 1rem;text-align:left;font-size:.72rem">Descripción</th>
+              <th style="padding:.6rem 1rem;text-align:left;font-size:.72rem">Ejemplo</th>
+              <th style="padding:.6rem .8rem;text-align:center;border-radius:0 8px 0 0;font-size:.72rem">Tiempo máx.*</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="background:#fef2f2;border-bottom:1px solid var(--light)">
+              <td style="padding:.6rem 1rem;font-weight:800;color:#c0392b">P1 — Crítica</td>
+              <td style="padding:.6rem 1rem;color:var(--text)">Caída del sistema</td>
+              <td style="padding:.6rem 1rem;color:var(--gray)">Falla total o caída importante del sistema</td>
+              <td style="padding:.6rem .8rem;text-align:center;font-weight:700;color:#c0392b">4 horas</td>
+            </tr>
+            <tr style="background:rgba(245,166,35,.04);border-bottom:1px solid var(--light)">
+              <td style="padding:.6rem 1rem;font-weight:800;color:#c47e00">P2 — Alta</td>
+              <td style="padding:.6rem 1rem;color:var(--text)">Suspensión crítica</td>
+              <td style="padding:.6rem 1rem;color:var(--gray)">Pérdida significativa de funcionalidad</td>
+              <td style="padding:.6rem .8rem;text-align:center;font-weight:700;color:#c47e00">8h impacto alto</td>
+            </tr>
+            <tr style="background:rgba(32,89,168,.04);border-bottom:1px solid var(--light)">
+              <td style="padding:.6rem 1rem;font-weight:800;color:#2059a8">P3 — Media</td>
+              <td style="padding:.6rem 1rem;color:var(--text)">Falla de una función</td>
+              <td style="padding:.6rem 1rem;color:var(--gray)">Novedad controlada, no paraliza operación</td>
+              <td style="padding:.6rem .8rem;text-align:center;font-weight:700;color:#2059a8">32h impacto medio</td>
+            </tr>
+            <tr style="background:var(--off)">
+              <td style="padding:.6rem 1rem;font-weight:800;color:var(--gray)">P4 — Baja</td>
+              <td style="padding:.6rem 1rem;color:var(--text)">Procedimiento menor</td>
+              <td style="padding:.6rem 1rem;color:var(--gray)">Configuración, consultas, reimpresión</td>
+              <td style="padding:.6rem .8rem;text-align:center;font-weight:700;color:var(--gray)">96h impacto bajo</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="margin-top:.8rem;background:rgba(26,58,107,.04);border-left:3px solid var(--navy);padding:8px 12px;border-radius:0 8px 8px 0;font-size:.77rem;color:var(--gray);font-style:italic">*Tiempos en horas hábiles. P1 Crítica: máximo 4 horas para restablecimiento, estabilización y/o continuidad de operación.</div>
+    </div>
+
+    <!-- Niveles de escalamiento -->
+    <div style="background:linear-gradient(135deg,#0d2348,#1a3a6b);border-radius:var(--r);padding:1.8rem;box-shadow:0 4px 20px rgba(26,58,107,.2)">
+      <div style="font-family:Nunito,sans-serif;font-size:.68rem;font-weight:800;color:rgba(255,255,255,.45);letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.2rem">▸ Niveles de escalamiento</div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px">
+        <div style="flex:1;min-width:160px;background:rgba(255,255,255,.07);border-radius:10px;padding:1rem;border:1px solid rgba(255,255,255,.1)">
+          <div style="font-family:Nunito,sans-serif;font-size:.78rem;font-weight:800;color:#ffc84a;margin-bottom:.3rem">Nivel 1 — MET</div>
+          <div style="font-size:.75rem;color:rgba(255,255,255,.7);line-height:1.5">Mesa de Experiencia Técnica. Primera línea de soporte para todos los casos.</div>
+        </div>
+        <div style="flex:1;min-width:160px;background:rgba(255,255,255,.07);border-radius:10px;padding:1rem;border:1px solid rgba(255,255,255,.1)">
+          <div style="font-family:Nunito,sans-serif;font-size:.78rem;font-weight:800;color:#ffc84a;margin-bottom:.3rem">Nivel 2 — Especialista</div>
+          <div style="font-size:.75rem;color:rgba(255,255,255,.7);line-height:1.5">Consultor técnico especializado en el módulo. Escalado por la MET cuando el caso lo requiere.</div>
+        </div>
+        <div style="flex:1;min-width:160px;background:rgba(255,255,255,.07);border-radius:10px;padding:1rem;border:1px solid rgba(255,255,255,.1)">
+          <div style="font-family:Nunito,sans-serif;font-size:.78rem;font-weight:800;color:#ffc84a;margin-bottom:.3rem">Nivel 3 — Desarrollo</div>
+          <div style="font-size:.75rem;color:rgba(255,255,255,.7);line-height:1.5">Equipo de ingeniería de producto. Involucrado en defectos o ajustes de versión.</div>
+        </div>
+        <div style="flex:1;min-width:160px;background:rgba(255,255,255,.07);border-radius:10px;padding:1rem;border:1px solid rgba(255,255,255,.1)">
+          <div style="font-family:Nunito,sans-serif;font-size:.78rem;font-weight:800;color:#ffc84a;margin-bottom:.3rem">Nivel 4 — Comercial Posventa / Gerencia</div>
+          <div style="font-size:.75rem;color:rgba(255,255,255,.7);line-height:1.5">Comercial de Posventa y Gerencia. Para temas contractuales o escalamiento crítico sin resolución.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ SOPORTE REMOTO ═══════ -->
+<div class="screen" id="scr-soporte">
+  <div class="page-inner fade-up" style="max-width:1060px">
+    <div class="page-header">
+      <div class="page-header-line"></div>
+      <div class="page-header-text">
+        <h1>Soporte Remoto — Acompañamiento Técnico</h1>
+        <p>Cómo funciona el acompañamiento técnico de Digital Ware para Migración Colombia</p>
+      </div>
+    </div>
+
+    <!-- Hero soporte -->
+    <div style="background:linear-gradient(135deg,#007b8a 0%,#005f6b 100%);border-radius:var(--r);padding:2rem 2.5rem;margin-bottom:2rem;position:relative;overflow:hidden">
+      <div style="position:absolute;right:-40px;top:-40px;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,.06);pointer-events:none"></div>
+      <div style="display:flex;align-items:flex-start;gap:1.5rem">
+        <div style="font-size:2.8rem;flex-shrink:0">🛠️</div>
+        <div>
+          <div style="font-family:Nunito,sans-serif;font-size:1.3rem;font-weight:900;color:white;margin-bottom:.5rem">Soporte 100% Remoto e Integral</div>
+          <p style="font-size:.9rem;color:rgba(255,255,255,.8);line-height:1.7;margin-bottom:1rem">El servicio de soporte de Digital Ware opera bajo el modelo <strong style="color:#f5a623">Mesa de Experiencia Técnica (MET)</strong>, brindando atención especializada, seguimiento continuo y acompañamiento proactivo — todo de forma remota, sin desplazamiento, con tiempos de respuesta garantizados por contrato.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">
+            <span style="background:rgba(255,255,255,.15);color:white;font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:8px">🌐 100% Remoto</span>
+            <span style="background:rgba(255,255,255,.15);color:white;font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:8px">⏱️ SLA por contrato</span>
+            <span style="background:rgba(255,255,255,.15);color:white;font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:8px">👨‍💻 Personal especializado</span>
+            <span style="background:rgba(255,255,255,.15);color:white;font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:8px">🔄 Basado en ITIL</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Flujo de atención -->
+    <div style="background:white;border:1.5px solid var(--light);border-radius:var(--r);padding:1.8rem;margin-bottom:1.5rem;box-shadow:0 2px 8px rgba(26,58,107,.06)">
+      <div style="font-family:Nunito,sans-serif;font-size:.68rem;font-weight:800;color:var(--navy);opacity:.45;letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.4rem">▸ Flujo de atención de soporte remoto</div>
+      <div style="display:flex;align-items:flex-start;gap:0;flex-wrap:nowrap;overflow-x:auto;min-width:max-content;padding-bottom:.5rem">
+
+        <div style="display:flex;flex-direction:column;align-items:center;text-align:center;min-width:130px;max-width:140px">
+          <div style="width:36px;height:36px;border-radius:50%;background:#2059a8;color:white;font-family:Nunito,sans-serif;font-size:.85rem;font-weight:900;display:flex;align-items:center;justify-content:center;margin-bottom:.5rem;border:3px solid white;box-shadow:0 2px 8px rgba(32,89,168,.3)">1</div>
+          <div style="background:#2059a8;border-radius:10px;padding:.7rem .6rem;font-size:.72rem;font-weight:700;color:white;width:120px;min-height:54px;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.3">Reporte del caso<br>SAC / MET</div>
+          <div style="font-size:.67rem;color:var(--gray);margin-top:.4rem;line-height:1.35;max-width:120px">Usuario reporta por plataforma SAC o línea telefónica MET</div>
+        </div>
+        <div style="display:flex;align-items:flex-start;padding-top:26px;color:#c8d5e8;font-size:1.3rem;flex-shrink:0;margin:0 4px">→</div>
+        <div style="display:flex;flex-direction:column;align-items:center;text-align:center;min-width:130px;max-width:140px">
+          <div style="width:36px;height:36px;border-radius:50%;background:#1a3a6b;color:white;font-family:Nunito,sans-serif;font-size:.85rem;font-weight:900;display:flex;align-items:center;justify-content:center;margin-bottom:.5rem;border:3px solid white;box-shadow:0 2px 8px rgba(26,58,107,.3)">2</div>
+          <div style="background:#1a3a6b;border-radius:10px;padding:.7rem .6rem;font-size:.72rem;font-weight:700;color:white;width:120px;min-height:54px;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.3">Registro y clasificación</div>
+          <div style="font-size:.67rem;color:var(--gray);margin-top:.4rem;line-height:1.35;max-width:120px">Apertura de caso con prioridad P1–P4 y asignación al especialista</div>
+        </div>
+        <div style="display:flex;align-items:flex-start;padding-top:26px;color:#c8d5e8;font-size:1.3rem;flex-shrink:0;margin:0 4px">→</div>
+        <div style="display:flex;flex-direction:column;align-items:center;text-align:center;min-width:130px;max-width:140px">
+          <div style="width:36px;height:36px;border-radius:50%;background:#007b8a;color:white;font-family:Nunito,sans-serif;font-size:.85rem;font-weight:900;display:flex;align-items:center;justify-content:center;margin-bottom:.5rem;border:3px solid white;box-shadow:0 2px 8px rgba(0,123,138,.3)">3</div>
+          <div style="background:#007b8a;border-radius:10px;padding:.7rem .6rem;font-size:.72rem;font-weight:700;color:white;width:120px;min-height:54px;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.3">Atención especialista remoto</div>
+          <div style="font-size:.67rem;color:var(--gray);margin-top:.4rem;line-height:1.35;max-width:120px">Conexión al ambiente del cliente y análisis en vivo del caso</div>
+        </div>
+        <div style="display:flex;align-items:flex-start;padding-top:26px;color:#c8d5e8;font-size:1.3rem;flex-shrink:0;margin:0 4px">→</div>
+        <div style="display:flex;flex-direction:column;align-items:center;text-align:center;min-width:130px;max-width:140px">
+          <div style="width:36px;height:36px;border-radius:50%;background:#6c3fc5;color:white;font-family:Nunito,sans-serif;font-size:.85rem;font-weight:900;display:flex;align-items:center;justify-content:center;margin-bottom:.5rem;border:3px solid white;box-shadow:0 2px 8px rgba(108,63,197,.3)">4</div>
+          <div style="background:#6c3fc5;border-radius:10px;padding:.7rem .6rem;font-size:.72rem;font-weight:700;color:white;width:120px;min-height:54px;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.3">Diagnóstico y solución</div>
+          <div style="font-size:.67rem;color:var(--gray);margin-top:.4rem;line-height:1.35;max-width:120px">Análisis de causa raíz y aplicación de solución definitiva o temporal</div>
+        </div>
+        <div style="display:flex;align-items:flex-start;padding-top:26px;color:#c8d5e8;font-size:1.3rem;flex-shrink:0;margin:0 4px">→</div>
+        <div style="display:flex;flex-direction:column;align-items:center;text-align:center;min-width:130px;max-width:140px">
+          <div style="width:36px;height:36px;border-radius:50%;background:#1db87a;color:white;font-family:Nunito,sans-serif;font-size:.85rem;font-weight:900;display:flex;align-items:center;justify-content:center;margin-bottom:.5rem;border:3px solid white;box-shadow:0 2px 8px rgba(29,184,122,.3)">5</div>
+          <div style="background:#1db87a;border-radius:10px;padding:.7rem .6rem;font-size:.72rem;font-weight:700;color:white;width:120px;min-height:54px;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.3">Escalamiento (si aplica)</div>
+          <div style="font-size:.67rem;color:var(--gray);margin-top:.4rem;line-height:1.35;max-width:120px">Si no resuelve en N1, pasa a Especialista N2 o Desarrollo N3</div>
+        </div>
+        <div style="display:flex;align-items:flex-start;padding-top:26px;color:#c8d5e8;font-size:1.3rem;flex-shrink:0;margin:0 4px">→</div>
+        <div style="display:flex;flex-direction:column;align-items:center;text-align:center;min-width:130px;max-width:140px">
+          <div style="width:36px;height:36px;border-radius:50%;background:#c47e00;color:white;font-family:Nunito,sans-serif;font-size:.85rem;font-weight:900;display:flex;align-items:center;justify-content:center;margin-bottom:.5rem;border:3px solid white;box-shadow:0 2px 8px rgba(196,126,0,.3)">6</div>
+          <div style="background:#c47e00;border-radius:10px;padding:.7rem .6rem;font-size:.72rem;font-weight:700;color:white;width:120px;min-height:54px;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.3">Cierre y confirmación</div>
+          <div style="font-size:.67rem;color:var(--gray);margin-top:.4rem;line-height:1.35;max-width:120px">Caso cerrado con confirmación del usuario y documentación en SAC</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tipos de soporte -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:1.5rem">
+      <div style="background:white;border:1.5px solid var(--light);border-radius:var(--r);padding:1.4rem;box-shadow:0 2px 8px rgba(26,58,107,.06)">
+        <div style="font-size:1.5rem;margin-bottom:.7rem">🔧</div>
+        <div style="font-family:Nunito,sans-serif;font-size:.9rem;font-weight:800;color:var(--navy);margin-bottom:.5rem">Soporte Correctivo</div>
+        <p style="font-size:.78rem;color:var(--gray);line-height:1.6">Atención de incidentes, errores y comportamientos inesperados del sistema. Incluye análisis de causa raíz y solución definitiva o temporal según prioridad.</p>
+      </div>
+      <div style="background:white;border:1.5px solid var(--light);border-radius:var(--r);padding:1.4rem;box-shadow:0 2px 8px rgba(26,58,107,.06)">
+        <div style="font-size:1.5rem;margin-bottom:.7rem">📚</div>
+        <div style="font-family:Nunito,sans-serif;font-size:.9rem;font-weight:800;color:var(--navy);margin-bottom:.5rem">Soporte Funcional</div>
+        <p style="font-size:.78rem;color:var(--gray);line-height:1.6">Entrega de manuales y suministro de información funcional sobre el uso correcto del sistema, parametrización y consultas de procedimiento.</p>
+      </div>
+      <div style="background:white;border:1.5px solid var(--light);border-radius:var(--r);padding:1.4rem;box-shadow:0 2px 8px rgba(26,58,107,.06)">
+        <div style="font-size:1.5rem;margin-bottom:.7rem">🔄</div>
+        <div style="font-family:Nunito,sans-serif;font-size:.9rem;font-weight:800;color:var(--navy);margin-bottom:.5rem">Actualizaciones (SP)</div>
+        <p style="font-size:.78rem;color:var(--gray);line-height:1.6">Publicación y acompañamiento en la aplicación de Service Packs durante la vigencia del contrato. Incluye validación en ambiente de pruebas antes de producción.</p>
+      </div>
+    </div>
+
+    <!-- Condiciones del servicio -->
+    <div style="background:white;border:1.5px solid var(--light);border-radius:var(--r);padding:1.8rem;box-shadow:0 2px 8px rgba(26,58,107,.06)">
+      <div style="font-family:Nunito,sans-serif;font-size:.68rem;font-weight:800;color:var(--navy);opacity:.45;letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.2rem">▸ Condiciones del servicio de soporte</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+        <div style="background:var(--off);border-radius:10px;padding:1rem">
+          <div style="font-family:Nunito,sans-serif;font-size:.8rem;font-weight:800;color:var(--navy);margin-bottom:.4rem">⏰ Horario de atención</div>
+          <div style="font-size:.77rem;color:var(--gray);line-height:1.5">Lunes a viernes (no festivos ni feriados)<br><strong>7:30 am a 6:00 pm</strong> — jornada continua</div>
+        </div>
+        <div style="background:var(--off);border-radius:10px;padding:1rem">
+          <div style="font-family:Nunito,sans-serif;font-size:.8rem;font-weight:800;color:var(--navy);margin-bottom:.4rem">👥 Personal idóneo</div>
+          <div style="font-size:.77rem;color:var(--gray);line-height:1.5">Especialistas certificados en cada módulo. Escalamiento estructurado cuando el caso lo requiere.</div>
+        </div>
+        <div style="background:var(--off);border-radius:10px;padding:1rem">
+          <div style="font-family:Nunito,sans-serif;font-size:.8rem;font-weight:800;color:var(--navy);margin-bottom:.4rem">📦 Actualizaciones incluidas</div>
+          <div style="font-size:.77rem;color:var(--gray);line-height:1.5">Todos los Service Packs publicados durante la vigencia están disponibles en SAC sin costo adicional.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 <!-- ═══════ CIERRE ═══════ -->
 <div class="screen" id="scr-cierre">
   <div style="min-height:calc(100vh - 56px);display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#0d2348 0%,#1a3a6b 55%,#2059a8 100%);position:relative;overflow:hidden;padding:2rem">
@@ -1477,15 +2072,15 @@ buildGrid(); buildChips(); buildOpViews();
       </p>
       <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:2.5rem">
         <div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:1rem">
-          <div style="font-family:Nunito,sans-serif;font-size:1.8rem;font-weight:900;color:#f5a623;line-height:1">1.670</div>
+          <div style="font-family:Nunito,sans-serif;font-size:1.8rem;font-weight:900;color:#3a7bd5;line-height:1">1.670</div>
           <div style="font-size:.7rem;color:rgba(255,255,255,.55);margin-top:3px;text-transform:uppercase;letter-spacing:.05em">Empleados<br>habilitados</div>
         </div>
         <div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:1rem">
-          <div style="font-family:Nunito,sans-serif;font-size:1.8rem;font-weight:900;color:#f5a623;line-height:1">11</div>
-          <div style="font-size:.7rem;color:rgba(255,255,255,.55);margin-top:3px;text-transform:uppercase;letter-spacing:.05em">Modulos<br>activos</div>
+          <div style="font-family:Nunito,sans-serif;font-size:1.8rem;font-weight:900;color:#3a7bd5;line-height:1">14</div>
+          <div style="font-size:.7rem;color:rgba(255,255,255,.55);margin-top:3px;text-transform:uppercase;letter-spacing:.05em">Módulos<br>licenciados</div>
         </div>
         <div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:1rem">
-          <div style="font-family:Nunito,sans-serif;font-size:1.8rem;font-weight:900;color:#f5a623;line-height:1">47</div>
+          <div style="font-family:Nunito,sans-serif;font-size:1.8rem;font-weight:900;color:#3a7bd5;line-height:1">47</div>
           <div style="font-size:.7rem;color:rgba(255,255,255,.55);margin-top:3px;text-transform:uppercase;letter-spacing:.05em">Modulos<br>disponibles</div>
         </div>
         <div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:1rem">
